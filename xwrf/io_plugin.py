@@ -41,6 +41,8 @@ def clean(dataset):
     coords = set(dataset.variables).intersection(_ALL_COORDS)
     dataset = dataset.set_coords(coords)
     for coord in dataset.coords:
+        attrs = dataset[coord].attrs
+        encoding = dataset[coord].encoding
         if coord in _TIME_COORD_VARS:
             try:
                 dataset[coord].data = pd.to_datetime(
@@ -50,10 +52,17 @@ def clean(dataset):
             except:
                 warnings.warn(f'Failed to parse time coordinate: {coord}', stacklevel=2)
 
-            finally:
-                break
+        elif coord in (_LON_COORDS + _LAT_COORDS) and dataset[coord].ndim == 3:
 
-    return dataset.squeeze()
+            attrs = dataset[coord].attrs
+            encoding = dataset[coord].encoding
+            dataset = dataset.assign_coords(
+                {coord: (dataset[coord].dims[1:], dataset[coord].data[0, :, :])}
+            )
+        dataset[coord].attrs = attrs
+        dataset[coord].encoding = encoding
+
+    return dataset
 
 
 class WRFBackendEntrypoint(xr.backends.BackendEntrypoint):
