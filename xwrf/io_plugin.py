@@ -11,7 +11,7 @@ _LAT_COORDS = ('XLAT', 'XLAT_M', 'XLAT_U', 'XLAT_V', 'CLAT', 'XLAT_C')
 
 _LON_COORDS = ('XLONG', 'XLONG_M', 'XLONG_U', 'XLONG_V', 'CLONG', 'XLONG_C')
 
-_TIME_COORD_VARS = ('XTIME', 'Times')
+_TIME_COORD_VARS = ('XTIME', 'Times', 'Time', 'time')
 
 _ALL_COORDS = set(itertools.chain(*[_LAT_COORDS, _LON_COORDS, _TIME_COORD_VARS]))
 
