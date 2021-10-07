@@ -2,6 +2,10 @@
 
 A lightweight interface for reading in output from the Weather Research and Forecasting (WRF) model into xarray Dataset
 
+| CI          | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![GitHub Workflow Status][github-lint-badge]][github-lint-link] [![Code Coverage Status][codecov-badge]][codecov-link] |
+| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| **License** |                                                                        [![License][license-badge]][repo-link]                                                                        |
+
 ## _✨ This code is highly experimental! Let the buyer beware ⚠️ ;) ✨_
 
 ## Installation
@@ -19,7 +23,7 @@ The native WRF output files are not [CF compliant](https://sundowner.colorado.ed
 ```python
 In [1]: import xarray as xr
 
-In [2]: ds = xr.open_dataset("./tests/sample-data/wrfout_d03_2012-04-22_23_00_00_subset.nc", engine="wrf")
+In [2]: ds = xr.open_dataset("./tests/sample-data/wrfout_d03_2012-04-22_23_00_00_subset.nc", engine="xwrf")
 
 In [3]: ds
 Out[3]:
@@ -47,3 +51,12 @@ Attributes: (12/86)
     ISURBAN:                         1
     ISOILWATER:                      14
 ```
+
+[github-ci-badge]: https://img.shields.io/github/workflow/status/NCAR/xwrf/CI?label=CI&logo=github&style=for-the-badge
+[github-lint-badge]: https://img.shields.io/github/workflow/status/NCAR/xwrf/linting?label=linting&logo=github&style=for-the-badge
+[github-ci-link]: https://github.com/NCAR/xwrf/actions?query=workflow%3ACI
+[github-lint-link]: https://github.com/NCAR/xwrf/actions?query=workflow%3Alinting
+[codecov-badge]: https://img.shields.io/codecov/c/github/NCAR/xwrf.svg?logo=codecov&style=for-the-badge
+[codecov-link]: https://codecov.io/gh/NCAR/xwrf
+[license-badge]: https://img.shields.io/github/license/NCAR/xwrf?style=for-the-badge
+[repo-link]: https://github.com/NCAR/xwrf
