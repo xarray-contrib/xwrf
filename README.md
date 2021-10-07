@@ -23,11 +23,16 @@ The native WRF output files are not [CF compliant](https://sundowner.colorado.ed
 ```python
 In [1]: import xarray as xr
 
-In [2]: ds = xr.open_dataset("./tests/sample-data/wrfout_d03_2012-04-22_23_00_00_subset.nc",
-   ...:  engine="wrf")
+In [2]: path = "./tests/sample-data/wrfout_d03_2012-04-22_23_00_00_subset.nc"
 
-In [3]: ds
-Out[3]:
+In [3]: ds = xr.open_dataset(path, engine="xwrf")
+
+In [4]: # or
+
+In [5]: # ds = xr.open_dataset(path, engine="wrf")
+
+In [6]: ds
+Out[6]:
 <xarray.Dataset>
 Dimensions:  (Time: 1, south_north: 546, west_east: 480)
 Coordinates:
