@@ -23,7 +23,8 @@ The native WRF output files are not [CF compliant](https://sundowner.colorado.ed
 ```python
 In [1]: import xarray as xr
 
-In [2]: ds = xr.open_dataset("./tests/sample-data/wrfout_d03_2012-04-22_23_00_00_subset.nc", engine="xwrf")
+In [2]: ds = xr.open_dataset("./tests/sample-data/wrfout_d03_2012-04-22_23_00_00_subset.nc",
+   ...:  engine="wrf")
 
 In [3]: ds
 Out[3]:
