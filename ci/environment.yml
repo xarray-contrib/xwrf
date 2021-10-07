@@ -8,6 +8,7 @@ dependencies:
   - pre-commit
   - pytest-cov
   - pytest-sugar
+  - wrf-python
   - xarray>=0.18
   - pip:
       - -r ../requirements.txt
