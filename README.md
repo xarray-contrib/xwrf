@@ -58,6 +58,15 @@ Attributes: (12/86)
     ISOILWATER:                      14
 ```
 
+In addition to being able to use `xr.open_dataset`, `xwrf` also allows reading in multiple WRF output files at once via `xr.open_mfdataset` function:
+
+```python
+
+ds = xr.open_mfdataset(list_of_files, engine="xwrf", parallel=True,
+                       concat_dim="Time", combine="nested",
+                       )
+```
+
 [github-ci-badge]: https://img.shields.io/github/workflow/status/NCAR/xwrf/CI?label=CI&logo=github&style=for-the-badge
 [github-lint-badge]: https://img.shields.io/github/workflow/status/NCAR/xwrf/linting?label=linting&logo=github&style=for-the-badge
 [github-ci-link]: https://github.com/NCAR/xwrf/actions?query=workflow%3ACI
