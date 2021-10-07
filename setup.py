@@ -45,7 +45,12 @@ setup(
     install_requires=install_requires,
     license='Apache 2.0',
     zip_safe=False,
-    entry_points={},
+    entry_points={
+        'xarray.backends': [
+            'xwrf=xwrf.io_plugin:WRFBackendEntrypoint',
+            'wrf=xwrf.io_plugin:WRFBackendEntrypoint',
+        ]
+    },
     keywords='wrf, xarray',
     use_scm_version={'version_scheme': 'post-release', 'local_scheme': 'dirty-tag'},
 )
