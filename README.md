@@ -18,7 +18,7 @@ python -m pip install git+https://github.com/NCAR/xwrf.git
 
 ## What is it?
 
-The native WRF output files are not [CF compliant](http://cf-pcmdi.llnl.gov/). This makes these files ][not the easiest NetCDF files to use](<(https://sundowner.colorado.edu/wrfout_to_cf/overview.html#:~:text=http%3A//cf-pcmdi.llnl.gov/)>) with tools like xarray. This package provides a simple interface for reading in the WRF output files into xarray Dataset objects using xarray's [flexible and extensible I/O backend API](https://xarray.pydata.org/en/stable/internals/how-to-add-new-backend.html). For example, the following code reads in a WRF output file:
+The native WRF output files are not [CF compliant](http://cf-pcmdi.llnl.gov/). This makes these files [not the easiest NetCDF files to use](<(https://sundowner.colorado.edu/wrfout_to_cf/overview.html#:~:text=http%3A//cf-pcmdi.llnl.gov/)>) with tools like xarray. This package provides a simple interface for reading in the WRF output files into xarray Dataset objects using xarray's [flexible and extensible I/O backend API](https://xarray.pydata.org/en/stable/internals/how-to-add-new-backend.html). For example, the following code reads in a WRF output file:
 
 ```python
 In [1]: import xarray as xr
