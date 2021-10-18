@@ -1,6 +1,6 @@
 # xwrf
 
-A lightweight interface for reading in output from the Weather Research and Forecasting (WRF) model into xarray Dataset. The primary objective of `xwrf` is to replicate crucial I/O functionality from the [wrf-python](https://github.com/NCAR/wrf-python) package in a way that is **more convenient** for users and provides **seamless integration** with to the rest of the Pangeo software stack.
+A lightweight interface for reading in output from the Weather Research and Forecasting (WRF) model into xarray Dataset. The primary objective of `xwrf` is to replicate crucial I/O functionality from the [wrf-python](https://github.com/NCAR/wrf-python) package in a way that is **more convenient** for users and provides **seamless integration** with the rest of the Pangeo software stack.
 
 | CI          | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![GitHub Workflow Status][github-lint-badge]][github-lint-link] [![Code Coverage Status][codecov-badge]][codecov-link] |
 | :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
