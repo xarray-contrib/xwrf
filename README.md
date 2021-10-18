@@ -1,6 +1,6 @@
 # xwrf
 
-A lightweight interface for reading in output from the Weather Research and Forecasting (WRF) model into xarray Dataset
+A lightweight interface for reading in output from the Weather Research and Forecasting (WRF) model into xarray Dataset. The primary objective of `xwrf` is to replicate crucial I/O functionality from the [wrf-python](https://github.com/NCAR/wrf-python) package in a way that is **more convenient** for users and provides **seamless integration** with to the rest of the Pangeo software stack.
 
 | CI          | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![GitHub Workflow Status][github-lint-badge]][github-lint-link] [![Code Coverage Status][codecov-badge]][codecov-link] |
 | :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -18,7 +18,7 @@ python -m pip install git+https://github.com/NCAR/xwrf.git
 
 ## What is it?
 
-The native WRF output files are not [CF compliant](https://sundowner.colorado.edu/wrfout_to_cf/overview.html#:~:text=http%3A//cf-pcmdi.llnl.gov/). This makes these files not the easiest NetCDF files to use with tools like xarray. This package provides a simple interface for reading in the WRF output files into xarray Dataset objects using xarray's [flexible and extensible I/O backend API](https://xarray.pydata.org/en/stable/internals/how-to-add-new-backend.html). For example, the following code reads in a WRF output file:
+The native WRF output files are not [CF compliant](http://cf-pcmdi.llnl.gov/). This makes these files ][not the easiest NetCDF files to use](<(https://sundowner.colorado.edu/wrfout_to_cf/overview.html#:~:text=http%3A//cf-pcmdi.llnl.gov/)>) with tools like xarray. This package provides a simple interface for reading in the WRF output files into xarray Dataset objects using xarray's [flexible and extensible I/O backend API](https://xarray.pydata.org/en/stable/internals/how-to-add-new-backend.html). For example, the following code reads in a WRF output file:
 
 ```python
 In [1]: import xarray as xr
@@ -63,9 +63,12 @@ In addition to being able to use `xr.open_dataset`, `xwrf` also allows reading i
 ```python
 
 ds = xr.open_mfdataset(list_of_files, engine="xwrf", parallel=True,
-                       concat_dim="Time", combine="nested",
-                       )
+                       concat_dim="Time", combine="nested")
 ```
+
+### Why not just a preprocess function?
+
+One can achieve the same functionality with a preprocess function. However, there are some additional I/O features that [wrf-python](https://github.com/NCAR/wrf-python) implements under the hood that we think would be worth implementing as part of a backend engine instead of a regular preprocess function.
 
 [github-ci-badge]: https://img.shields.io/github/workflow/status/NCAR/xwrf/CI?label=CI&logo=github&style=for-the-badge
 [github-lint-badge]: https://img.shields.io/github/workflow/status/NCAR/xwrf/linting?label=linting&logo=github&style=for-the-badge
