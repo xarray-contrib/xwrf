@@ -20,7 +20,7 @@ body:
     validations:
       required: true
   - type: textarea
-    id: self-contained copy-pastable example that demonstrates the problem
+    id: sample-code
     attributes:
       label: Relevant log output
       description: |
@@ -45,7 +45,7 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: Python version
+    id: python-version
     attributes:
       label: Which Python version are you using?
       multiple: true
