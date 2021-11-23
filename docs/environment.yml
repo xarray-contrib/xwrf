@@ -1,4 +1,4 @@
-name: esds-funnel-dev
+name: xwrf-dev
 channels:
   - nodefaults
   - conda-forge
