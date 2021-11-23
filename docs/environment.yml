@@ -1,0 +1,23 @@
+name: xwrf-dev
+channels:
+  - nodefaults
+  - conda-forge
+dependencies:
+  - dask
+  - furo
+  - jupyterlab
+  - myst-nb
+  - netcdf4
+  - pip
+  - pydantic
+  - python=3.9
+  - sphinx-comments
+  - sphinx-copybutton
+  - sphinx-inline-tabs
+  - xarray
+  - sphinx-autobuild
+  - pip:
+      - sphinxext-opengraph
+      - autodoc_pydantic
+      - -r ../requirements.txt
+      - -e ..
