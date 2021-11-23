@@ -2,9 +2,10 @@
 
 A lightweight interface for reading in output from the Weather Research and Forecasting (WRF) model into xarray Dataset. The primary objective of `xwrf` is to replicate crucial I/O functionality from the [wrf-python](https://github.com/NCAR/wrf-python) package in a way that is **more convenient** for users and provides **seamless integration** with the rest of the Pangeo software stack.
 
-| CI          | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![GitHub Workflow Status][github-lint-badge]][github-lint-link] [![Code Coverage Status][codecov-badge]][codecov-link] |
-| :---------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| **License** |                                                                        [![License][license-badge]][repo-link]                                                                        |
+| CI          | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![Code Coverage Status][codecov-badge]][codecov-link] |
+| :---------- | :-----------------------------------------------------------------------------------------------------------------: |
+| **Docs**    |                                   [![Documentation Status][rtd-badge]][rtd-link]                                    |
+| **License** |                                       [![License][license-badge]][repo-link]                                        |
 
 ## _✨ This code is highly experimental! Let the buyer beware ⚠️ ;) ✨_
 
@@ -71,10 +72,10 @@ ds = xr.open_mfdataset(list_of_files, engine="xwrf", parallel=True,
 One can achieve the same functionality with a preprocess function. However, there are some additional I/O features that [wrf-python](https://github.com/NCAR/wrf-python) implements under the hood that we think would be worth implementing as part of a backend engine instead of a regular preprocess function.
 
 [github-ci-badge]: https://img.shields.io/github/workflow/status/NCAR/xwrf/CI?label=CI&logo=github&style=for-the-badge
-[github-lint-badge]: https://img.shields.io/github/workflow/status/NCAR/xwrf/linting?label=linting&logo=github&style=for-the-badge
 [github-ci-link]: https://github.com/NCAR/xwrf/actions?query=workflow%3ACI
-[github-lint-link]: https://github.com/NCAR/xwrf/actions?query=workflow%3Alinting
 [codecov-badge]: https://img.shields.io/codecov/c/github/NCAR/xwrf.svg?logo=codecov&style=for-the-badge
 [codecov-link]: https://codecov.io/gh/NCAR/xwrf
 [license-badge]: https://img.shields.io/github/license/NCAR/xwrf?style=for-the-badge
 [repo-link]: https://github.com/NCAR/xwrf
+[rtd-badge]: https://img.shields.io/readthedocs/xwrf/latest.svg?style=for-the-badge
+[rtd-link]: https://xwrf.readthedocs.io/en/latest/?badge=latest
