@@ -14,7 +14,7 @@ dependencies:
   - sphinx-comments
   - sphinx-copybutton
   - sphinx-inline-tabs
-  - xarray
+  - xarray>=0.18,!=0.20.0,!=0.20.1
   - sphinx-autobuild
   - pip:
       - sphinxext-opengraph
