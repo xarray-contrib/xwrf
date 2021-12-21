@@ -1,0 +1,44 @@
+name: New Feature
+description: Define a new feature to be implemented
+title: '[FEATURE]: '
+labels: [enhancement]
+assignees: []
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: |
+        Describe the new feature and what it needs to do.  Don't talk about how
+        it should be implemented unless necessary, that's for the next section.
+        This is where you get to say what the feature *does*, but now *how* it
+        does it.
+    validations:
+      required: true
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation
+      description: |
+        Give a simple description of how this should be implemented, design,
+        technical considerations or options, etc.  This is where you get say
+        *how* the new feature does it.
+  - type: textarea
+    id: tests
+    attributes:
+      label: Tests
+      description: |
+        Give some examples of how this new feature will be used.  This should be
+        the starting point for tests that need to be implemented when this feature
+        is complete.  This is where you get to say how you know if what was 
+        implemented is *correct* or not.
+  - type: textarea
+    id: questions
+    attributes:
+      label: Questions
+      description: |
+        There are always questions that need to be answered when discussing a
+        new feature.  This is where you get to ask those questions and kick off
+        the discussion in the issue's comments.
+    validations:
+      required: true
