@@ -2,8 +2,9 @@ import os
 import pathlib
 
 import pytest
-import xwrf
 import xarray as xr
+
+import xwrf
 
 here = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
 
