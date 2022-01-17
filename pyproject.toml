@@ -6,7 +6,3 @@ skip-string-normalization = true
 
 [build-system]
 requires = ["setuptools>=30.3.0", "wheel", "setuptools_scm"]
-
-[tool:pytest]
-console_output_style = count
-addopts = --cov=./ --cov-report=xml --verbose

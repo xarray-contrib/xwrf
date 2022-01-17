@@ -1,6 +1,3 @@
-# -*- coding: utf-8 -*-
-
-
 import datetime
 import os
 import sys
@@ -87,9 +84,9 @@ master_doc = 'index'
 
 # General information about the project.
 current_year = datetime.datetime.now().year
-project = u'xwrf'
+project = 'xwrf'
 copyright = f'2020-{current_year}, xwrf development team'
-author = u'xwrf developers'
+author = 'xwrf developers'
 
 
 # The short X.Y version.
@@ -172,15 +169,15 @@ latex_elements = {
 }
 
 
-latex_documents = [('index', 'xwrf.tex', u'xwrf Documentation', author, 'manual')]
+latex_documents = [('index', 'xwrf.tex', 'xwrf Documentation', author, 'manual')]
 
-man_pages = [('index', 'xwrf', u'xwrf Documentation', [author], 1)]
+man_pages = [('index', 'xwrf', 'xwrf Documentation', [author], 1)]
 
 texinfo_documents = [
     (
         'index',
         'xwrf',
-        u'xwrf Documentation',
+        'xwrf Documentation',
         author,
         'xwrf',
         'One line description of project.',
