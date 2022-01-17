@@ -3,9 +3,10 @@ import pathlib
 
 import numpy as np
 import pytest
-import xwrf
 import xarray as xr
 from netCDF4 import Dataset
+
+import xwrf
 
 here = pathlib.Path(os.path.abspath(os.path.dirname(__file__)))
 
