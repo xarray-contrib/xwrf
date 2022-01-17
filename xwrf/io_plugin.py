@@ -71,7 +71,8 @@ def clean(dataset):
 
 
 def make_units_quantify_ready(dataset):
-    for var in _VARS_WITHOUT_UNITS:
+    vars_to_parse = set(_VARS_WITHOUT_UNITS).intersection(set(dataset.variables))
+    for var in vars_to_parse:
         dataset[var].attrs.pop('units', None)
 
 
