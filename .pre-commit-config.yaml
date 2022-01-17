@@ -8,6 +8,15 @@ repos:
       - id: check-json
       - id: check-yaml
       - id: double-quote-string-fixer
+      - id: debug-statements
+      - id: mixed-line-ending
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.31.0
+    hooks:
+      - id: pyupgrade
+        args:
+          - '--py37-plus'
 
   - repo: https://github.com/psf/black
     rev: 21.12b0
@@ -33,11 +42,3 @@ repos:
     rev: v2.5.1
     hooks:
       - id: prettier
-
-  - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.2.3
-    hooks:
-      - id: nbqa-pyupgrade
-        additional_dependencies: [pyupgrade==2.7.3]
-      - id: nbqa-isort
-        additional_dependencies: [isort==v5.9.2]
