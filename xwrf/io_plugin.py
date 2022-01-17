@@ -15,7 +15,10 @@ _TIME_COORD_VARS = ('XTIME', 'Times', 'Time', 'time')
 
 _ALL_COORDS = set(itertools.chain(*[_LAT_COORDS, _LON_COORDS, _TIME_COORD_VARS]))
 
-_VARS_WITHOUT_UNITS = ('THIS_IS_AN_IDEAL_RUN','SAVE_TOPO_FROM_REAL',)
+_VARS_WITHOUT_UNITS = (
+    'THIS_IS_AN_IDEAL_RUN',
+    'SAVE_TOPO_FROM_REAL',
+)
 
 
 def is_remote_uri(path: str) -> bool:
@@ -65,6 +68,7 @@ def clean(dataset):
         dataset[coord].encoding = encoding
 
     return dataset
+
 
 def make_units_quantify_ready(dataset):
     for var in _VARS_WITHOUT_UNITS:
