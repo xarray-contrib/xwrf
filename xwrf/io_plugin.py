@@ -15,10 +15,7 @@ _TIME_COORD_VARS = ('XTIME', 'Times', 'Time', 'time')
 
 _ALL_COORDS = set(itertools.chain(*[_LAT_COORDS, _LON_COORDS, _TIME_COORD_VARS]))
 
-_VARS_WITHOUT_UNITS = (
-    'THIS_IS_AN_IDEAL_RUN',
-    'SAVE_TOPO_FROM_REAL',
-)
+_BOOLEAN_UNITS_ATTRS = ('-', 'flag')
 
 
 def is_remote_uri(path: str) -> bool:
@@ -71,9 +68,9 @@ def clean(dataset):
 
 
 def make_units_quantify_ready(dataset):
-    vars_to_parse = set(_VARS_WITHOUT_UNITS).intersection(set(dataset.variables))
-    for var in vars_to_parse:
-        dataset[var].attrs.pop('units', None)
+    for var in dataset.data_vars:
+        if dataset[var].attrs.get('units') in _BOOLEAN_UNITS_ATTRS:
+            dataset[var].attrs.pop('units', None)
 
 
 class WRFBackendEntrypoint(xr.backends.BackendEntrypoint):
