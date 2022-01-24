@@ -15,6 +15,8 @@ _TIME_COORD_VARS = ('XTIME', 'Times', 'Time', 'time')
 
 _ALL_COORDS = set(itertools.chain(*[_LAT_COORDS, _LON_COORDS, _TIME_COORD_VARS]))
 
+_BOOLEAN_UNITS_ATTRS = ('-', 'flag')
+
 
 def is_remote_uri(path: str) -> bool:
     """Finds URLs of the form protocol:// or protocol::
@@ -65,6 +67,12 @@ def clean(dataset):
     return dataset
 
 
+def make_units_quantify_ready(dataset):
+    for var in dataset.data_vars:
+        if dataset[var].attrs.get('units') in _BOOLEAN_UNITS_ATTRS:
+            dataset[var].attrs.pop('units', None)
+
+
 class WRFBackendEntrypoint(xr.backends.BackendEntrypoint):
     def open_dataset(
         self,
@@ -112,4 +120,5 @@ class WRFBackendEntrypoint(xr.backends.BackendEntrypoint):
                 decode_timedelta=decode_timedelta,
             )
 
+        make_units_quantify_ready(dataset)
         return clean(dataset)
