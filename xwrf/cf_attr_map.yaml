@@ -1,0 +1,55 @@
+ZNW:
+  standard_name: atmosphere_hybrid_sigma_pressure_coordinate
+  axis: Z
+  c_grid_axis_shift: 0.5
+ZNU:
+  standard_name: atmosphere_hybrid_sigma_pressure_coordinate
+  axis: Z
+XTIME:
+  axis: T
+U10:
+  standard_name: x_wind
+  long_name: x_wind_at_10m_agl
+U:
+  standard_name: x_wind
+V10:
+  standard_name: y_wind
+  long_name: y_wind_at_10m_agl
+V:
+  standard_name: y_wind
+W:
+  standard_name: upward_air_velocity
+TH2:
+  standard_name: air_potential_temperature
+  long_name: air_potential_temperature_at_2m_agl
+T2:
+  standard_name: air_temperature
+  long_name: air_temperature_at_2m_agl
+PSFC:
+  standard_name: air_pressure
+  long_name: air_pressure_at_surface
+HGT:
+  standard_name: surface_altitude
+PBLH:
+  standard_name: atmosphere_boundary_layer_thickness
+Q2:
+  standard_name: humidity_mixing_ratio
+  long_name: humidity_mixing_ratio_at_2m_agl
+QVAPOR:
+  standard_name: humidity_mixing_ratio
+VEGFRA:
+  standard_name: vegetation_area_fraction
+LAI:
+  standard_name: leaf_area_index
+RAINNC:
+  standard_name: integral_of_lwe_precipitation_rate_wrt_time
+CLDFRA:
+  standard_name: cloud_area_fraction_in_atmosphere_layer
+HFX:
+  standard_name: surface_upward_heat_flux_in_air
+LH:
+  standard_name: surface_upward_latent_heat_flux_in_air
+ACHFX:
+  standard_name: integral_of_surface_upward_heat_flux_in_air_wrt_time
+ACLHF:
+  standard_name: integral_of_surface_upward_latent_heat_flux_in_air_wrf_time

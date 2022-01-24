@@ -1,5 +1,6 @@
 import itertools
 import os
+import yaml
 import pathlib
 import re
 import warnings
@@ -67,10 +68,21 @@ def clean(dataset):
     return dataset
 
 
+
 def make_units_quantify_ready(dataset):
     for var in dataset.data_vars:
         if dataset[var].attrs.get('units') in _BOOLEAN_UNITS_ATTRS:
             dataset[var].attrs.pop('units', None)
+
+
+def modify_attrs_to_cf(dataset):
+    here = pathlib.Path(__file__).parent
+    attr_map = yaml.safe_load((here / "cf_attr_map.yaml").read_text())
+
+    vars_to_update = set(attr_map.keys()).intersection(set(dataset.keys()))
+
+    for var in vars_to_update:
+        dataset[var].attrs.update(attr_map[var])
 
 
 class WRFBackendEntrypoint(xr.backends.BackendEntrypoint):
@@ -121,4 +133,5 @@ class WRFBackendEntrypoint(xr.backends.BackendEntrypoint):
             )
 
         make_units_quantify_ready(dataset)
+        modify_attrs_to_cf(dataset)
         return clean(dataset)
