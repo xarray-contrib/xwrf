@@ -1,6 +1,6 @@
 name: Issue
 description: General Issue
-title: ''
+title: '[ISSUE]: '
 labels: []
 body:
   - type: markdown
