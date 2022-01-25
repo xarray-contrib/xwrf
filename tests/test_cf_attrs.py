@@ -1,11 +1,9 @@
 import os
 import pathlib
 
-import numpy as np
 import pytest
 import wrf
 import xarray as xr
-from netCDF4 import Dataset
 
 import xwrf
 
