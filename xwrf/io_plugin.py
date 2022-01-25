@@ -1,12 +1,12 @@
 import itertools
 import os
-import yaml
 import pathlib
 import re
 import warnings
 
 import pandas as pd
 import xarray as xr
+import yaml
 
 _LAT_COORDS = ('XLAT', 'XLAT_M', 'XLAT_U', 'XLAT_V', 'CLAT', 'XLAT_C')
 
@@ -68,7 +68,6 @@ def clean(dataset):
     return dataset
 
 
-
 def make_units_quantify_ready(dataset):
     for var in dataset.data_vars:
         if dataset[var].attrs.get('units') in _BOOLEAN_UNITS_ATTRS:
@@ -77,7 +76,7 @@ def make_units_quantify_ready(dataset):
 
 def modify_attrs_to_cf(dataset):
     here = pathlib.Path(__file__).parent
-    attr_map = yaml.safe_load((here / "cf_attr_map.yaml").read_text())
+    attr_map = yaml.safe_load((here / 'cf_attr_map.yaml').read_text())
 
     vars_to_update = set(attr_map.keys()).intersection(set(dataset.keys()))
 
