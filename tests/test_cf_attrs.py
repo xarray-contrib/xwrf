@@ -2,7 +2,6 @@ import os
 import pathlib
 
 import pytest
-import wrf
 import xarray as xr
 
 import xwrf
