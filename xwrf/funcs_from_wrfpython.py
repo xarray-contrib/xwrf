@@ -19,9 +19,7 @@ def _destag_single_var(datavar, stagger_dim=None, unstag_dim_name=None):
     # option 1) user has provided the dimension
     if stagger_dim:
         # check that the user-passed in stag dim is actually in there
-        assert stagger_dim in datavar.dims, AttributeError(
-            '%s not in %s' % (stagger_dim, datavar.dims)
-        )
+        assert stagger_dim in datavar.dims, AttributeError(f'{stagger_dim} not in {datavar.dims}')
 
     # option 2) guess the staggered dimension
     else:
