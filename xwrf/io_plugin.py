@@ -79,7 +79,7 @@ def modify_attrs_to_cf(dataset):
     vars_to_update = set(config.get('cf_attribute_map').keys()).intersection(set(dataset.keys()))
 
     for var in vars_to_update:
-        dataset[var].attrs.update(config.get('cf_attribute_map')[var])
+        dataset[var].attrs.update(config.get(f'cf_attribute_map.{var}'))
 
 
 class WRFBackendEntrypoint(xr.backends.BackendEntrypoint):
