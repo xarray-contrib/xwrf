@@ -2,9 +2,11 @@ import pytest
 
 import xwrf
 
+
 @pytest.fixture(scope='session')
 def config():
     return xwrf.config.config
 
+
 def test_defaults_exist(config):
-    assert config.get("cf_attribute_map.T2.standard_name") is not None
+    assert config.get('cf_attribute_map.T2.standard_name') is not None
