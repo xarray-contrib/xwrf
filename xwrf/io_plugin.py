@@ -6,7 +6,8 @@ import warnings
 
 import pandas as pd
 import xarray as xr
-import yaml
+
+from .config import config
 
 _LAT_COORDS = ('XLAT', 'XLAT_M', 'XLAT_U', 'XLAT_V', 'CLAT', 'XLAT_C')
 
@@ -75,13 +76,10 @@ def make_units_quantify_ready(dataset):
 
 
 def modify_attrs_to_cf(dataset):
-    here = pathlib.Path(__file__).parent
-    attr_map = yaml.safe_load((here / 'cf_attr_map.yaml').read_text())
-
-    vars_to_update = set(attr_map.keys()).intersection(set(dataset.keys()))
+    vars_to_update = set(config.get('cf_attribute_map').keys()).intersection(set(dataset.keys()))
 
     for var in vars_to_update:
-        dataset[var].attrs.update(attr_map[var])
+        dataset[var].attrs.update(config.get('cf_attribute_map')[var])
 
 
 class WRFBackendEntrypoint(xr.backends.BackendEntrypoint):
