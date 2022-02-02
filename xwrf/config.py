@@ -9,4 +9,4 @@ with open(fn) as f:
     defaults = yaml.safe_load(f)
 
 config = Config('xwrf', defaults=[defaults])
-config.ensure_file(fn)
+config.ensure_file(fn, comment=False)
