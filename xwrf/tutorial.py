@@ -5,6 +5,7 @@ Useful for:
 """
 import os
 import pathlib
+
 import xarray as xr
 
 _default_cache_dir_name = 'xwrf_tutorial_data'
@@ -31,14 +32,13 @@ sample_datasetss = {
 }
 
 
-
 # idea borrowed from Seaborn and Xarray
 def open_dataset(
     name,
     cache=True,
     cache_dir=None,
     *,
-    engine="xwrf",
+    engine='xwrf',
     **kws,
 ):
     """
@@ -69,7 +69,7 @@ def open_dataset(
 
     # retrieve the file
     filepath = pooch.retrieve(url=url, known_hash=None, path=cache_dir)
-    ds = xr.open_dataset(filepath, engine="xwrf", **kws)
+    ds = xr.open_dataset(filepath, engine='xwrf', **kws)
     if not cache:
         ds = ds.load()
         pathlib.Path(filepath).unlink()
