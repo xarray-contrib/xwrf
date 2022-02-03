@@ -24,7 +24,7 @@ def _construct_cache_dir(path):
     return path
 
 
-sample_datasetss = {
+sample_datasets = {
     'lambert_conformal': '',
     'polar_stereographic': '',
     'mercator': '',
