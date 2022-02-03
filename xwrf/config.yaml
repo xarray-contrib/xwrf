@@ -1,5 +1,30 @@
 version: 0.1
 
+latitude_coords:
+  - CLAT
+  - XLAT
+  - XLAT_C
+  - XLAT_M
+  - XLAT_U
+  - XLAT_V
+
+longitude_coords:
+  - CLONG
+  - XLONG
+  - XLONG_C
+  - XLONG_M
+  - XLONG_U
+  - XLONG_V
+
+time_coords:
+  - XTIME
+  - Times
+  - Time
+  - time
+boolean_units_attrs:
+  - '-'
+  - flag
+
 cf_attribute_map:
   ZNW:
     standard_name: atmosphere_hybrid_sigma_pressure_coordinate

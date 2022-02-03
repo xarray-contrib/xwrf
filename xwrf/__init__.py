@@ -5,6 +5,7 @@
 from pkg_resources import DistributionNotFound, get_distribution
 
 from . import config
+from .accessors import WRFDataArrayAccessor, WRFDatasetAccessor
 from .io_plugin import WRFBackendEntrypoint
 
 try:
