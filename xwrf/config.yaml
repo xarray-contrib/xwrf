@@ -82,3 +82,13 @@ cf_attribute_map:
     standard_name: integral_of_surface_upward_heat_flux_in_air_wrt_time
   ACLHF:
     standard_name: integral_of_surface_upward_latent_heat_flux_in_air_wrf_time
+  VAR_SSO:
+    units: m2
+    description: Variance of Subgrid Scale Orography MSL
+  HGT_M:
+    units: m
+    description: GMTED2010 30-arc-second topography height MSL
+  PRES:
+    units: Pa
+  ST:
+    units: kelvin
