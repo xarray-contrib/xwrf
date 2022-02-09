@@ -5,6 +5,7 @@
 from pkg_resources import DistributionNotFound, get_distribution
 
 from .io_plugin import WRFBackendEntrypoint
+from . import tutorial
 
 try:
     __version__ = get_distribution(__name__).version
