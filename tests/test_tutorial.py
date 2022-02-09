@@ -15,7 +15,7 @@ class TestLoadDataset:
     def test_download_from_github(self, tmp_path) -> None:
         cache_dir = tmp_path / tutorial._default_cache_dir_name
         ds = tutorial.open_dataset(self.testfile, cache_dir=cache_dir).load()
-        tiny = DataArray(range(5), name='tiny').to_dataset()
+        tiny = xr.DataArray(range(5), name='tiny').to_dataset()
         xr.testing.assert_identical(ds, tiny)
 
     def test_download_from_github_load_without_cache(self, tmp_path, monkeypatch) -> None:
