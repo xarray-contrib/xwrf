@@ -11,6 +11,7 @@ dependencies:
   - pytest-sugar
   - wrf-python
   - xarray>=0.18,!=0.20.0,!=0.20.1
+  - pooch
   - pip:
       - -r ../requirements.txt
       - git+https://github.com/pydata/xarray

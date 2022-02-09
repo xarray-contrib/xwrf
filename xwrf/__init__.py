@@ -4,7 +4,7 @@
 
 from pkg_resources import DistributionNotFound, get_distribution
 
-from . import config
+from . import tutorial
 from .io_plugin import WRFBackendEntrypoint
 
 try:
