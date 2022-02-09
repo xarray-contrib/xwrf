@@ -3,9 +3,9 @@
 """ Top-level module. """
 
 from pkg_resources import DistributionNotFound, get_distribution
-from . import config
+
+from . import config, tutorial
 from .accessors import WRFDataArrayAccessor, WRFDatasetAccessor
-from . import tutorial
 from .io_plugin import WRFBackendEntrypoint
 
 try:
