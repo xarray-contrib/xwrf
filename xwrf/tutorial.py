@@ -62,7 +62,12 @@ def open_dataset(
     logger.setLevel('WARNING')
 
     cache_dir = _construct_cache_dir(cache_dir)
-    path = sample_datasets[name]
+    try:
+        path = sample_datasets[name]
+    except KeyError as exc:
+        raise KeyError(
+            f'{name} is not a valid dataset name. Valid names include: {list(sample_datasets.keys())}.'
+        ) from exc
     url = f'{base_url}/raw/{version}/{path}'
 
     # retrieve the file
