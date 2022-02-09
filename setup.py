@@ -26,7 +26,7 @@ CLASSIFIERS = [
 
 setup(
     name='xwrf',
-    description='A lightweight interface for reading in output from the Weather Research and Forecasting (WRF) model into xarray Dataset.',
+    description='A lightweight interface for working with the Weather Research and Forecasting (WRF) model output in Xarray.',
     long_description=long_description,
     long_description_content_type='text/markdown',
     python_requires='>=3.7',
@@ -36,11 +36,11 @@ setup(
     url='https://xwrf.readthedocs.io',
     project_urls={
         'Documentation': 'https://xwrf.readthedocs.io',
-        'Source': 'https://github.com/NCAR/xwrf',
-        'Tracker': 'https://github.com/NCAR/xwrf/issues',
+        'Source': 'https://github.com/ncar-xdev/xwrf',
+        'Tracker': 'https://github.com/ncar-xdev/xwrf/issues',
+        'Discussions/Support': 'https://github.com/ncar-xdev/xwrf/discussions',
     },
     packages=find_packages(exclude=('tests',)),
-    package_dir={'xwrf': 'xwrf'},
     include_package_data=True,
     install_requires=install_requires,
     license='Apache 2.0',
