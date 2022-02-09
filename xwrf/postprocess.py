@@ -1,3 +1,5 @@
+from __future__ import annotations  # noqa: F401
+
 import pandas as pd
 import xarray as xr
 

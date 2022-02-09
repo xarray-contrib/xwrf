@@ -1,4 +1,4 @@
-import typing
+from __future__ import annotations  # noqa: F401
 
 import xarray as xr
 
@@ -10,7 +10,7 @@ class WRFAccessor:
     Common Dataset and DataArray accessor functionality.
     """
 
-    def __init__(self, xarray_obj: typing.Union[xr.Dataset, xr.DataArray]):
+    def __init__(self, xarray_obj: xr.Dataset | xr.DataArray):
         self.xarray_obj = xarray_obj.copy()
 
 
