@@ -29,7 +29,8 @@ sample_datasets = {
     'polar_stereographic_1': 'data/geo_em_d01_polarstereo.nc',
     'polar_stereographic_2': 'data/geo_em_d02_polarstereo.nc',
     'lambert_conformal': 'data/lambert_conformal_sample.nc',
-    'mercator': 'data/mercator_sample.nc'
+    'mercator': 'data/mercator_sample.nc',
+    'tiny': 'data/tiny.nc'
 }
 
 
