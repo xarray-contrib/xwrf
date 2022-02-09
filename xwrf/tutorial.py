@@ -63,7 +63,7 @@ def open_dataset(
 
     cache_dir = _construct_cache_dir(cache_dir)
     path = sample_datasets[name]
-    url = f"{base_url}/raw/{version}/{path}"
+    url = f'{base_url}/raw/{version}/{path}'
 
     # retrieve the file
     filepath = pooch.retrieve(url=url, known_hash=None, path=cache_dir)
