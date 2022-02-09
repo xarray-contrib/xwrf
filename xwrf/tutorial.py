@@ -25,10 +25,11 @@ def _construct_cache_dir(path):
 
 
 sample_datasets = {
-    'lambert_conformal': '',
-    'polar_stereographic': '',
-    'mercator': '',
-    'lat_lon_global': '',
+    'dummy': 'data/dummy.nc',
+    'polar_stereographic_1': 'data/geo_em_d01_polarstereo.nc',
+    'polar_stereographic_2': 'data/geo_em_d02_polarstereo.nc',
+    'lambert_conformal': 'lambert_conformal_sample.nc',
+    'mercator': 'mercator_sample.nc'
 }
 
 
