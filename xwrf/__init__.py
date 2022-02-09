@@ -4,7 +4,6 @@
 
 from pkg_resources import DistributionNotFound, get_distribution
 
-from . import config
 from .io_plugin import WRFBackendEntrypoint
 from .tutorial import open_dataset
 
