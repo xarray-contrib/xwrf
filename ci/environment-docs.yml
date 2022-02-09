@@ -17,6 +17,7 @@ dependencies:
   - sphinx-copybutton
   - sphinx-inline-tabs
   - xarray>=0.18,!=0.20.0,!=0.20.1
+  - pooch
   - pip:
       - sphinxext-opengraph
       - autodoc_pydantic
