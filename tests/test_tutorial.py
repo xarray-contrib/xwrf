@@ -1,6 +1,5 @@
 import pytest
 import xarray as xr
-from xarray import DataArray
 
 from xwrf import tutorial
 
