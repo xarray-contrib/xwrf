@@ -6,7 +6,6 @@ from pkg_resources import DistributionNotFound, get_distribution
 
 from . import config, tutorial
 from .accessors import WRFDataArrayAccessor, WRFDatasetAccessor
-from .io_plugin import WRFBackendEntrypoint
 
 try:
     __version__ = get_distribution(__name__).version
