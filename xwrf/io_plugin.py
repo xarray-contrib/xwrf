@@ -7,6 +7,8 @@ import warnings
 import pandas as pd
 import xarray as xr
 
+from .config import config
+
 _LAT_COORDS = ('XLAT', 'XLAT_M', 'XLAT_U', 'XLAT_V', 'CLAT', 'XLAT_C')
 
 _LON_COORDS = ('XLONG', 'XLONG_M', 'XLONG_U', 'XLONG_V', 'CLONG', 'XLONG_C')
@@ -73,6 +75,13 @@ def make_units_quantify_ready(dataset):
             dataset[var].attrs.pop('units', None)
 
 
+def modify_attrs_to_cf(dataset):
+    vars_to_update = set(config.get('cf_attribute_map').keys()).intersection(set(dataset.keys()))
+
+    for var in vars_to_update:
+        dataset[var].attrs.update(config.get(f'cf_attribute_map.{var}'))
+
+
 class WRFBackendEntrypoint(xr.backends.BackendEntrypoint):
     def open_dataset(
         self,
@@ -121,4 +130,5 @@ class WRFBackendEntrypoint(xr.backends.BackendEntrypoint):
             )
 
         make_units_quantify_ready(dataset)
+        modify_attrs_to_cf(dataset)
         return clean(dataset)
