@@ -25,4 +25,3 @@ class TestLoadDataset:
         ds_nocache = tutorial.open_dataset(self.testfile, cache=False, cache_dir=cache_dir).load()
         ds_cache = tutorial.open_dataset(self.testfile, cache_dir=cache_dir).load()
         xr.assert_identical(ds_cache, ds_nocache)
-
