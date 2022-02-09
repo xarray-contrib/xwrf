@@ -40,7 +40,7 @@ def open_dataset(
     cache=True,
     cache_dir=None,
     *,
-    engine='xwrf',
+    engine='netcdf4',
     **kws,
 ):
     """
@@ -62,16 +62,12 @@ def open_dataset(
     logger.setLevel('WARNING')
 
     cache_dir = _construct_cache_dir(cache_dir)
-    if name in sample_datasets:
-        url = sample_datasets[name]
-    else:
-        path = pathlib.Path(name)
-
-        url = f'{base_url}/raw/{version}/{path.name}'
+    path = sample_datasets[name]
+    url = f"{base_url}/raw/{version}/{path}"
 
     # retrieve the file
     filepath = pooch.retrieve(url=url, known_hash=None, path=cache_dir)
-    ds = xr.open_dataset(filepath, engine='xwrf', **kws)
+    ds = xr.open_dataset(filepath, engine=engine, **kws)
     if not cache:
         ds = ds.load()
         pathlib.Path(filepath).unlink()
