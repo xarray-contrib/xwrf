@@ -10,7 +10,7 @@ class WRFAccessor:
     Common Dataset and DataArray accessor functionality.
     """
 
-    def __init__(self, xarray_obj: xr.Dataset | xr.DataArray):
+    def __init__(self, xarray_obj: xr.Dataset | xr.DataArray) -> WRFAccessor:
         self.xarray_obj = xarray_obj.copy()
 
 
