@@ -7,7 +7,7 @@ import packaging
 import pytest
 
 
-def importorskip(module_name, minversion: str = None) -> tuple[bool, typing.Callable]:
+def importorskip(module_name, minversion: str = None) -> typing.Callable:
     try:
         module = importlib.import_module(module_name)
         has = True
