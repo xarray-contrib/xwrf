@@ -2,7 +2,7 @@ from __future__ import annotations  # noqa: F401
 
 import xarray as xr
 
-from .postprocess import _decode_times, _make_units_quantify_read, _modify_attrs_to_cf
+from .postprocess import _decode_times, _modify_attrs_to_cf, _remove_units_from_bool_arrays
 
 
 class WRFAccessor:
@@ -34,7 +34,7 @@ class WRFDatasetAccessor(WRFAccessor):
         xarray.Dataset
             The postprocessed dataset.
         """
-        ds = self.xarray_obj.pipe(_modify_attrs_to_cf).pipe(_make_units_quantify_read)
+        ds = self.xarray_obj.pipe(_modify_attrs_to_cf).pipe(_remove_units_from_bool_arrays)
         if decode_times:
             ds = ds.pipe(_decode_times)
 

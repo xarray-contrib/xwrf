@@ -4,7 +4,7 @@
 
 from pkg_resources import DistributionNotFound, get_distribution
 
-from . import config, tutorial
+from . import config, postprocess, tutorial
 from .accessors import WRFDataArrayAccessor, WRFDatasetAccessor
 
 try:

@@ -21,7 +21,7 @@ def _decode_times(ds: xr.Dataset) -> xr.Dataset:
     return ds
 
 
-def _make_units_quantify_read(ds: xr.Dataset) -> xr.Dataset:
+def _remove_units_from_bool_arrays(ds: xr.Dataset) -> xr.Dataset:
     boolean_units_attrs = config.get('boolean_units_attrs')
     for variable in ds.data_vars:
         if ds[variable].attrs.get('units') in boolean_units_attrs:
