@@ -35,3 +35,21 @@ def _modify_attrs_to_cf(ds: xr.Dataset) -> xr.Dataset:
     for variable in vars_to_update:
         ds[variable].attrs.update(config.get(f'cf_attribute_map.{variable}'))
     return ds
+
+
+def _collapse_time_dim(ds: xr.Dataset) -> xr.Dataset:
+
+    # This "time dimension collapsing" assumption is wrong with moving nests
+    # and should be applied to static, nested domains.
+    lat_lon_coords = set(config.get('latitude_coords') + config.get('longitude_coords'))
+    coords = set(ds.variables).intersection(lat_lon_coords)
+    ds = ds.set_coords(coords)
+
+    for coord in ds.coords:
+        if coord in lat_lon_coords and ds[coord].ndim == 3:
+            attrs, encoding = ds[coord].attrs, ds[coord].encoding
+            ds = ds.assign_coords({coord: (ds[coord].dims[1:], ds[coord].data[0, :, :])})
+            ds[coord].attrs = attrs
+            ds[coord].encoding = encoding
+
+    return ds
