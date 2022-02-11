@@ -11,7 +11,7 @@ class WRFAccessor:
     """
 
     def __init__(self, xarray_obj: xr.Dataset | xr.DataArray) -> WRFAccessor:
-        self.xarray_obj = xarray_obj.copy()
+        self.xarray_obj = xarray_obj
 
 
 @xr.register_dataarray_accessor('wrf')
