@@ -16,11 +16,12 @@ repos:
     hooks:
       - id: pyupgrade
         args:
-          - '--py37-plus'
+          - '--py38-plus'
 
   - repo: https://github.com/psf/black
     rev: 22.1.0
     hooks:
+      - id: black
       - id: black-jupyter
 
   - repo: https://github.com/keewis/blackdoc

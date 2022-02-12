@@ -3,10 +3,8 @@ import xarray as xr
 
 from xwrf import tutorial
 
-network = pytest.mark.network
 
-
-@network
+@pytest.mark.network
 class TestLoadDataset:
     @pytest.fixture(autouse=True)
     def setUp(self):
