@@ -11,14 +11,14 @@ def _decode_times(ds: xr.Dataset) -> xr.Dataset:
     Decode the time variable to datetime64.
     """
     try:
-        _time = pd.to_datetime(ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%d_%H:%M:%S')
+        _time = pd.to_datetime(
+            ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%d_%H:%M:%S'
+        )
     except ValueError:
-        _time = pd.to_datetime(ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%dT%H:%M:%S.%f')
-    ds = ds.assign_coords(
-        {
-            'Time': _time
-        }
-    )
+        _time = pd.to_datetime(
+            ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%dT%H:%M:%S.%f'
+        )
+    ds = ds.assign_coords({'Time': _time})
     ds.Time.attrs = {'long_name': 'Time', 'standard_name': 'time'}
     return ds
 
