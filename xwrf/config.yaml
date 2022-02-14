@@ -34,6 +34,8 @@ unit_harmonization_map:
     - whoknows
     - category
     - none
+  meters:
+    - 'meters MSL'
 
 cf_attribute_map:
   ZNW:
@@ -95,10 +97,10 @@ cf_attribute_map:
     units: m2
     description: Variance of Subgrid Scale Orography MSL
   HGT_V:
-    units: m
     standard_name: surface_altitude
   HGT_U:
-    units: m
+    standard_name: surface_altitude
+  HGT_M:
     standard_name: surface_altitude
   PRES:
     units: Pa
