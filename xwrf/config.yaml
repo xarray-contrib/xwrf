@@ -106,8 +106,6 @@ cf_attribute_map:
     units: dimensionless
   SCB_DOM:
     units: dimensionless
-  SCB_DOM:
-    units: dimensionless
   COSALPHA_V:
     units: dimensionless
   GREENFRAC:
