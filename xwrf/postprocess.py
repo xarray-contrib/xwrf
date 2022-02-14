@@ -10,21 +10,24 @@ def _decode_times(ds: xr.Dataset) -> xr.Dataset:
     """
     Decode the time variable to datetime64.
     """
+    try:
+        _time = pd.to_datetime(ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%d_%H:%M:%S')
+    except ValueError:
+        _time = pd.to_datetime(ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%dT%H:%M:%S.%f')
     ds = ds.assign_coords(
         {
-            'Time': pd.to_datetime(
-                ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%d_%H:%M:%S'
-            )
+            'Time': _time
         }
     )
     ds.Time.attrs = {'long_name': 'Time', 'standard_name': 'time'}
     return ds
 
 
-def _remove_units_from_bool_arrays(ds: xr.Dataset) -> xr.Dataset:
-    boolean_units_attrs = config.get('boolean_units_attrs')
+def _remove_invalid_units(ds: xr.Dataset) -> xr.Dataset:
+    invalid_units_attrs = config.get('invalid_units_attrs')
+    print(invalid_units_attrs)
     for variable in ds.data_vars:
-        if ds[variable].attrs.get('units') in boolean_units_attrs:
+        if ds[variable].attrs.get('units') in invalid_units_attrs:
             ds[variable].attrs.pop('units', None)
     return ds
 

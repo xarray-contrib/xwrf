@@ -22,9 +22,13 @@ time_coords:
   - Time
   - time
 
-boolean_units_attrs:
+invalid_units_attrs:
   - '-'
   - flag
+  - '0/1 Flag'
+  - 'whoknows'
+  - 'category'
+  - 'none'
 
 cf_attribute_map:
   ZNW:
@@ -92,3 +96,23 @@ cf_attribute_map:
     units: Pa
   ST:
     units: kelvin
+  SM100255:
+    units: dimensionless
+  SM028100:
+    units: dimensionless
+  SM007028:
+    units: dimensionless
+  SM000007:
+    units: dimensionless
+  SCB_DOM:
+    units: dimensionless
+  SCB_DOM:
+    units: dimensionless
+  COSALPHA_V:
+    units: dimensionless
+  GREENFRAC:
+    units: dimensionless
+  SOILTEMP:
+    units: kelvin
+  RH:
+    units: %
