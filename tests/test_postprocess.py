@@ -13,7 +13,7 @@ def dummy_attrs_only_dataset(request):
     return xwrf.tutorial.open_dataset(request.param)
 
 
-@pytest.fixture(scope='session', params=['met_em.d01.2005-08-28_12:00:00.nc'])
+@pytest.fixture(scope='session', params=['met_em_sample'])
 def met_em_dataset(request):
     return xwrf.tutorial.open_dataset(request.param)
 
