@@ -25,7 +25,6 @@ def _decode_times(ds: xr.Dataset) -> xr.Dataset:
 
 def _remove_invalid_units(ds: xr.Dataset) -> xr.Dataset:
     invalid_units_attrs = config.get('invalid_units_attrs')
-    print(invalid_units_attrs)
     for variable in ds.data_vars:
         if ds[variable].attrs.get('units') in invalid_units_attrs:
             ds[variable].attrs.pop('units', None)

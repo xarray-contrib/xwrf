@@ -89,9 +89,15 @@ cf_attribute_map:
   VAR_SSO:
     units: m2
     description: Variance of Subgrid Scale Orography MSL
-  HGT_M:
+  HGT_V:
     units: m
-    description: GMTED2010 30-arc-second topography height MSL
+    standard_name: surface_altitude
+  HGT_V:
+    units: m
+    standard_name: surface_altitude
+  HGT_U:
+    units: m
+    standard_name: surface_altitude
   PRES:
     units: Pa
   ST:
@@ -103,6 +109,14 @@ cf_attribute_map:
   SM007028:
     units: dimensionless
   SM000007:
+    units: dimensionless
+  OL4:
+    units: dimensionless
+  OL3:
+    units: dimensionless
+  OL2:
+    units: dimensionless
+  OL1:
     units: dimensionless
   SCB_DOM:
     units: dimensionless
