@@ -92,9 +92,6 @@ cf_attribute_map:
   HGT_V:
     units: m
     standard_name: surface_altitude
-  HGT_V:
-    units: m
-    standard_name: surface_altitude
   HGT_U:
     units: m
     standard_name: surface_altitude
