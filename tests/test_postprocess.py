@@ -22,6 +22,6 @@ def test_cf_attrs_added(dummy_dataset, variable):
 
 
 @pytest.mark.parametrize('variable', ('THIS_IS_AN_IDEAL_RUN', 'SAVE_TOPO_FROM_REAL'))
-def test_remove_units_from_bool_arrays(dummy_attrs_only_dataset, variable):
-    dataset = xwrf.postprocess._remove_units_from_bool_arrays(dummy_attrs_only_dataset)
+def test_remove_invalid_units(dummy_attrs_only_dataset, variable):
+    dataset = xwrf.postprocess._remove_invalid_units(dummy_attrs_only_dataset)
     assert 'units' not in dataset[variable].attrs
