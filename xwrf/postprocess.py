@@ -23,11 +23,21 @@ def _decode_times(ds: xr.Dataset) -> xr.Dataset:
     return ds
 
 
-def _remove_invalid_units(ds: xr.Dataset) -> xr.Dataset:
-    invalid_units_attrs = config.get('invalid_units_attrs')
+def _make_units_pint_friendly(ds: xr.Dataset) -> xr.Dataset:
+    """
+    Harmonizes awkward WRF units into pint-friendly ones
+    """
+    # We have to invert the mapping from "new_unit -> wrf_units" to "wrf_unit -> new_unit"
+    wrf_units_map = {
+        v: k for (k, val_list) in config.get('unit_harmonization_map').items() for v in val_list
+    }
     for variable in ds.data_vars:
-        if ds[variable].attrs.get('units') in invalid_units_attrs:
-            ds[variable].attrs.pop('units', None)
+        if ds[variable].attrs.get('units') in wrf_units_map:
+            harmonized_unit = wrf_units_map[ds[variable].attrs['units']]
+            if harmonized_unit == "invalid":
+                ds[variable].attrs.pop('units', None)
+            else:
+                ds[variable].attrs['units'] = harmonized_unit
     return ds
 
 

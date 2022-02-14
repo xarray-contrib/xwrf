@@ -34,6 +34,7 @@ sample_datasets = {
     'lambert_conformal': 'data/lambert_conformal_sample.nc',
     'mercator': 'data/mercator_sample.nc',
     'tiny': 'data/tiny.nc',
+    'met_em.d01.2005-08-28_12:00:00.nc': 'data/met_em.d01.2005-08-28_12:00:00.nc',
 }
 
 

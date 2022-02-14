@@ -22,13 +22,18 @@ time_coords:
   - Time
   - time
 
-invalid_units_attrs:
-  - '-'
-  - flag
-  - '0/1 Flag'
-  - 'whoknows'
-  - 'category'
-  - 'none'
+unit_harmonization_map:
+  kelvin:
+    - Kelvin
+  dimensionless:
+    - fraction
+  invalid:
+    - '-'
+    - flag
+    - '0/1 Flag'
+    - whoknows
+    - category
+    - none
 
 cf_attribute_map:
   ZNW:
@@ -98,30 +103,6 @@ cf_attribute_map:
   PRES:
     units: Pa
   ST:
-    units: kelvin
-  SM100255:
-    units: dimensionless
-  SM028100:
-    units: dimensionless
-  SM007028:
-    units: dimensionless
-  SM000007:
-    units: dimensionless
-  OL4:
-    units: dimensionless
-  OL3:
-    units: dimensionless
-  OL2:
-    units: dimensionless
-  OL1:
-    units: dimensionless
-  SCB_DOM:
-    units: dimensionless
-  COSALPHA_V:
-    units: dimensionless
-  GREENFRAC:
-    units: dimensionless
-  SOILTEMP:
     units: kelvin
   RH:
     units: '%'
