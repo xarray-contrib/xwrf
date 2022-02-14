@@ -5,8 +5,8 @@ import xarray as xr
 from .postprocess import (
     _collapse_time_dim,
     _decode_times,
-    _modify_attrs_to_cf,
     _make_units_pint_friendly,
+    _modify_attrs_to_cf,
 )
 
 

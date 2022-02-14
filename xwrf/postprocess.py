@@ -34,7 +34,7 @@ def _make_units_pint_friendly(ds: xr.Dataset) -> xr.Dataset:
     for variable in ds.data_vars:
         if ds[variable].attrs.get('units') in wrf_units_map:
             harmonized_unit = wrf_units_map[ds[variable].attrs['units']]
-            if harmonized_unit == "invalid":
+            if harmonized_unit == 'invalid':
                 ds[variable].attrs.pop('units', None)
             else:
                 ds[variable].attrs['units'] = harmonized_unit
