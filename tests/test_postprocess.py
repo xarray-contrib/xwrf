@@ -3,6 +3,8 @@ import pytest
 
 import xwrf
 
+from . import importorskip
+
 
 @pytest.fixture(scope='session', params=['dummy'])
 def dummy_dataset(request):
@@ -16,6 +18,11 @@ def dummy_attrs_only_dataset(request):
 
 @pytest.fixture(scope='session', params=['met_em_sample'])
 def met_em_dataset(request):
+    return xwrf.tutorial.open_dataset(request.param)
+
+
+@pytest.fixture(scope='session')
+def test_grid(request):
     return xwrf.tutorial.open_dataset(request.param)
 
 
@@ -45,6 +52,20 @@ def test_include_projection_coordinates(dummy_dataset):
     assert dataset['west_east'].attrs['axis'] == 'X'
     assert isinstance(dataset['wrf_projection'].item(), pyproj.CRS)
     assert dataset['Q2'].attrs['grid_mapping'] == 'wrf_projection'
+
+
+@importorskip('xgcm')
+@pytest.mark.parametrize('test_grid', ['lambert_conformal', 'mercator'], indirect=True)
+def test_include_projection_coordinates_with_xgcm(test_grid):
+    from xgcm import Grid
+
+    dataset = xwrf.postprocess._include_projection_coordinates(test_grid)
+    grid = Grid(dataset)
+
+    assert grid.axes['Y'].coords['center'] == 'south_north'
+    assert grid.axes['Y'].coords['outer'] == 'south_north_stag'
+    assert grid.axes['X'].coords['center'] == 'west_east'
+    assert grid.axes['X'].coords['outer'] == 'west_east_stag'
 
 
 def test_warning_on_projection_coordinate_failure(dummy_attrs_only_dataset):
