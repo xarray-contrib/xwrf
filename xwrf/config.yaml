@@ -1,5 +1,11 @@
 version: 0.1
 
+horizontal_dims:
+  - south_north
+  - west_east
+  - south_north_stag
+  - west_east_stag
+
 latitude_coords:
   - CLAT
   - XLAT
@@ -15,6 +21,10 @@ longitude_coords:
   - XLONG_M
   - XLONG_U
   - XLONG_V
+
+vertical_coords:
+  - ZNU
+  - ZNW
 
 time_coords:
   - XTIME
@@ -38,13 +48,47 @@ unit_harmonization_map:
     - 'meters MSL'
 
 cf_attribute_map:
+  south_north:
+    units: m
+    standard_name: projection_y_coordinate
+    axis: Y
+  west_east:
+    units: m
+    standard_name: projection_x_coordinate
+    axis: X
+  south_north_stag:
+    units: m
+    standard_name: projection_y_coordinate
+    axis: Y
+    c_grid_axis_shift: 0.5
+  west_east_stag:
+    units: m
+    standard_name: projection_x_coordinate
+    axis: X
+    c_grid_axis_shift: 0.5
+  XLAT_M:
+    units: degree_north
+    standard_name: latitude
+  XLAT:
+    standard_name: latitude
+  XLAT_U:
+    standard_name: latitude
+  XLAT_V:
+    standard_name: latitude
+  XLONG_M:
+    units: degree_east
+    standard_name: longitude
+  XLONG:
+    standard_name: longitude
+  XLONG_U:
+    standard_name: longitude
+  XLONG_V:
+    standard_name: longitude
+  ZNU:
+    axis: Z
   ZNW:
-    standard_name: atmosphere_hybrid_sigma_pressure_coordinate
     axis: Z
     c_grid_axis_shift: 0.5
-  ZNU:
-    standard_name: atmosphere_hybrid_sigma_pressure_coordinate
-    axis: Z
   XTIME:
     axis: T
   U10:
@@ -108,3 +152,27 @@ cf_attribute_map:
     units: kelvin
   RH:
     units: '%'
+
+conditional_cf_attribute_map:
+  HYBRID_OPT==0:
+    ZNU:
+      standard_name: atmosphere_sigma_coordinate
+    ZNW:
+      standard_name: atmosphere_sigma_coordinate
+  HYBRID_OPT!=0:
+    ZNU:
+      standard_name: atmosphere_hybrid_sigma_pressure_coordinate
+    ZNW:
+      standard_name: atmosphere_hybrid_sigma_pressure_coordinate
+
+assign_coord_to_dim_map:
+  ZNU: bottom_top
+  ZNW: bottom_top_stag
+
+rename_dim_map:
+  south_north: y
+  west_east: x
+  south_north_stag: y_stag
+  west_east_stag: x_stag
+  bottom_top: z
+  bottom_top_stag: z_stag

@@ -29,6 +29,7 @@ def _construct_cache_dir(path):
 sample_datasets = {
     'dummy': 'data/dummy.nc',
     'dummy_attrs_only': 'data/dummy_attrs_only.nc',
+    'dummy_salem_parsed': 'data/dummy_salem_parsed.nc',
     'polar_stereographic_1': 'data/geo_em_d01_polarstereo.nc',
     'polar_stereographic_2': 'data/geo_em_d02_polarstereo.nc',
     'lambert_conformal': 'data/lambert_conformal_sample.nc',

@@ -3,10 +3,13 @@ from __future__ import annotations  # noqa: F401
 import xarray as xr
 
 from .postprocess import (
+    _assign_coord_to_dim_of_different_name,
     _collapse_time_dim,
     _decode_times,
+    _include_projection_coordinates,
     _make_units_pint_friendly,
     _modify_attrs_to_cf,
+    _rename_dims,
 )
 
 
@@ -43,8 +46,10 @@ class WRFDatasetAccessor(WRFAccessor):
             self.xarray_obj.pipe(_modify_attrs_to_cf)
             .pipe(_make_units_pint_friendly)
             .pipe(_collapse_time_dim)
+            .pipe(_include_projection_coordinates)
+            .pipe(_assign_coord_to_dim_of_different_name)
         )
         if decode_times:
             ds = ds.pipe(_decode_times)
 
-        return ds
+        return ds.pipe(_rename_dims)
