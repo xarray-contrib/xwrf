@@ -4,9 +4,9 @@
 
 from pkg_resources import DistributionNotFound, get_distribution
 
-from .config import config
 from . import postprocess, tutorial
 from .accessors import WRFDataArrayAccessor, WRFDatasetAccessor
+from .config import config
 
 try:
     __version__ = get_distribution(__name__).version
