@@ -35,4 +35,4 @@ def test_remove_invalid_units(dummy_attrs_only_dataset, variable):
 @pytest.mark.parametrize('variable', ('OL4', 'GREENFRAC'))
 def test_met_em_parsing(met_em_dataset, variable):
     dataset = xwrf.postprocess._make_units_pint_friendly(met_em_dataset)
-    assert dataset[variable].attrs['units'] == 'dimensionless'
+    assert dataset[variable].attrs['units'] == '1'

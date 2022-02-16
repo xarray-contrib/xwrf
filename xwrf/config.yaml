@@ -25,7 +25,7 @@ time_coords:
 unit_harmonization_map:
   kelvin:
     - Kelvin
-  dimensionless:
+  '1':
     - fraction
   invalid:
     - '-'
