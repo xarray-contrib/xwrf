@@ -5,7 +5,7 @@ import xwrf
 
 @pytest.fixture(scope='session')
 def config():
-    return xwrf.config.config
+    return xwrf.config
 
 
 def test_defaults_exist(config):

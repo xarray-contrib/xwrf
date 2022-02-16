@@ -5,8 +5,8 @@ import xarray as xr
 from .postprocess import (
     _collapse_time_dim,
     _decode_times,
+    _make_units_pint_friendly,
     _modify_attrs_to_cf,
-    _remove_units_from_bool_arrays,
 )
 
 
@@ -41,7 +41,7 @@ class WRFDatasetAccessor(WRFAccessor):
         """
         ds = (
             self.xarray_obj.pipe(_modify_attrs_to_cf)
-            .pipe(_remove_units_from_bool_arrays)
+            .pipe(_make_units_pint_friendly)
             .pipe(_collapse_time_dim)
         )
         if decode_times:

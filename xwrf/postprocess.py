@@ -10,22 +10,34 @@ def _decode_times(ds: xr.Dataset) -> xr.Dataset:
     """
     Decode the time variable to datetime64.
     """
-    ds = ds.assign_coords(
-        {
-            'Time': pd.to_datetime(
-                ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%d_%H:%M:%S'
-            )
-        }
-    )
+    try:
+        _time = pd.to_datetime(
+            ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%d_%H:%M:%S'
+        )
+    except ValueError:
+        _time = pd.to_datetime(
+            ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%dT%H:%M:%S.%f'
+        )
+    ds = ds.assign_coords({'Time': _time})
     ds.Time.attrs = {'long_name': 'Time', 'standard_name': 'time'}
     return ds
 
 
-def _remove_units_from_bool_arrays(ds: xr.Dataset) -> xr.Dataset:
-    boolean_units_attrs = config.get('boolean_units_attrs')
+def _make_units_pint_friendly(ds: xr.Dataset) -> xr.Dataset:
+    """
+    Harmonizes awkward WRF units into pint-friendly ones
+    """
+    # We have to invert the mapping from "new_unit -> wrf_units" to "wrf_unit -> new_unit"
+    wrf_units_map = {
+        v: k for (k, val_list) in config.get('unit_harmonization_map').items() for v in val_list
+    }
     for variable in ds.data_vars:
-        if ds[variable].attrs.get('units') in boolean_units_attrs:
-            ds[variable].attrs.pop('units', None)
+        if ds[variable].attrs.get('units') in wrf_units_map:
+            harmonized_unit = wrf_units_map[ds[variable].attrs['units']]
+            if harmonized_unit == 'invalid':
+                ds[variable].attrs.pop('units', None)
+            else:
+                ds[variable].attrs['units'] = harmonized_unit
     return ds
 
 

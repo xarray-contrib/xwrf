@@ -22,9 +22,20 @@ time_coords:
   - Time
   - time
 
-boolean_units_attrs:
-  - '-'
-  - flag
+unit_harmonization_map:
+  kelvin:
+    - Kelvin
+  '1':
+    - fraction
+  invalid:
+    - '-'
+    - flag
+    - '0/1 Flag'
+    - whoknows
+    - category
+    - none
+  meters:
+    - 'meters MSL'
 
 cf_attribute_map:
   ZNW:
@@ -82,3 +93,18 @@ cf_attribute_map:
     standard_name: integral_of_surface_upward_heat_flux_in_air_wrt_time
   ACLHF:
     standard_name: integral_of_surface_upward_latent_heat_flux_in_air_wrf_time
+  VAR_SSO:
+    units: m2
+    description: Variance of Subgrid Scale Orography MSL
+  HGT_V:
+    standard_name: surface_altitude
+  HGT_U:
+    standard_name: surface_altitude
+  HGT_M:
+    standard_name: surface_altitude
+  PRES:
+    units: Pa
+  ST:
+    units: kelvin
+  RH:
+    units: '%'
