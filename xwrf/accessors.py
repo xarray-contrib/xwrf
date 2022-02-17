@@ -22,13 +22,11 @@ class WRFAccessor:
         self.xarray_obj = xarray_obj
 
 
-@xr.register_dataarray_accessor('wrf')
 @xr.register_dataarray_accessor('xwrf')
 class WRFDataArrayAccessor(WRFAccessor):
     """Adds a number of WRF specific methods to xarray.DataArray objects."""
 
 
-@xr.register_dataset_accessor('wrf')
 @xr.register_dataset_accessor('xwrf')
 class WRFDatasetAccessor(WRFAccessor):
     """Adds a number of WRF specific methods to xarray.Dataset objects."""
