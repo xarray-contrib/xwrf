@@ -1,3 +1,4 @@
+import numpy as np
 import pyproj
 import pytest
 import xarray as xr
@@ -79,3 +80,26 @@ def test_decode_times(times):
     assert dsa['Time'].dtype == 'datetime64[ns]'
     assert dsa['Time'].attrs['long_name'] == 'Time'
     assert dsa['Time'].attrs['standard_name'] == 'time'
+
+
+@pytest.mark.parametrize('sample_dataset', ['lambert_conformal'], indirect=True)
+def test_assign_coord_to_dim_of_different_name(sample_dataset):
+    dataset = sample_dataset.pipe(xwrf.postprocess._collapse_time_dim).pipe(
+        xwrf.postprocess._assign_coord_to_dim_of_different_name
+    )
+    assert 'ZNU' not in dataset.dims
+    assert 'ZNW' not in dataset.dims
+    assert 'bottom_top' in dataset.dims
+    assert 'bottom_top_stag' in dataset.dims
+    sample_dataset_w_collapsed_time = sample_dataset.pipe(xwrf.postprocess._collapse_time_dim)
+    np.testing.assert_equal(sample_dataset_w_collapsed_time['ZNU'].data, dataset['bottom_top'].data)
+    np.testing.assert_equal(
+        sample_dataset_w_collapsed_time['ZNW'].data, dataset['bottom_top_stag'].data
+    )
+
+
+@pytest.mark.parametrize('sample_dataset', ['met_em_sample'], indirect=True)
+def test_assign_coord_to_dim_of_different_name_keyerror(sample_dataset):
+    ds = sample_dataset.pipe(xwrf.postprocess._collapse_time_dim)
+    dataset = ds.pipe(xwrf.postprocess._assign_coord_to_dim_of_different_name)
+    xr.testing.assert_equal(ds, dataset)

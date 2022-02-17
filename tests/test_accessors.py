@@ -19,6 +19,10 @@ def test_postprocess(name, cf_grid_mapping_name):
     assert 'time' not in raw_ds.cf.coordinates
     assert raw_ds.cf.standard_names == {}
 
+    # Postprocess without decoding times
+    dsa = raw_ds.xwrf.postprocess(decode_times=False)
+    assert pd.api.types.is_numeric_dtype(dsa.Time.dtype)
+
     # Postprocess
     ds = raw_ds.xwrf.postprocess()
 

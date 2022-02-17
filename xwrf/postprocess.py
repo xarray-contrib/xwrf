@@ -116,8 +116,11 @@ def _include_projection_coordinates(ds: xr.Dataset) -> xr.Dataset:
 
 def _assign_coord_to_dim_of_different_name(ds: xr.Dataset) -> xr.Dataset:
     for varname, dim in config.get('assign_coord_to_dim_map').items():
-        ds[dim] = ds[varname]
-        del ds[varname]
+        try:
+            ds[dim] = ds[varname]
+            del ds[varname]
+        except KeyError:
+            pass
     return ds
 
 
