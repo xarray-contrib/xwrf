@@ -51,8 +51,14 @@ unit_harmonization_map:
     - whoknows
     - category
     - none
+    - dBZ
+    - dbZ
   meters:
     - 'meters MSL'
+  g/m2/s:
+    - 'g/m2/s CO2'
+  umol/m2/s:
+    - 'umol co2/m2/s'
 
 cf_attribute_map:
   south_north:
