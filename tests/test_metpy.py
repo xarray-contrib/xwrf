@@ -1,5 +1,3 @@
-import numpy as np
-import pyproj
 import pytest
 
 import xwrf
