@@ -41,26 +41,55 @@ sample_datasets = {
 
 # idea borrowed from Seaborn and Xarray
 def open_dataset(
-    name,
-    cache=True,
-    cache_dir=None,
+    name: str,
+    cache: bool = True,
+    cache_dir: str | pathlib.Path = None,
     *,
-    engine='netcdf4',
+    engine: str = 'netcdf4',
     **kws,
-):
+) -> xr.Dataset:
     """
     Open a dataset from the online repository (requires internet).
     If a local copy is found then always use that to avoid network traffic.
+
     Available datasets:
-    * ``""``:
+
+    * ``"dummy"``
+    * ``"dummy_attrs_only"``
+    * ``"dummy_salem_parsed"``
+    * ``"polar_stereographic_1"``
+    * ``"polar_stereographic_2"``
+    * ``"lambert_conformal"``
+    * ``"mercator"``
+    * ``"met_em_sample"``
+
     Parameters
+    ----------
+    name : str
+        Name of the dataset.
+        e.g. 'mercator'
+    cache : bool, optional
+        If True, then cache data locally for use on subsequent calls
+    cache_dir : path-like, optional
+        The directory in which to search for and write cached data.
+    engine : str, optional
+        Name of the backend engine to use.
+    **kws : dict, optional
+        Additional keyword arguments passed through to the :py:func:`~xarray.open_dataset` function.
+
+    Returns
+    -------
+    xarray.Dataset
+        The dataset.
     """
+
     try:
         import pooch
     except ImportError as e:
         raise ImportError(
             'tutorial.open_dataset depends on pooch to download and manage datasets.'
-            ' To proceed please install pooch.'
+            ' To proceed please install pooch using:'
+            ' `python -m pip install pooch` or `conda install -c conda-forge pooch`.'
         ) from e
 
     logger = pooch.get_logger()
@@ -85,7 +114,7 @@ def open_dataset(
     return ds
 
 
-def load_dataset(*args, **kwargs):
+def load_dataset(*args, **kwargs) -> xr.Dataset:
     """
     Open, load into memory, and close a dataset from the online repository
     (requires internet)

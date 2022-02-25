@@ -1,5 +1,6 @@
 from __future__ import annotations  # noqa: F401
 
+import re
 import warnings
 
 import pandas as pd
@@ -26,10 +27,23 @@ def _decode_times(ds: xr.Dataset) -> xr.Dataset:
     return ds
 
 
+def _clean_brackets_from_units(ds: xr.Dataset) -> xr.Dataset:
+    """
+    Cleans brackets from units attributes
+    """
+    sep = '\\'
+    regex = re.compile(f'[{sep.join(config.get("brackets_to_clean_from_units"))}]')
+    for var in ds.variables:
+        if 'units' in ds[var].attrs:
+            ds[var].attrs['units'] = regex.sub('', ds[var].attrs['units'])
+    return ds
+
+
 def _make_units_pint_friendly(ds: xr.Dataset) -> xr.Dataset:
     """
     Harmonizes awkward WRF units into pint-friendly ones
     """
+    ds = _clean_brackets_from_units(ds)
     # We have to invert the mapping from "new_unit -> wrf_units" to "wrf_unit -> new_unit"
     wrf_units_map = {
         v: k for (k, val_list) in config.get('unit_harmonization_map').items() for v in val_list
@@ -116,8 +130,11 @@ def _include_projection_coordinates(ds: xr.Dataset) -> xr.Dataset:
 
 def _assign_coord_to_dim_of_different_name(ds: xr.Dataset) -> xr.Dataset:
     for varname, dim in config.get('assign_coord_to_dim_map').items():
-        ds[dim] = ds[varname]
-        del ds[varname]
+        try:
+            ds[dim] = ds[varname]
+            del ds[varname]
+        except KeyError:
+            pass
     return ds
 
 

@@ -32,11 +32,18 @@ time_coords:
   - Time
   - time
 
+brackets_to_clean_from_units:
+  - '{'
+  - '}'
+  - '('
+  - ')'
+
 unit_harmonization_map:
   kelvin:
     - Kelvin
   '1':
     - fraction
+    - Dimensionless
   invalid:
     - '-'
     - flag
