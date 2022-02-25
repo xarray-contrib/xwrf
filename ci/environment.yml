@@ -4,13 +4,14 @@ channels:
   - nodefaults
 dependencies:
   - donfig
+  - metpy
   - netcdf4
   - pip
+  - pooch
   - pre-commit
   - pytest-cov
   - pytest-sugar
   - xarray>=0.18,!=0.20.0,!=0.20.1
   - xgcm
-  - pooch
   - pip:
       - -r ../requirements.txt
