@@ -41,9 +41,9 @@ class WRFDatasetAccessor(WRFAccessor):
         """
         Postprocess the dataset. This method will perform the following operations:
 
-        - Rename dimensions to match the CF convention.
-        - Rename variables to match the CF convention.
-        - Rename variable attributes to match the CF convention.
+        - Rename dimensions to match the CF conventions.
+        - Rename variables to match the CF conventions.
+        - Rename variable attributes to match the CF conventions.
         - Convert units to Pint-friendly units.
         - Decode times.
         - Include projection coordinates.
