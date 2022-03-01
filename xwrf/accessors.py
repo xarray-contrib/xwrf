@@ -39,7 +39,20 @@ class WRFDatasetAccessor(WRFAccessor):
         drop_diagnostic_variable_components: bool = True,
     ) -> xr.Dataset:
         """
-        Postprocess the dataset.
+        Postprocess the dataset. This method will perform the following operations:
+
+        - Rename dimensions to match the CF convention.
+        - Rename variables to match the CF convention.
+        - Rename variable attributes to match the CF convention.
+        - Convert units to Pint-friendly units.
+        - Decode times.
+        - Include projection coordinates.
+        - Collapse time dimension.
+
+        Parameters
+        ----------
+        decode_times : bool
+            Whether to decode times. Defaults to True.
 
         Parameters
         ----------
