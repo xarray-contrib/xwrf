@@ -55,8 +55,8 @@ copybutton_prompt_text = r'>>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: 
 copybutton_prompt_is_regexp = True
 
 extlinks = {
-    'issue': ('https://github.com/NCAR/xwrf/issues/%s', 'GH#'),
-    'pr': ('https://github.com/NCAR/xwrf/pull/%s', 'GH#'),
+    'issue': ('https://github.com/ncar-xdev/xwrf/issues/%s', 'GH#'),
+    'pr': ('https://github.com/ncar-xdev/xwrf/pull/%s', 'GH#'),
 }
 
 # Add any paths that contain templates here, relative to this directory.
