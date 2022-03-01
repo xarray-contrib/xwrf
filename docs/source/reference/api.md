@@ -4,35 +4,14 @@ This page provides an auto-generated summary of xWRF’s API.
 
 For more details and examples, refer to the relevant chapters in the main part of the documentation.
 
-```{eval-rst}
-.. currentmodule:: xwrf
-```
-
 ## Top-level API
 
 ```{eval-rst}
+.. currentmodule:: xwrf
+
 .. autosummary::
    :toctree: generated/
 
-```
-
-## Configuration
-
-```{eval-rst}
-.. autosummary::
-   :toctree: generated/
-
-   config.Config
-
-```
-
-## Sample Datasets
-
-```{eval-rst}
-.. autosummary::
-   :toctree: generated/
-
-   tutorial.open_dataset
 ```
 
 ## Dataset
@@ -82,4 +61,27 @@ For more details and examples, refer to the relevant chapters in the main part o
    :toctree: generated/
    :template: autosummary/accessor_method.rst
 
+```
+
+## Configuration
+
+```{eval-rst}
+.. currentmodule:: xwrf
+
+.. autosummary::
+   :toctree: generated/
+
+   config.Config
+
+```
+
+## Sample Datasets
+
+```{eval-rst}
+.. currentmodule:: xwrf
+
+.. autosummary::
+   :toctree: generated/
+
+   tutorial.open_dataset
 ```
