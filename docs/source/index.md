@@ -25,3 +25,11 @@ hidden:
 ---
 reference/index.md
 ```
+
+```{toctree}
+---
+maxdepth: 2
+hidden:
+---
+branding/index.md
+```

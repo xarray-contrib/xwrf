@@ -115,21 +115,15 @@ html_context = {
     'github_version': 'main',
     'doc_path': 'docs',
 }
+html_static_path = ["_static"]
 html_theme_options = dict(
     # analytics_id=''  this is configured in rtfd.io
     # canonical_url="",
+    light_logo="xwrf_logo_bg_light.svg",
+    dark_logo="xwrf_logo_bg_dark.svg",
+    sidebar_hide_name=True
 )
-
-
-# The name of an image file (relative to this directory) to place at the top
-# of the sidebar.
-# html_logo = '../_static/images/NSF_4-Color_bitmap_Logo.png'
-
-
-# The name of an image file (within the static path) to use as favicon of the
-# docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
-# pixels large.
-# html_favicon = None
+html_favicon = "_static/xwrf_favicon.ico"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
