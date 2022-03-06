@@ -115,15 +115,15 @@ html_context = {
     'github_version': 'main',
     'doc_path': 'docs',
 }
-html_static_path = ["_static"]
+html_static_path = ['_static']
 html_theme_options = dict(
     # analytics_id=''  this is configured in rtfd.io
     # canonical_url="",
-    light_logo="xwrf_logo_bg_light.svg",
-    dark_logo="xwrf_logo_bg_dark.svg",
-    sidebar_hide_name=True
+    light_logo='xwrf_logo_bg_light.svg',
+    dark_logo='xwrf_logo_bg_dark.svg',
+    sidebar_hide_name=True,
 )
-html_favicon = "_static/xwrf_favicon.ico"
+html_favicon = '_static/xwrf_favicon.ico'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

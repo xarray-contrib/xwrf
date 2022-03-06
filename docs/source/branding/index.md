@@ -1,7 +1,6 @@
 # Branding
 
-`xwrf`'s minimalistic logo was inspired by destaggering and handling of WRF's C-grid, which are key features of `xwrf`. It was also generated *in Python* using `matplotlib`, as shown below!
-
+`xwrf`'s minimalistic logo was inspired by destaggering and handling of WRF's C-grid, which are key features of `xwrf`. It was also generated _in Python_ using `matplotlib`, as shown below!
 
 ```python
 from matplotlib.patches import BoxStyle, FancyBboxPatch, Polygon
@@ -10,7 +9,6 @@ import numpy as np
 %matplotlib inline
 %config InlineBackend.figure_format='retina'
 ```
-
 
 ```python
 # Options
@@ -28,7 +26,6 @@ font_options = {
 }
 letter_y_shift = 0.038
 ```
-
 
 ```python
 def generate_xwrf_logo(ax, bg_type="bg_light"):
@@ -89,4 +86,3 @@ for bg_type in color:
 
 ![Light Background Logo SVG](../_static/xwrf_logo_bg_light.svg)
 ![Dark Background Logo SVG](../_static/xwrf_logo_bg_dark.svg)
-
