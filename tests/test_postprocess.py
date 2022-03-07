@@ -133,13 +133,13 @@ def test_calc_base_diagnostics(sample_dataset):
 
         # Geopotential
         np.testing.assert_allclose(ds['geopotential'].max().item(), 196788.02)
-        np.testing.assert_allclose(ds['geopotential'].min().item(), 0.)
+        np.testing.assert_allclose(ds['geopotential'].min().item(), 0.0)
         assert ds['geopotential'].attrs['units'] == 'm**2 s**-2'
         assert ds['geopotential'].attrs['standard_name'] == 'geopotential'
 
         # Geopotential height
         np.testing.assert_allclose(ds['geopotential_height'].max().item(), 20059.941)
-        np.testing.assert_allclose(ds['geopotential_height'].min().item(), 0.)
+        np.testing.assert_allclose(ds['geopotential_height'].min().item(), 0.0)
         assert ds['geopotential_height'].attrs['units'] == 'm'
         assert ds['geopotential_height'].attrs['standard_name'] == 'geopotential_height'
 
