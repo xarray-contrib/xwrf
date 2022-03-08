@@ -144,7 +144,7 @@ def _rename_dims(ds: xr.Dataset) -> xr.Dataset:
     return ds.rename(rename_dim_map)
 
 
-def _calc_base_diagnostics(ds, drop=True) -> xr.Dataset:
+def _calc_base_diagnostics(ds: xr.Dataset, drop: bool = True) -> xr.Dataset:
     """Calculate the four basic fields that WRF does not have in physically meaningful form.
 
     Parameters
