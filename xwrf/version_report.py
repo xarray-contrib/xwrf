@@ -99,7 +99,7 @@ def show_versions(as_dict: bool = False) -> None | dict[str, str]:
     print('\n'.join(f'{key:<12}: {value}' for (key, value) in sys_info))
     print('\nInstalled Python Packages')
     print('-------------------------')
-    print('\n'.join(f'{modname:<11}: {version}' for (modname, version) in packages_info))
+    print('\n'.join(f'{modname:<12}: {version}' for (modname, version) in packages_info))
 
     if as_dict:
         return {'sys_info': sys_info, 'packages_info': packages_blob}
