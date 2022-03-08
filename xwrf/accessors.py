@@ -34,9 +34,9 @@ class WRFDatasetAccessor(WRFAccessor):
 
     def postprocess(
         self,
-        decode_times=True,
-        calculate_diagnostic_variables=True,
-        drop_diagnostic_variable_components=True,
+        decode_times: bool = True,
+        calculate_diagnostic_variables: bool = True,
+        drop_diagnostic_variable_components: bool = True,
     ) -> xr.Dataset:
         """
         Postprocess the dataset.
