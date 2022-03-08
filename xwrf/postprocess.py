@@ -142,3 +142,50 @@ def _rename_dims(ds: xr.Dataset) -> xr.Dataset:
     """Rename dims for more consistent semantics."""
     rename_dim_map = {k: v for k, v in config.get('rename_dim_map').items() if k in ds.dims}
     return ds.rename(rename_dim_map)
+
+
+def _calc_base_diagnostics(ds: xr.Dataset, drop: bool = True) -> xr.Dataset:
+    """Calculate the four basic fields that WRF does not have in physically meaningful form.
+
+    Parameters
+    ----------
+    dataset : xarray.Dataset
+        Dataset representing WRF data opened via normal backend, with chunking.
+    drop : bool
+        Decide whether to drop the components of origin after creating the diagnostic fields from
+        them.
+
+    Notes
+    -----
+    This operation should be called before destaggering.
+    """
+    # Potential temperature
+    if 'T' in ds.data_vars:
+        ds['air_potential_temperature'] = ds['T'] + 300
+        ds['air_potential_temperature'].attrs = {
+            'units': 'K',
+            'standard_name': 'air_potential_temperature',
+        }
+        if drop:
+            del ds['T']
+
+    # Pressure
+    if 'P' in ds.data_vars and 'PB' in ds.data_vars:
+        ds['air_pressure'] = ds['P'] + ds['PB']
+        ds['air_pressure'].attrs = {
+            'units': ds['P'].attrs.get('units', 'Pa'),
+            'standard_name': 'air_pressure',
+        }
+        if drop:
+            del ds['P'], ds['PB']
+
+    # Geopotential and geopotential height
+    if 'PH' in ds.data_vars and 'PHB' in ds.data_vars:
+        ds['geopotential'] = ds['PH'] + ds['PHB']
+        ds['geopotential'].attrs = {'units': 'm**2 s**-2', 'standard_name': 'geopotential'}
+        ds['geopotential_height'] = ds['geopotential'] / 9.81
+        ds['geopotential_height'].attrs = {'units': 'm', 'standard_name': 'geopotential_height'}
+        if drop:
+            del ds['PH'], ds['PHB']
+
+    return ds

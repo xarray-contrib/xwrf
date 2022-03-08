@@ -4,6 +4,7 @@ import xarray as xr
 
 from .postprocess import (
     _assign_coord_to_dim_of_different_name,
+    _calc_base_diagnostics,
     _collapse_time_dim,
     _decode_times,
     _include_projection_coordinates,
@@ -31,9 +32,29 @@ class WRFDataArrayAccessor(WRFAccessor):
 class WRFDatasetAccessor(WRFAccessor):
     """Adds a number of WRF specific methods to xarray.Dataset objects."""
 
-    def postprocess(self, decode_times=True) -> xr.Dataset:
+    def postprocess(
+        self,
+        decode_times: bool = True,
+        calculate_diagnostic_variables: bool = True,
+        drop_diagnostic_variable_components: bool = True,
+    ) -> xr.Dataset:
         """
         Postprocess the dataset.
+
+        Parameters
+        ----------
+        decode_times : bool, optional
+            Decode the string-like wrfout times to xarray-friendly Pandas types. Defaults to True.
+        calculate_diagnostic_variables : bool, optional
+            Calculate four essential diagnostic variables (potential temperature, air pressure,
+            geopotential, and geopotential height) that are otherwise only present in wrfout files
+            as split components or dependent upon special adjustments. Defaults to True. If the
+            underlying fields on which any of these calculated fields depends is missing, that
+            calculated variable is skipped. These will be eagerly evalulated, unless your data has
+            been chunked with Dask, in which case these fields will also be Dask arrays.
+        drop_diagnostic_variable_components : bool, optional
+            Determine whether to drop the underlying fields used to calculate the diagnostic
+            variables. Defaults to True.
 
         Returns
         -------
@@ -49,5 +70,7 @@ class WRFDatasetAccessor(WRFAccessor):
         )
         if decode_times:
             ds = ds.pipe(_decode_times)
+        if calculate_diagnostic_variables:
+            ds = ds.pipe(_calc_base_diagnostics, drop=drop_diagnostic_variable_components)
 
         return ds.pipe(_rename_dims)

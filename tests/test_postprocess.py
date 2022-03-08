@@ -110,3 +110,55 @@ def test_assign_coord_to_dim_of_different_name_keyerror(sample_dataset):
 def test_clean_brackets_from_units(sample_dataset, variable, bracket):
     ds = sample_dataset.pipe(xwrf.postprocess._clean_brackets_from_units)
     assert bracket not in ds[variable].attrs['units']
+
+
+@pytest.mark.parametrize('sample_dataset', ['lambert_conformal'], indirect=True)
+def test_calc_base_diagnostics(sample_dataset):
+    subset = sample_dataset[['T', 'P', 'PB', 'PH', 'PHB']].isel(Time=0).load()
+    ds_dropped = subset.copy().pipe(xwrf.postprocess._calc_base_diagnostics)
+    ds_undropped = subset.copy().pipe(xwrf.postprocess._calc_base_diagnostics, drop=False)
+
+    for ds in (ds_dropped, ds_undropped):
+        # Potential temperature
+        np.testing.assert_allclose(ds['air_potential_temperature'].max().item(), 508.78415)
+        np.testing.assert_allclose(ds['air_potential_temperature'].min().item(), 270.265106)
+        assert ds['air_potential_temperature'].attrs['units'] == 'K'
+        assert ds['air_potential_temperature'].attrs['standard_name'] == 'air_potential_temperature'
+
+        # Air pressure
+        np.testing.assert_allclose(ds['air_pressure'].max().item(), 101824.89)
+        np.testing.assert_allclose(ds['air_pressure'].min().item(), 5269.97)
+        assert ds['air_pressure'].attrs['units'] == 'Pa'
+        assert ds['air_pressure'].attrs['standard_name'] == 'air_pressure'
+
+        # Geopotential
+        np.testing.assert_allclose(ds['geopotential'].max().item(), 196788.02)
+        np.testing.assert_allclose(ds['geopotential'].min().item(), 0.0)
+        assert ds['geopotential'].attrs['units'] == 'm**2 s**-2'
+        assert ds['geopotential'].attrs['standard_name'] == 'geopotential'
+
+        # Geopotential height
+        np.testing.assert_allclose(ds['geopotential_height'].max().item(), 20059.941)
+        np.testing.assert_allclose(ds['geopotential_height'].min().item(), 0.0)
+        assert ds['geopotential_height'].attrs['units'] == 'm'
+        assert ds['geopotential_height'].attrs['standard_name'] == 'geopotential_height'
+
+    # Check dropped or not
+    assert 'T' not in ds_dropped
+    assert 'P' not in ds_dropped
+    assert 'PB' not in ds_dropped
+    assert 'PH' not in ds_dropped
+    assert 'PHB' not in ds_dropped
+    assert 'T' in ds_undropped
+    assert 'P' in ds_undropped
+    assert 'PB' in ds_undropped
+    assert 'PH' in ds_undropped
+    assert 'PHB' in ds_undropped
+
+
+@pytest.mark.parametrize(
+    'sample_dataset', ['dummy', 'polar_stereographic_1', 'tiny', 'met_em_sample'], indirect=True
+)
+def test_calc_base_diagnostics_skipping(sample_dataset):
+    ds = sample_dataset.pipe(xwrf.postprocess._calc_base_diagnostics)
+    xr.testing.assert_identical(sample_dataset, ds)
