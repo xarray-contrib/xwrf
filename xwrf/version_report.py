@@ -66,7 +66,7 @@ def show_versions(as_dict: bool = False) -> None | dict[str, str]:
         ('pandas', lambda mod: mod.__version__),
         ('matplotlib', lambda mod: mod.__version__),
         ('dask', lambda mod: mod.__version__),
-        ('netCFD4', lambda mod: mod.__version__),
+        ('netCDF4', lambda mod: mod.__version__),
         ('donfig', lambda mod: mod.__version__),
         ('xgcm', lambda mod: mod.__version__),
         ('pyproj', lambda mod: mod.__version__),
