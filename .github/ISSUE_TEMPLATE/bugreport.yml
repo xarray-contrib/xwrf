@@ -33,25 +33,15 @@ body:
       label: Relevant log output
       description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for markdown backticks.
       render: python
-  - type: dropdown
-    id: version
+  - type: textarea
+    id: show-versions
     attributes:
-      label: Version
-      description: What version of xwrf are you running?
-      options:
-        - main
+      label: Environment
+      description: |
+        Paste the output of `xwrf.show_versions()` here
+      render: python
     validations:
       required: true
-  - type: dropdown
-    id: python-version
-    attributes:
-      label: Which Python version are you using?
-      multiple: true
-      options:
-        - '3.7'
-        - '3.8'
-        - '3.9'
-        - '3.10'
 
   - type: textarea
     id: extra
