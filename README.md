@@ -1,6 +1,6 @@
 # xWRF
 
-![](docs/source/_static/xwrf_logo_bg_light.svg)
+![Logo](docs/source/_static/xwrf_logo_bg_ligth.svg)
 
 _✨ This code is highly experimental! Let the buyer beware ⚠️ ;) ✨_
 

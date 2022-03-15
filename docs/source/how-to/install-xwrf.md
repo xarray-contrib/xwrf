@@ -3,31 +3,34 @@
 xWRF can be installed in three ways:
 
 ```{eval-rst}
-.. tab:: pip
 
-    Using the `pip <https://pypi.org/project/pip/>`__ package manager:
+.. tab-set::
 
-    .. code:: bash
+    .. tab-item:: pip
 
-        $ python -m pip install xwrf
+        Using the `pip <https://pypi.org/project/pip/>`__ package manager:
 
-.. tab:: conda
+        .. code:: bash
 
-    Using the `conda <https://conda.io/>`__ package manager that comes with the
-    Anaconda/Miniconda distribution:
+            $ python -m pip install xwrf
 
-    .. code:: bash
+    .. tab-item:: conda
 
-        $ conda install xwrf --channel conda-forge
+        Using the `conda <https://conda.io/>`__ package manager that comes with the
+        Anaconda/Miniconda distribution:
 
-.. tab:: Development version
+        .. code:: bash
 
-    To install a development version from source:
+            $ conda install xwrf --channel conda-forge
 
-    .. code:: bash
+    .. tab-item:: Development version
 
-        $ git clone https://github.com/ncar-xdev/xwrf
-        $ cd xwrf
-        $ python -m pip install -e .
+        To install a development version from source:
+
+        .. code:: bash
+
+            $ git clone https://github.com/ncar-xdev/xwrf
+            $ cd xwrf
+            $ python -m pip install -e .
 
 ```

@@ -18,7 +18,7 @@ dependencies:
   - sphinx-autosummary-accessors
   - sphinx-comments
   - sphinx-copybutton
-  - sphinx-inline-tabs
+  - sphinx-design
   - xarray>=0.18,!=0.20.0,!=0.20.1
   - xgcm
   - pip:
