@@ -35,12 +35,16 @@ def test_met_em_parsing(sample_dataset, variable):
     dataset = xwrf.postprocess._make_units_pint_friendly(sample_dataset)
     assert dataset[variable].attrs['units'] == '1'
 
+
 @pytest.mark.parametrize('bad_units', list(xwrf.config.get('unit_harmonization_map').values()))
 def test_successful_unit_parsing(bad_units):
-    synthetic_dataset = xr.Dataset(coords=dict(x=(["x"], np.random.rand(5))))
-    for i,unit in enumerate(bad_units):
-        synthetic_dataset[chr(i)] = xr.Variable(dims="x", data=np.random.rand(5), attrs={"units": unit})
+    synthetic_dataset = xr.Dataset(coords=dict(x=(['x'], np.random.rand(5))))
+    for i, unit in enumerate(bad_units):
+        synthetic_dataset[chr(i)] = xr.Variable(
+            dims='x', data=np.random.rand(5), attrs={'units': unit}
+        )
     xwrf.postprocess._make_units_pint_friendly(synthetic_dataset)
+
 
 @pytest.mark.parametrize('sample_dataset', ['dummy'], indirect=True)
 def test_include_projection_coordinates(sample_dataset):
