@@ -1,6 +1,6 @@
 # xWRF
 
-![Logo](docs/source/_static/xwrf_logo_bg_ligth.svg)
+![Logo](docs/source/_static/xwrf_logo_bg_dark.svg)
 
 _✨ This code is highly experimental! Let the buyer beware ⚠️ ;) ✨_
 
@@ -13,14 +13,6 @@ _✨ This code is highly experimental! Let the buyer beware ⚠️ ;) ✨_
 A lightweight interface for working with the [Weather Research and Forecasting (WRF)](https://www2.mmm.ucar.edu/wrf/users/) model output in Xarray. The primary objective of `xWRF` is to replicate crucial functionality from the [wrf-python](https://github.com/NCAR/wrf-python) package in a way that is **more convenient** for users and provides **seamless integration** with the rest of the Pangeo software stack.
 
 See [documentation](https://xwrf.readthedocs.io/) for more information.
-
-## Installation
-
-`xWRF` may be installed with pip:
-
-```bash
-python -m pip install git+https://github.com/ncar-xdev/xwrf.git
-```
 
 [github-ci-badge]: https://img.shields.io/github/workflow/status/ncar-xdev/xwrf/CI?label=CI&logo=github
 [github-ci-link]: https://github.com/ncar-xdev/xwrf/actions?query=workflow%3ACI
