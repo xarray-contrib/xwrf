@@ -2,8 +2,6 @@
 
 ![Logo](docs/source/_static/xwrf_logo_bg_dark.svg)
 
-_✨ This code is highly experimental! Let the buyer beware ⚠️ ;) ✨_
-
 | CI          | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![Code Coverage Status][codecov-badge]][codecov-link] [![pre-commit.ci status][pre-commit.ci-badge]][pre-commit.ci-link] |
 | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 | **Docs**    |                                                                     [![Documentation Status][rtd-badge]][rtd-link]                                                                     |
