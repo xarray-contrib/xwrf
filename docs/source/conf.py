@@ -95,7 +95,15 @@ html_context = {
     'github_version': 'main',
     'doc_path': 'docs',
 }
-html_theme_options = {}
+html_static_path = ['_static']
+html_theme_options = dict(
+    # analytics_id=''  this is configured in rtfd.io
+    # canonical_url="",
+    light_logo='xwrf_logo_bg_light.svg',
+    dark_logo='xwrf_logo_bg_dark.svg',
+    sidebar_hide_name=True,
+)
+html_favicon = '_static/xwrf_favicon.ico'
 
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page bottom,
