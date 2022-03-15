@@ -51,11 +51,6 @@ class WRFDatasetAccessor(WRFAccessor):
 
         Parameters
         ----------
-        decode_times : bool
-            Whether to decode times. Defaults to True.
-
-        Parameters
-        ----------
         decode_times : bool, optional
             Decode the string-like wrfout times to xarray-friendly Pandas types. Defaults to True.
         calculate_diagnostic_variables : bool, optional
