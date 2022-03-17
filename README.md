@@ -1,6 +1,6 @@
-# xwrf
+# xWRF
 
-_✨ This code is highly experimental! Let the buyer beware ⚠️ ;) ✨_
+![Logo](docs/source/_static/xwrf_logo_bg_dark.svg)
 
 | CI          | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![Code Coverage Status][codecov-badge]][codecov-link] [![pre-commit.ci status][pre-commit.ci-badge]][pre-commit.ci-link] |
 | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
@@ -8,17 +8,9 @@ _✨ This code is highly experimental! Let the buyer beware ⚠️ ;) ✨_
 | **Package** |                                                          [![Conda][conda-badge]][conda-link] [![PyPI][pypi-badge]][pypi-link]                                                          |
 | **License** |                                                                         [![License][license-badge]][repo-link]                                                                         |
 
-A lightweight interface for working with the Weather Research and Forecasting (WRF) model output in Xarray. The primary objective of `xwrf` is to replicate crucial functionality from the [wrf-python](https://github.com/NCAR/wrf-python) package in a way that is **more convenient** for users and provides **seamless integration** with the rest of the Pangeo software stack.
+A lightweight interface for working with the [Weather Research and Forecasting (WRF)](https://www2.mmm.ucar.edu/wrf/users/) model output in Xarray. The primary objective of `xWRF` is to replicate crucial functionality from the [wrf-python](https://github.com/NCAR/wrf-python) package in a way that is **more convenient** for users and provides **seamless integration** with the rest of the Pangeo software stack.
 
 See [documentation](https://xwrf.readthedocs.io/) for more information.
-
-## Installation
-
-`xwrf` may be installed with pip:
-
-```bash
-python -m pip install git+https://github.com/NCAR/xwrf.git
-```
 
 [github-ci-badge]: https://img.shields.io/github/workflow/status/ncar-xdev/xwrf/CI?label=CI&logo=github
 [github-ci-link]: https://github.com/ncar-xdev/xwrf/actions?query=workflow%3ACI
