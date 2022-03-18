@@ -1,6 +1,6 @@
 # xWRF
 
-![Logo](docs/source/_static/xwrf_logo_bg_dark.svg)
+![Logo](docs/source/_static/xwrf_logo_bg_dark.svg#gh-dark-mode-only)![Logo](docs/source/_static/xwrf_logo_bg_light.svg#gh-light-mode-only)
 
 | CI          | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![Code Coverage Status][codecov-badge]][codecov-link] [![pre-commit.ci status][pre-commit.ci-badge]][pre-commit.ci-link] |
 | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
