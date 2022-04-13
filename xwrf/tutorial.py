@@ -63,6 +63,7 @@ def open_dataset(
     * ``"lambert_conformal"``
     * ``"mercator"``
     * ``"met_em_sample"``
+    * ``"wrfout"``
 
     Parameters
     ----------
