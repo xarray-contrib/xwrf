@@ -36,6 +36,7 @@ sample_datasets = {
     'mercator': 'data/mercator_sample.nc',
     'tiny': 'data/tiny.nc',
     'met_em_sample': 'data/met_em.d01.2005-08-28_12:00:00.nc',
+    'wrfout': 'data/wrfout_d03_2018-10-16_00:00:00.nc',
 }
 
 
