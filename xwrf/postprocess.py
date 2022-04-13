@@ -24,6 +24,14 @@ def _decode_times(ds: xr.Dataset) -> xr.Dataset:
         )
     ds = ds.assign_coords({'Time': _time})
     ds.Time.attrs = {'long_name': 'Time', 'standard_name': 'time'}
+    # make XTIME be consistent with its description
+    if 'XTIME' in ds.variables and ds.XTIME.dtype == 'datetime64[ns]':
+        ds['XTIME'].data = (
+            ds.XTIME.data
+            - pd.to_datetime(
+                ds['XTIME'].description, format='minutes since %Y-%m-%d %H:%M:%S'
+            ).to_datetime64()
+        )
     return ds
 
 
