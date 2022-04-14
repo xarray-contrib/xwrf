@@ -13,6 +13,11 @@ def sample_dataset(request):
     return xwrf.tutorial.open_dataset(request.param)
 
 
+@pytest.fixture(scope='session')
+def sample_dataset_with_kwargs(request):
+    return xwrf.tutorial.open_dataset(request.param[0], **request.param[1])
+
+
 @pytest.mark.parametrize('sample_dataset', ['dummy'], indirect=True)
 @pytest.mark.parametrize('variable', ('Q2', 'PSFC'))
 def test_cf_attrs_added(sample_dataset, variable):
@@ -90,6 +95,19 @@ def test_decode_times(times):
     assert dsa['Time'].dtype == 'datetime64[ns]'
     assert dsa['Time'].attrs['long_name'] == 'Time'
     assert dsa['Time'].attrs['standard_name'] == 'time'
+
+
+@pytest.mark.parametrize(
+    'sample_dataset_with_kwargs,xtime_dtype',
+    [
+        (('mercator', {'decode_times': True}), 'timedelta64[ns]'),
+        (('mercator', {'decode_times': False}), 'float32'),
+    ],
+    indirect=['sample_dataset_with_kwargs'],
+)
+def test_xtime_handling(sample_dataset_with_kwargs, xtime_dtype):
+    dataset = xwrf.postprocess._decode_times(sample_dataset_with_kwargs)
+    assert dataset.XTIME.dtype == xtime_dtype
 
 
 @pytest.mark.parametrize('sample_dataset', ['lambert_conformal'], indirect=True)
