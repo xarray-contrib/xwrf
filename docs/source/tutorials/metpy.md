@@ -76,6 +76,12 @@ ds['air_temperature'] = mpcalc.temperature_from_potential_temperature(
 ds['air_pressure'] = ds.air_pressure.pint.to("hPa")
 ```
 
+## Plotting
+
++++
+
+Finally, we can create the skew-T plot using the computed quantities.
+
 ```{code-cell} ipython3
 import matplotlib.pyplot as plt
 from metpy.plots import SkewT

@@ -48,6 +48,10 @@ Upon investigating the wind components (here `U`), we can see that they are defi
 ds.U
 ```
 
+## Destaggering the WRF grid
+
++++
+
 But, since `xWRF` prepared the dataset with the appropriate [COMODO](https://web.archive.org/web/20160417032300/http://pycomodo.forge.imag.fr/norm.html) (and `units`) attributes, we can simply use [`xgcm`](https://xgcm.readthedocs.io/en/latest/grids.html) to solve this problem!
 
 ```{code-cell} ipython3
