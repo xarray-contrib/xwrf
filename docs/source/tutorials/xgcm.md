@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# `xWRF` and `xgcm`
+# Treating the WRF grid with `xgcm`
 
 +++
 

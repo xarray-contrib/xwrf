@@ -11,7 +11,7 @@ kernelspec:
   name: python3
 ---
 
-# `xWRF` and `metpy`
+# Using `metpy` for WRF analysis
 
 +++
 
