@@ -6,9 +6,9 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.13.8
 kernelspec:
-  display_name: xwrf-dev
+  display_name: Python 3 (based on the module python3/2022.01)
   language: python
-  name: xwrf-dev
+  name: python3_2022_01
 ---
 
 # `xWRF` and `xgcm`
