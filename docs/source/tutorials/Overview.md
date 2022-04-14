@@ -6,9 +6,9 @@ jupytext:
     format_version: 0.13
     jupytext_version: 1.13.8
 kernelspec:
-  display_name: Python 3 (based on the module python3/2022.01)
+  display_name: Python 3 (ipykernel)
   language: python
-  name: python3_2022_01
+  name: python3
 ---
 
 +++ {"tags": []}
