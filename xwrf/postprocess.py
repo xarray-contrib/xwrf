@@ -159,8 +159,6 @@ def _calc_base_diagnostics(ds: xr.Dataset, drop: bool = True) -> xr.Dataset:
     -----
     This operation should be called before destaggering.
     """
-    base_attributes = {'grid_mapping': 'wrf_projection'}
-
     # Potential temperature
     if 'T' in ds.data_vars:
         ds['air_potential_temperature'] = ds['T'] + 300
@@ -168,7 +166,6 @@ def _calc_base_diagnostics(ds: xr.Dataset, drop: bool = True) -> xr.Dataset:
             'units': 'K',
             'standard_name': 'air_potential_temperature',
         }
-        ds['air_potential_temperature'].attrs.update(base_attributes)
         if drop:
             del ds['T']
 
@@ -179,7 +176,6 @@ def _calc_base_diagnostics(ds: xr.Dataset, drop: bool = True) -> xr.Dataset:
             'units': ds['P'].attrs.get('units', 'Pa'),
             'standard_name': 'air_pressure',
         }
-        ds['air_pressure'].attrs.update(base_attributes)
         if drop:
             del ds['P'], ds['PB']
 
@@ -191,14 +187,12 @@ def _calc_base_diagnostics(ds: xr.Dataset, drop: bool = True) -> xr.Dataset:
             'standard_name': 'geopotential',
             'stagger': ds['PH'].attrs.get('stagger', 'Z'),
         }
-        ds['geopotential'].attrs.update(base_attributes)
         ds['geopotential_height'] = ds['geopotential'] / 9.81
         ds['geopotential_height'].attrs = {
             'units': 'm',
             'standard_name': 'geopotential_height',
             'stagger': ds['PH'].attrs.get('stagger', 'Z'),
         }
-        ds['geopotential_height'].attrs.update(base_attributes)
         if drop:
             del ds['PH'], ds['PHB']
 
