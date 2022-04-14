@@ -73,12 +73,13 @@ class WRFDatasetAccessor(WRFAccessor):
             self.xarray_obj.pipe(_modify_attrs_to_cf)
             .pipe(_make_units_pint_friendly)
             .pipe(_collapse_time_dim)
-            .pipe(_include_projection_coordinates)
             .pipe(_assign_coord_to_dim_of_different_name)
         )
         if decode_times:
             ds = ds.pipe(_decode_times)
         if calculate_diagnostic_variables:
             ds = ds.pipe(_calc_base_diagnostics, drop=drop_diagnostic_variable_components)
+
+        ds = ds.pipe(_include_projection_coordinates)
 
         return ds.pipe(_rename_dims)
