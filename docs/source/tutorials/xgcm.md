@@ -15,7 +15,7 @@ kernelspec:
 
 +++
 
-In this tutorial, we will show you how to leverage the `xWRF`-provided [COMODO](https://web.archive.org/web/20160417032300/http://pycomodo.forge.imag.fr/norm.html)-compliant attributes with `xgcm` in order to destagger the WRF output.
+In this tutorial, we will show you how to leverage the xWRF-provided [COMODO](https://web.archive.org/web/20160417032300/http://pycomodo.forge.imag.fr/norm.html)-compliant attributes with `xgcm` in order to destagger the [WRF](https://www.mmm.ucar.edu/weather-research-and-forecasting-model) output.
 
 +++
 
@@ -42,7 +42,7 @@ from metpy.calc import wind_speed
 wind_speed(ds.U, ds.V)
 ```
 
-Upon investigating the wind components (here `U`), we can see that they are defined on the WRF-internal Arakawa-C grid, which causes the shapes to differ.
+Upon investigating the wind components (here `U`), we can see that they are defined on the [WRF](https://www.mmm.ucar.edu/weather-research-and-forecasting-model)-internal Arakawa-C grid, which causes the shapes to differ.
 
 ```{code-cell} ipython3
 ds.U
@@ -52,7 +52,7 @@ ds.U
 
 +++
 
-But, since `xWRF` prepared the dataset with the appropriate [COMODO](https://web.archive.org/web/20160417032300/http://pycomodo.forge.imag.fr/norm.html) (and `units`) attributes, we can simply use [`xgcm`](https://xgcm.readthedocs.io/en/latest/grids.html) to solve this problem!
+But, since xWRF prepared the dataset with the appropriate [COMODO](https://web.archive.org/web/20160417032300/http://pycomodo.forge.imag.fr/norm.html) (and `units`) attributes, we can simply use [`xgcm`](https://xgcm.readthedocs.io/en/latest/grids.html) to solve this problem!
 
 ```{code-cell} ipython3
 from xgcm import Grid

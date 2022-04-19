@@ -15,7 +15,7 @@ kernelspec:
 
 +++
 
-In this tutorial, we will show you how `xWRF` enables a seamless integration of WRF data with [`metpy`](https://unidata.github.io/MetPy/latest/). In the end, we will have a skewT plot at a lat-lon location in the simulation domain. Much of this tutorial was adapted from [`metpy`](https://unidata.github.io/MetPy/latest/tutorials/upperair_soundings.html).
+In this tutorial, we will show you how xWRF enables a seamless integration of [WRF](https://www.mmm.ucar.edu/weather-research-and-forecasting-model) data with [`metpy`](https://unidata.github.io/MetPy/latest/). In the end, we will have a skewT plot at a lat-lon location in the simulation domain. Much of this tutorial was adapted from [`metpy`](https://unidata.github.io/MetPy/latest/tutorials/upperair_soundings.html).
 
 +++
 
@@ -58,7 +58,7 @@ ds
 
 +++
 
-Now we have to compute the quantities [`metpy`](https://unidata.github.io/MetPy/latest/) uses for the skewT. For that we have to first quantify the WRF data and then convert the data to the desired units.
+Now we have to compute the quantities [`metpy`](https://unidata.github.io/MetPy/latest/) uses for the skewT. For that we have to first quantify the [WRF](https://www.mmm.ucar.edu/weather-research-and-forecasting-model) data and then convert the data to the desired units.
 
 ```{code-cell} ipython3
 import metpy
