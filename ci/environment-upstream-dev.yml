@@ -3,6 +3,7 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
+  - cf_xarray
   - donfig
   - metpy
   - netcdf4

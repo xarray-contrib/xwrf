@@ -50,7 +50,7 @@ def test_postprocess(name, cf_grid_mapping_name):
     assert ds['XLAT_V'].shape == ds['XLONG_V'].shape == (30, 31)
 
     # Check for diagnostic variable calculation
-    assert 'potential_temperature' in ds.data_vars
+    assert 'air_potential_temperature' in ds.data_vars
     assert 'air_pressure' in ds.data_vars
     assert 'geopotential' in ds.data_vars
     assert 'geopotential_height' in ds.data_vars
