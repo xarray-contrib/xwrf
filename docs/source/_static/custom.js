@@ -1,7 +1,7 @@
 console.log('RUNNING CUSTOM JAVASCRIPT')
 
 function getBodyThemeName() {
-  const bodyTheme = document.body.dataset.theme
+  var bodyTheme = document.body.dataset.theme
   const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
 
   if (bodyTheme === 'auto') {
@@ -26,4 +26,5 @@ var observer = new MutationObserver(function (mutations) {
     }
   })
 })
+
 observer.observe(document.body, { attributeFilter: ['data-theme'] })
