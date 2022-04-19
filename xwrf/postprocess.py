@@ -25,7 +25,7 @@ def _decode_times(ds: xr.Dataset) -> xr.Dataset:
     ds = ds.assign_coords({'Time': _time})
     ds.Time.attrs = {'long_name': 'Time', 'standard_name': 'time'}
     # make XTIME be consistent with its description
-    if 'XTIME' in ds.variables and ds.XTIME.dtype == 'datetime64[ns]':
+    if 'XTIME' in ds.variables and np.issubdtype(ds.XTIME.dtype, np.datetime64):
         ds['XTIME'].data = (
             ds.XTIME.data
             - pd.to_datetime(
