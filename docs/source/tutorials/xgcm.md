@@ -61,7 +61,6 @@ from xgcm import Grid
 def interp_and_keep_attrs(grid, da, axis):
     _attrs = da.attrs
     da = grid.interp(da, axis=axis)
-    _attrs['stagger'] = ''
     da.attrs = _attrs
     return da
 
