@@ -73,9 +73,8 @@ def test_grid_mapping_is_in_all_vars(sample_dataset):
 
 import sys
 
-
-@importorskip('xgcm')
 @pytest.mark.skipif(sys.version_info < (3, 9), reason='xgcm only works with Python 3.9+')
+@importorskip('xgcm')
 @pytest.mark.parametrize('sample_dataset', ['lambert_conformal', 'mercator'], indirect=True)
 def test_include_projection_coordinates_with_xgcm(sample_dataset):
     from xgcm import Grid
