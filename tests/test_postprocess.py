@@ -60,6 +60,17 @@ def test_include_projection_coordinates(sample_dataset):
     assert dataset['Q2'].attrs['grid_mapping'] == 'wrf_projection'
 
 
+@pytest.mark.parametrize(
+    'sample_dataset', set(xwrf.tutorial.sample_datasets.keys()) - {'tiny'}, indirect=True
+)
+def test_grid_mapping_is_in_all_vars(sample_dataset):
+    dataset = xwrf.postprocess._include_projection_coordinates(sample_dataset)
+    horizontal_dims = set(xwrf.config.get('horizontal_dims')).intersection(set(dataset.dims))
+    for var in dataset.data_vars:
+        if any(dim in dataset[var].dims for dim in horizontal_dims):
+            assert dataset[var].attrs['grid_mapping'] == 'wrf_projection'
+
+
 @importorskip('xgcm')
 @pytest.mark.parametrize('sample_dataset', ['lambert_conformal', 'mercator'], indirect=True)
 def test_include_projection_coordinates_with_xgcm(sample_dataset):

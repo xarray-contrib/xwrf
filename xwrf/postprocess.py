@@ -191,9 +191,17 @@ def _calc_base_diagnostics(ds: xr.Dataset, drop: bool = True) -> xr.Dataset:
     # Geopotential and geopotential height
     if 'PH' in ds.data_vars and 'PHB' in ds.data_vars:
         ds['geopotential'] = ds['PH'] + ds['PHB']
-        ds['geopotential'].attrs = {'units': 'm**2 s**-2', 'standard_name': 'geopotential'}
+        ds['geopotential'].attrs = {
+            'units': 'm**2 s**-2',
+            'standard_name': 'geopotential',
+            'stagger': ds['PH'].attrs.get('stagger', 'Z'),
+        }
         ds['geopotential_height'] = ds['geopotential'] / 9.81
-        ds['geopotential_height'].attrs = {'units': 'm', 'standard_name': 'geopotential_height'}
+        ds['geopotential_height'].attrs = {
+            'units': 'm',
+            'standard_name': 'geopotential_height',
+            'stagger': ds['PH'].attrs.get('stagger', 'Z'),
+        }
         if drop:
             del ds['PH'], ds['PHB']
 
