@@ -96,6 +96,7 @@ html_context = {
     'doc_path': 'docs',
 }
 html_static_path = ['_static']
+html_js_files = ['custom.js']
 html_theme_options = dict(
     # analytics_id=''  this is configured in rtfd.io
     # canonical_url="",

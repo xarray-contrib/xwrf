@@ -3,6 +3,9 @@
 ```{toctree}
 ---
 maxdepth: 2
-caption: Tutorials
+---
+Overview.md
+xgcm.md
+metpy.md
 ---
 ```

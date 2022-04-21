@@ -10,6 +10,7 @@ dependencies:
   - metpy
   - myst-nb
   - netcdf4
+  - pint-xarray
   - pip
   - pooch
   - pydantic

@@ -17,3 +17,4 @@ dependencies:
       - -r ../requirements.txt
       - git+https://github.com/pydata/xarray
       - git+https://github.com/pytroll/donfig
+      - git+https://github.com/xarray-contrib/cf-xarray
