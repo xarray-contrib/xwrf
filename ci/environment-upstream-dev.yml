@@ -3,6 +3,7 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
+  - cf-units
   - donfig
   - metpy
   - netcdf4
