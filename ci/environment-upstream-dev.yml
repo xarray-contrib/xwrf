@@ -1,0 +1,21 @@
+name: xwrf-dev
+channels:
+  - conda-forge
+  - nodefaults
+dependencies:
+  - cf-units
+  - donfig
+  - metpy
+  - netcdf4
+  - pip
+  - pooch
+  - pre-commit
+  - pytest-cov
+  - pytest-sugar
+  - xarray>=0.18,!=0.20.0,!=0.20.1
+  - xgcm
+  - pip:
+      - -r ../requirements.txt
+      - git+https://github.com/pydata/xarray
+      - git+https://github.com/pytroll/donfig
+      - git+https://github.com/xarray-contrib/cf-xarray

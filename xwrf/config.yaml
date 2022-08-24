@@ -1,0 +1,191 @@
+version: 0.1
+
+horizontal_dims:
+  - south_north
+  - west_east
+  - south_north_stag
+  - west_east_stag
+
+latitude_coords:
+  - CLAT
+  - XLAT
+  - XLAT_C
+  - XLAT_M
+  - XLAT_U
+  - XLAT_V
+
+longitude_coords:
+  - CLONG
+  - XLONG
+  - XLONG_C
+  - XLONG_M
+  - XLONG_U
+  - XLONG_V
+
+vertical_coords:
+  - ZNU
+  - ZNW
+
+time_coords:
+  - XTIME
+  - Times
+  - Time
+  - time
+
+brackets_to_clean_from_units:
+  - '{'
+  - '}'
+  - '('
+  - ')'
+
+unit_harmonization_map:
+  kelvin:
+    - Kelvin
+  '1':
+    - fraction
+    - Dimensionless
+  invalid:
+    - '-'
+    - flag
+    - '0/1 Flag'
+    - whoknows
+    - category
+    - none
+    - dBZ
+    - dbZ
+  meters:
+    - 'meters MSL'
+  g/m2/s:
+    - 'g/m2/s CO2'
+  umol/m2/s:
+    - 'umol co2/m2/s'
+
+cf_attribute_map:
+  south_north:
+    units: m
+    standard_name: projection_y_coordinate
+    axis: Y
+  west_east:
+    units: m
+    standard_name: projection_x_coordinate
+    axis: X
+  south_north_stag:
+    units: m
+    standard_name: projection_y_coordinate
+    axis: Y
+    c_grid_axis_shift: 0.5
+  west_east_stag:
+    units: m
+    standard_name: projection_x_coordinate
+    axis: X
+    c_grid_axis_shift: 0.5
+  XLAT_M:
+    units: degree_north
+    standard_name: latitude
+  XLAT:
+    standard_name: latitude
+  XLAT_U:
+    standard_name: latitude
+  XLAT_V:
+    standard_name: latitude
+  XLONG_M:
+    units: degree_east
+    standard_name: longitude
+  XLONG:
+    standard_name: longitude
+  XLONG_U:
+    standard_name: longitude
+  XLONG_V:
+    standard_name: longitude
+  ZNU:
+    axis: Z
+  ZNW:
+    axis: Z
+    c_grid_axis_shift: 0.5
+  XTIME:
+    axis: T
+  U10:
+    standard_name: x_wind
+    long_name: x_wind_at_10m_agl
+  U:
+    standard_name: x_wind
+  V10:
+    standard_name: y_wind
+    long_name: y_wind_at_10m_agl
+  V:
+    standard_name: y_wind
+  W:
+    standard_name: upward_air_velocity
+  TH2:
+    standard_name: air_potential_temperature
+    long_name: air_potential_temperature_at_2m_agl
+  T2:
+    standard_name: air_temperature
+    long_name: air_temperature_at_2m_agl
+  PSFC:
+    standard_name: air_pressure
+    long_name: air_pressure_at_surface
+  HGT:
+    standard_name: surface_altitude
+  PBLH:
+    standard_name: atmosphere_boundary_layer_thickness
+  Q2:
+    standard_name: humidity_mixing_ratio
+    long_name: humidity_mixing_ratio_at_2m_agl
+  QVAPOR:
+    standard_name: humidity_mixing_ratio
+  VEGFRA:
+    standard_name: vegetation_area_fraction
+  LAI:
+    standard_name: leaf_area_index
+  RAINNC:
+    standard_name: integral_of_lwe_precipitation_rate_wrt_time
+  CLDFRA:
+    standard_name: cloud_area_fraction_in_atmosphere_layer
+  HFX:
+    standard_name: surface_upward_heat_flux_in_air
+  LH:
+    standard_name: surface_upward_latent_heat_flux_in_air
+  ACHFX:
+    standard_name: integral_of_surface_upward_heat_flux_in_air_wrt_time
+  ACLHF:
+    standard_name: integral_of_surface_upward_latent_heat_flux_in_air_wrf_time
+  VAR_SSO:
+    units: m2
+    description: Variance of Subgrid Scale Orography MSL
+  HGT_V:
+    standard_name: surface_altitude
+  HGT_U:
+    standard_name: surface_altitude
+  HGT_M:
+    standard_name: surface_altitude
+  PRES:
+    units: Pa
+  ST:
+    units: kelvin
+  RH:
+    units: '%'
+
+conditional_cf_attribute_map:
+  HYBRID_OPT==0:
+    ZNU:
+      standard_name: atmosphere_sigma_coordinate
+    ZNW:
+      standard_name: atmosphere_sigma_coordinate
+  HYBRID_OPT!=0:
+    ZNU:
+      standard_name: atmosphere_hybrid_sigma_pressure_coordinate
+    ZNW:
+      standard_name: atmosphere_hybrid_sigma_pressure_coordinate
+
+assign_coord_to_dim_map:
+  ZNU: bottom_top
+  ZNW: bottom_top_stag
+
+rename_dim_map:
+  south_north: y
+  west_east: x
+  south_north_stag: y_stag
+  west_east_stag: x_stag
+  bottom_top: z
+  bottom_top_stag: z_stag

@@ -4,7 +4,10 @@
 
 from pkg_resources import DistributionNotFound, get_distribution
 
-from .io_plugin import WRFBackendEntrypoint
+from . import postprocess, tutorial
+from .accessors import WRFDataArrayAccessor, WRFDatasetAccessor
+from .config import config
+from .version_report import show_versions
 
 try:
     __version__ = get_distribution(__name__).version
