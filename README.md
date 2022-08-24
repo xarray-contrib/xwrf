@@ -12,17 +12,17 @@ A lightweight interface for working with the [Weather Research and Forecasting (
 
 See [documentation](https://xwrf.readthedocs.io/) for more information.
 
-[github-ci-badge]: https://img.shields.io/github/workflow/status/ncar-xdev/xwrf/CI?label=CI&logo=github
-[github-ci-link]: https://github.com/ncar-xdev/xwrf/actions?query=workflow%3ACI
-[codecov-badge]: https://img.shields.io/codecov/c/github/ncar-xdev/xwrf.svg?logo=codecov
-[codecov-link]: https://codecov.io/gh/ncar-xdev/xwrf
+[github-ci-badge]: https://img.shields.io/github/workflow/status/xarray-contrib/xwrf/CI?label=CI&logo=github
+[github-ci-link]: https://github.com/xarray-contrib/xwrf/actions?query=workflow%3ACI
+[codecov-badge]: https://img.shields.io/codecov/c/github/xarray-contrib/xwrf.svg?logo=codecov
+[codecov-link]: https://codecov.io/gh/xarray-contrib/xwrf
 [rtd-badge]: https://img.shields.io/readthedocs/xwrf/latest.svg
 [rtd-link]: https://xwrf.readthedocs.io/en/latest/?badge=latest
 [pypi-badge]: https://img.shields.io/pypi/v/xwrf?logo=pypi
 [pypi-link]: https://pypi.org/project/xwrf
 [conda-badge]: https://img.shields.io/conda/vn/conda-forge/xwrf?logo=anaconda
 [conda-link]: https://anaconda.org/conda-forge/xwrf
-[license-badge]: https://img.shields.io/github/license/ncar-xdev/xwrf
-[repo-link]: https://github.com/ncar-xdev/xwrf
-[pre-commit.ci-badge]: https://results.pre-commit.ci/badge/github/ncar-xdev/xwrf/main.svg
-[pre-commit.ci-link]: https://results.pre-commit.ci/latest/github/ncar-xdev/xwrf/main
+[license-badge]: https://img.shields.io/github/license/xarray-contrib/xwrf
+[repo-link]: https://github.com/xarray-contrib/xwrf
+[pre-commit.ci-badge]: https://results.pre-commit.ci/badge/github/xarray-contrib/xwrf/main.svg
+[pre-commit.ci-link]: https://results.pre-commit.ci/latest/github/xarray-contrib/xwrf/main

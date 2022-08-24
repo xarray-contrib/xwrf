@@ -55,8 +55,8 @@ copybutton_prompt_text = r'>>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: 
 copybutton_prompt_is_regexp = True
 
 extlinks = {
-    'issue': ('https://github.com/ncar-xdev/xwrf/issues/%s', 'GH#'),
-    'pr': ('https://github.com/ncar-xdev/xwrf/pull/%s', 'GH#'),
+    'issue': ('https://github.com/xarray-contrib/xwrf/issues/%s', 'GH#'),
+    'pr': ('https://github.com/xarray-contrib/xwrf/pull/%s', 'GH#'),
 }
 
 # Add any paths that contain templates here, relative to this directory.
@@ -90,7 +90,7 @@ html_theme = 'furo'
 html_title = ''
 
 html_context = {
-    'github_user': 'ncar-xdev',
+    'github_user': 'xarray-contrib',
     'github_repo': 'xwrf',
     'github_version': 'main',
     'doc_path': 'docs',

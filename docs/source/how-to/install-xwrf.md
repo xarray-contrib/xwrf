@@ -29,7 +29,7 @@ xWRF can be installed in three ways:
 
         .. code:: bash
 
-            $ git clone https://github.com/ncar-xdev/xwrf
+            $ git clone https://github.com/xarray-contrib/xwrf
             $ cd xwrf
             $ python -m pip install -e .
 

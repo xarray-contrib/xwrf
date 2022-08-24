@@ -80,7 +80,7 @@ ds_old['U'].attrs, ds_new['U'].attrs
 Also, the `units` attribute of the `PSN` variable was cleaned up to conform to [`metpy`](https://unidata.github.io/MetPy/latest/index.html) unit conventions.
 
 :::{note}
-As of now, unit translations are implemented on a manual basis, so please raise an [issue](https://github.com/ncar-xdev/xwrf/issues/new?assignees=&labels=bug%2Ctriage&template=bugreport.yml&title=%5BBug%5D%3A+) with us if you encounter any problems in this regard. In the future, this will be implemented in a more structured manner.
+As of now, unit translations are implemented on a manual basis, so please raise an [issue](https://github.com/xarray-contrib/xwrf/issues/new?assignees=&labels=bug%2Ctriage&template=bugreport.yml&title=%5BBug%5D%3A+) with us if you encounter any problems in this regard. In the future, this will be implemented in a more structured manner.
 :::
 
 ```{code-cell} ipython3

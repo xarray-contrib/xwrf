@@ -4,8 +4,8 @@ xWRF provides a lightweight interface for working with the Weather Research and 
 
 ## Get in touch
 
-- If you encounter any errors or problems with **xWRF**, please open an issue at the GitHub [main repository](http://github.com/ncar-xdev/xwrf/issues).
-- If you have a question like "How do I do ...?", ask on [GitHub discussions](https://github.com/ncar-xdev/xwrf/discussions). Please include a self-contained reproducible example if possible.
+- If you encounter any errors or problems with **xWRF**, please open an issue at the GitHub [main repository](http://github.com/xarray-contrib/xwrf/issues).
+- If you have a question like "How do I do ...?", ask on [GitHub discussions](https://github.com/xarray-contrib/xwrf/discussions). Please include a self-contained reproducible example if possible.
 
 ```{toctree}
 ---
@@ -34,8 +34,8 @@ maxdepth: 1
 caption: Community
 hidden:
 ---
-GitHub Repo <https://github.com/ncar-xdev/xwrf>
-GitHub discussions <https://github.com/ncar-xdev/xwrf/discussions>
+GitHub Repo <https://github.com/xarray-contrib/xwrf>
+GitHub discussions <https://github.com/xarray-contrib/xwrf/discussions>
 ```
 
 ```{toctree}
