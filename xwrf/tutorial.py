@@ -11,7 +11,7 @@ import pathlib
 import xarray as xr
 
 _default_cache_dir_name = 'xwrf_tutorial_data'
-base_url = 'https://github.com/ncar-xdev/xwrf-data'
+base_url = 'https://github.com/xarray-contrib/xwrf-data'
 version = 'main'
 
 
