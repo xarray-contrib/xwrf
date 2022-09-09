@@ -1,6 +1,6 @@
 # xWRF
 
-![Logo](docs/source/_static/xwrf_logo_bg_dark.svg#gh-dark-mode-only)![Logo](docs/source/_static/xwrf_logo_bg_light.svg#gh-light-mode-only)
+![Project logo displaying the name xWRF, with the X made of triangles pointing to a center point and tick marks bordering each letter](https://github.com/xarray-contrib/xwrf/raw/main/docs/source/_static/xwrf_logo_bg_light.svg#gh-light-mode-only)![](docs/source/_static/xwrf_logo_bg_dark.svg#gh-dark-mode-only)
 
 | CI          | [![GitHub Workflow Status][github-ci-badge]][github-ci-link] [![Code Coverage Status][codecov-badge]][codecov-link] [![pre-commit.ci status][pre-commit.ci-badge]][pre-commit.ci-link] |
 | :---------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
