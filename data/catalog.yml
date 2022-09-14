@@ -1,15 +1,14 @@
 sources:
-
   xwrf-sample-ssp245:
     driver: intake_xarray.xzarr.ZarrSource
     description: 'WRF Downscaled CMIP6; SSP245; Combined virtual dataset (2099-10, d01)'
     metadata:
       tags:
-      - simulations
+        - simulations
       url: https://registry.opendata.aws/wrf-cmip6/
     args:
       consolidated: False
-      urlpath: "reference://"
+      urlpath: 'reference://'
       storage_options:
         fo: https://raw.githubusercontent.com/xarray-contrib/xwrf/main/data/ssp245_gcm_wrfout_combined.json
         remote_options:
@@ -21,27 +20,27 @@ sources:
     description: 'WRF Downscaled CMIP6; SSP585; Combined virtual dataset (2099-10, d01)'
     metadata:
       tags:
-      - simulations
+        - simulations
       url: https://registry.opendata.aws/wrf-cmip6/
     args:
       consolidated: False
-      urlpath: "reference://"
+      urlpath: 'reference://'
       storage_options:
         fo: https://raw.githubusercontent.com/xarray-contrib/xwrf/main/data/ssp585_gcm_wrfout_combined.json
         remote_options:
           anon: true
         remote_protocol: s3
-          
+
   single-output-sample:
     driver: intake_xarray.xzarr.ZarrSource
     description: 'WRF Downscaled CMIP6; SSP585; Single virtual dataset (2099-10-01T00:00, d01)'
     metadata:
       tags:
-      - simulations
+        - simulations
       url: https://registry.opendata.aws/wrf-cmip6/
     args:
       consolidated: False
-      urlpath: "reference://"
+      urlpath: 'reference://'
       storage_options:
         fo: https://raw.githubusercontent.com/xarray-contrib/xwrf/main/data/gcm_wrfout_d01_2099-10-01_00_00_00.json
         remote_options:
