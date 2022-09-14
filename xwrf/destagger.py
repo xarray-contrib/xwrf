@@ -11,7 +11,7 @@ def _drop_attrs(attrs_dict, attrs_to_drop):
 def _destag_variable(datavar, stagger_dim=None, unstag_dim_name=None):
     """
     Destaggering function for a single wrf xarray.Variable
-    
+
     Based off of the wrf-python destagger function
     https://github.com/NCAR/wrf-python/blob/22fb45c54f5193b849fdff0279445532c1a6c89f/src/wrf/destag.py
     Copyright 2016 University Corporation for Atmospheric Research, reused with modification
@@ -75,7 +75,7 @@ def _destag_variable(datavar, stagger_dim=None, unstag_dim_name=None):
         data=center_mean.data,
         attrs=_drop_attrs(center_mean.attrs, ('stagger',)),
         encoding=center_mean.encoding,
-        fastpath=True
+        fastpath=True,
     )
 
 

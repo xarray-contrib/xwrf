@@ -31,9 +31,7 @@ class WRFDataArrayAccessor(WRFAccessor):
     """Adds a number of WRF specific methods to xarray.DataArray objects."""
 
     def destagger(
-        self,
-        stagger_dim: Optional[str] = None,
-        unstaggered_dim_name: Optional[str] = None
+        self, stagger_dim: str | None = None, unstaggered_dim_name: str | None = None
     ) -> xr.DataArray:
         """
         Destagger a single WRF xarray.DataArray
@@ -53,9 +51,7 @@ class WRFDataArrayAccessor(WRFAccessor):
             The destaggered DataArray with renamed dimension and adjusted coordinates.
         """
         new_variable = _destag_variable(
-            self.xarray_obj.variable,
-            stagger_dim=stagger_dim,
-            unstag_dim_name=unstaggered_dim_name
+            self.xarray_obj.variable, stagger_dim=stagger_dim, unstag_dim_name=unstaggered_dim_name
         )
 
         # Need to recalculate staggered coordinates, as they don't already exist independently
@@ -65,14 +61,10 @@ class WRFDataArrayAccessor(WRFAccessor):
             if set(coord_data.dims).difference(set(new_variable.dims)):
                 # Has a dimension not in the destaggered output (and so still staggered)
                 new_name = _rename_staggered_coordinate(
-                    coord_name,
-                    stagger_dim=stagger_dim,
-                    unstag_dim_name=unstaggered_dim_name
+                    coord_name, stagger_dim=stagger_dim, unstag_dim_name=unstaggered_dim_name
                 )
                 new_coords[new_name] = _destag_variable(
-                    coord_data,
-                    stagger_dim=stagger_dim,
-                    unstag_dim_name=unstaggered_dim_name
+                    coord_data, stagger_dim=stagger_dim, unstag_dim_name=unstaggered_dim_name
                 )
             else:
                 new_coords[coord_name] = coord_data.variable
@@ -136,10 +128,7 @@ class WRFDatasetAccessor(WRFAccessor):
 
         return ds.pipe(_rename_dims)
 
-    def destagger(
-        self,
-        staggered_to_unstaggered_dims: Optional[Dict[str, str]] = None
-    ) -> xr.Dataset:
+    def destagger(self, staggered_to_unstaggered_dims: dict[str, str] | None = None) -> xr.Dataset:
         """
         Destagger all data variables in a WRF xarray.Dataset
 
@@ -159,7 +148,7 @@ class WRFDatasetAccessor(WRFAccessor):
         already being present in the dataset.
         """
         staggered_dims = (
-            set(dim for dim in self.xarray_obj.dims if dim.endswith('_stag'))
+            {dim for dim in self.xarray_obj.dims if dim.endswith('_stag')}
             if staggered_to_unstaggered_dims is None
             else set(staggered_to_unstaggered_dims)
         )
@@ -177,7 +166,7 @@ class WRFDatasetAccessor(WRFAccessor):
                         None
                         if staggered_to_unstaggered_dims is None
                         else staggered_to_unstaggered_dims[this_staggered_dim]
-                    )
+                    ),
                 )
             else:
                 # No staggered dims
