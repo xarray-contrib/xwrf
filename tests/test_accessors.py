@@ -90,7 +90,10 @@ def test_dataset_destagger(test_grid):
     # Check elimination of staggered dims and "stagger" attr
     for varname in destaggered.data_vars:
         assert not {'x_stag', 'y_stag', 'z_stag'}.intersection(set(destaggered[varname].dims))
-        assert 'stagger' not in destaggered[varname].attrs or destaggered[varname].attrs['stagger'] == ''
+        assert (
+            'stagger' not in destaggered[varname].attrs
+            or destaggered[varname].attrs['stagger'] == ''
+        )
 
     # Check that attrs are preserved
     assert destaggered.attrs == test_grid.attrs
