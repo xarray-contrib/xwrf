@@ -64,7 +64,7 @@ def _destag_variable(datavar, stagger_dim=None, unstag_dim_name=None):
 
     # now change the variable name of the unstaggered coordinate
     # we can pass this in if we want to, for whatever reason
-    if not unstag_dim_name:
+    if unstag_dim_name is None:
         unstag_dim_name = stagger_dim.split('_stag')[
             0
         ]  # get the part of the name before the "_stag"
