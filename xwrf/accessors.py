@@ -57,7 +57,7 @@ class WRFDataArrayAccessor(WRFAccessor):
         # Need to recalculate staggered coordinates, as they don't already exist independently
         # in a DataArray context
         new_coords = {}
-        for coord_name, coord_data in self.xarray_obj.coords:
+        for coord_name, coord_data in self.xarray_obj.coords.items():
             if set(coord_data.dims).difference(set(new_variable.dims)):
                 # Has a dimension not in the destaggered output (and so still staggered)
                 new_name = _rename_staggered_coordinate(
@@ -153,7 +153,7 @@ class WRFDatasetAccessor(WRFAccessor):
             else set(staggered_to_unstaggered_dims)
         )
         new_data_vars = {}
-        for var_name, var_data in self.xarray_obj.data_vars:
+        for var_name, var_data in self.xarray_obj.data_vars.items():
             if this_staggered_dims := set(var_data.dims).intersection(staggered_dims):
                 # Found a staggered dim
                 # TODO: should we raise an error if somehow end up with more than just one

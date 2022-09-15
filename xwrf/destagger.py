@@ -54,7 +54,7 @@ def _destag_variable(datavar, stagger_dim=None, unstag_dim_name=None):
         stagger_dim = stagger_dim[0]
 
     # get the size of the staggereed coordinate
-    stagger_dim_size = datavar[stagger_dim].shape[0]
+    stagger_dim_size = datavar.sizes[stagger_dim]
 
     # I think the "dict(a="...")"  format is preferrable... but you cant stick an fx arg string
     # into that...
