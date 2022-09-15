@@ -40,7 +40,7 @@ def _destag_variable(datavar, stagger_dim=None, unstag_dim_name=None):
         raise ValueError(f'{stagger_dim} not in {datavar.dims}')
 
     # option 2) guess the staggered dimension
-    else:
+    elif stagger_dim is None:
         # guess the name of the coordinate
         stagger_dim = [x for x in datavar.dims if x.endswith('_stag')]
 
