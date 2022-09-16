@@ -1,6 +1,5 @@
 from __future__ import annotations  # noqa: F401
 
-from typing import Dict, Optional
 
 import xarray as xr
 
