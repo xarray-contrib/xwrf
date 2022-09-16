@@ -100,6 +100,21 @@ def test_dataarray_destagger_with_exclude(test_grid):
 
 
 @pytest.mark.parametrize('test_grid', ['lambert_conformal', 'mercator'], indirect=True)
+def test_dataarray_destagger_with_postprocess(test_grid):
+    postprocessed = test_grid.xwrf.postprocess()
+    data = postprocessed['U']
+    destaggered = data.xwrf.destagger(exclude_staggered_auxiliary_coords=True)
+
+    # Check staggered to unstaggered dimension coordinate handling
+    xr.testing.assert_allclose(destaggered['x'], postprocessed['x'])
+
+    # Check attributes are preserved
+    assert set(destaggered.attrs.keys()) == set(data.attrs.keys()) - {
+        'stagger',
+    }
+
+
+@pytest.mark.parametrize('test_grid', ['lambert_conformal', 'mercator'], indirect=True)
 def test_dataset_destagger(test_grid):
     destaggered = (
         test_grid.isel(Time=slice(0, 2))

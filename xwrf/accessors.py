@@ -81,7 +81,9 @@ class WRFDataArrayAccessor(WRFAccessor):
                 if not exclude_staggered_auxiliary_coords or new_name in new_variable.dims:
                     # Skip if excluding and this isn't a dimension coordinate of output
                     new_coords[new_name] = _destag_variable(
-                        coord_data, stagger_dim=stagger_dim, unstag_dim_name=unstaggered_dim_name
+                        coord_data.variable,
+                        stagger_dim=stagger_dim,
+                        unstag_dim_name=unstaggered_dim_name,
                     )
             else:
                 new_coords[coord_name] = coord_data.variable
