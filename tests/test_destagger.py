@@ -63,14 +63,16 @@ def test_destag_variable_multiple_dims():
     ],
 )
 def test_destag_variable_1d(unstag_dim_name, expected_output_dim_name):
-    staggered = xr.Variable(('bottom_top_stag',), np.arange(5), attrs={'stagger': 'Z'})
+    staggered = xr.Variable(
+        ('bottom_top_stag',), np.arange(5), attrs={'foo': 'bar', 'stagger': 'Z'}
+    )
     output = _destag_variable(staggered, unstag_dim_name=unstag_dim_name)
     # Check values
     np.testing.assert_array_almost_equal(output.values, 0.5 + np.arange(4))
     # Check dim name
     assert output.dims[0] == expected_output_dim_name
     # Check attrs
-    assert not output.attrs
+    assert output.attrs == {'foo': 'bar'}
 
 
 def test_destag_variable_2d():
