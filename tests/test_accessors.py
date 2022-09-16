@@ -79,6 +79,11 @@ def test_dataarray_destagger(test_grid):
     xr.testing.assert_allclose(destaggered['XLAT'], test_grid['XLAT'])
     xr.testing.assert_allclose(destaggered['XLONG'], test_grid['XLONG'])
 
+    # Check attributes are preserved
+    if 'stagger' in data.attrs:
+        data.attrs.pop('stagger')
+    assert set(destaggered.attrs.keys()) == set(data.attrs.keys())
+
 
 @pytest.mark.parametrize('test_grid', ['lambert_conformal', 'mercator'], indirect=True)
 def test_dataarray_destagger_with_exclude(test_grid):
@@ -116,6 +121,7 @@ def test_dataset_destagger(test_grid):
         for key in ['stagger', 'units']:
             if key in test_grid[varname].attrs:
                 test_grid[varname].attrs.pop(key)
+        # because of xwrf.postprocess, the destaggered attrs will include more information
         assert set(test_grid[varname].attrs.keys()) <= set(destaggered[varname].attrs.keys())
 
     # Check that attrs are preserved

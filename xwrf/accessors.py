@@ -65,6 +65,7 @@ class WRFDataArrayAccessor(WRFAccessor):
         and/or use cases. For full accuracy, auxiliary coordinates should be re-computed from
         dimension coordinates or obtained from the original dataset.
         """
+        _attrs = self.xarray_obj.variable.attrs
         new_variable = _destag_variable(
             self.xarray_obj.variable, stagger_dim=stagger_dim, unstag_dim_name=unstaggered_dim_name
         )
@@ -86,7 +87,9 @@ class WRFDataArrayAccessor(WRFAccessor):
             else:
                 new_coords[coord_name] = coord_data.variable
 
-        return xr.DataArray(new_variable, coords=new_coords)
+        if 'stagger' in _attrs:
+            _attrs.pop('stagger')
+        return xr.DataArray(new_variable, coords=new_coords, attrs=_attrs)
 
 
 @xr.register_dataset_accessor('xwrf')
