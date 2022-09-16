@@ -73,7 +73,7 @@ def _destag_variable(datavar, stagger_dim=None, unstag_dim_name=None):
     return xr.Variable(
         dims=tuple(str(unstag_dim_name) if dim == stagger_dim else dim for dim in center_mean.dims),
         data=center_mean.data,
-        attrs=_drop_attrs(center_mean.attrs, ('stagger',)),
+        attrs=_drop_attrs(datavar.attrs, ('stagger',)),
         encoding=center_mean.encoding,
         fastpath=True,
     )
