@@ -1,6 +1,5 @@
 from __future__ import annotations  # noqa: F401
 
-
 import xarray as xr
 
 from .destagger import _destag_variable, _rename_staggered_coordinate
