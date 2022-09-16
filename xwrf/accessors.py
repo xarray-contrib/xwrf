@@ -117,15 +117,16 @@ class WRFDatasetAccessor(WRFAccessor):
         decode_times : bool, optional
             Decode the string-like wrfout times to xarray-friendly Pandas types. Defaults to True.
         calculate_diagnostic_variables : bool, optional
-            Calculate four essential diagnostic variables (potential temperature, air pressure,
+            Calculates essential diagnostic variables (potential temperature, air pressure,
             geopotential, and geopotential height) that are otherwise only present in wrfout files
-            as split components or dependent upon special adjustments. Defaults to True. If the
+            as split components or dependent upon special adjustments. Also calculates earth-relative
+            wind fields, as winds by default are grid-relative. Defaults to True. If the
             underlying fields on which any of these calculated fields depends is missing, that
             calculated variable is skipped. These will be eagerly evalulated, unless your data has
             been chunked with Dask, in which case these fields will also be Dask arrays.
         drop_diagnostic_variable_components : bool, optional
             Determine whether to drop the underlying fields used to calculate the diagnostic
-            variables. Defaults to True.
+            variables. Defaults to True. Never drops grid-relative wind fields.
 
         Returns
         -------
