@@ -175,6 +175,7 @@ class WRFDatasetAccessor(WRFAccessor):
                 # Found a staggered dim
                 # TODO: should we raise an error if somehow end up with more than just one
                 # staggered dim, or just pick one from the set like below?
+                _attrs = var_data.attrs
                 this_staggered_dim = this_staggered_dims.pop()
                 new_data_vars[var_name] = _destag_variable(
                     var_data.variable,
@@ -185,6 +186,9 @@ class WRFDatasetAccessor(WRFAccessor):
                         else staggered_to_unstaggered_dims[this_staggered_dim]
                     ),
                 )
+                if 'stagger' in _attrs:
+                    _attrs.pop('stagger')
+                new_data_vars[var_name].attrs = _attrs
             else:
                 # No staggered dims
                 new_data_vars[var_name] = var_data.variable

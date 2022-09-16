@@ -110,5 +110,13 @@ def test_dataset_destagger(test_grid):
             or destaggered[varname].attrs['stagger'] == ''
         )
 
+    # Check preservation of variable attrs
+    for varname in set(test_grid.data_vars).intersection(set(destaggered.data_vars)):
+        # have to pop 'units' too, because dimensionless units have attr removed on postprocess
+        for key in ['stagger', 'units']:
+            if key in test_grid[varname].attrs:
+                test_grid[varname].attrs.pop(key)
+        assert set(test_grid[varname].attrs.keys()) <= set(destaggered[varname].attrs.keys())
+
     # Check that attrs are preserved
     assert destaggered.attrs == test_grid.attrs
