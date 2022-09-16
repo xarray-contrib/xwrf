@@ -4,7 +4,6 @@ import numpy as np
 import pytest
 import xarray as xr
 
-import xwrf
 from xwrf.destagger import _destag_variable, _drop_attrs, _rename_staggered_coordinate
 
 
