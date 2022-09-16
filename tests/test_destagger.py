@@ -45,6 +45,15 @@ def test_rename_staggered_coordinate(input_name, stagger_dim, unstag_dim_name, o
     assert _rename_staggered_coordinate(input_name, stagger_dim, unstag_dim_name) == output_name
 
 
+def test_destag_variable_dataarray():
+    with pytest.raises(ValueError):
+        _destag_variable(xr.DataArray(
+            np.zeros((2, 2)),
+            dims=('x_stag', 'y'),
+            coords={'x_stag': [0, 1], 'y': [0, 1]}
+        ))
+
+
 def test_destag_variable_missing_dim():
     with pytest.raises(ValueError):
         _destag_variable(xr.Variable(('x', 'y'), np.zeros((2, 2))), 'z_stag')

@@ -33,15 +33,16 @@ def _destag_variable(datavar, stagger_dim=None, unstag_dim_name=None):
     xarray.Variable
         The destaggered variable with renamed dimension
     """
-    # get the coordinate to unstagger
-    # option 1) user has provided the dimension
-    if stagger_dim and stagger_dim not in datavar.dims:
-        # check that the user-passed in stag dim is actually in there
-        raise ValueError(f'{stagger_dim} not in {datavar.dims}')
+    if not isinstance(datavar, xr.Variable):
+        # Implementation expects a Variable; don't want a DataArray or other type to slip through
+        raise ValueError(f'Parameter datavar must be xarray.Variable, not {type(datavar)}')
 
-    # option 2) guess the staggered dimension
+    # Determine dimension to unstagger
+    if stagger_dim and stagger_dim not in datavar.dims:
+        # If user provided, but not actually there, error out
+        raise ValueError(f'{stagger_dim} not in {datavar.dims}')
     elif stagger_dim is None:
-        # guess the name of the coordinate
+        # If not provided, guess based on name
         stagger_dim = [x for x in datavar.dims if x.endswith('_stag')]
 
         if len(stagger_dim) > 1:
@@ -50,26 +51,21 @@ def _destag_variable(datavar, stagger_dim=None, unstag_dim_name=None):
                 f'{stagger_dim}'
             )
 
-        # we need a string, not a list
+        # we need a string, not a list containing a string
         stagger_dim = stagger_dim[0]
+    # Otherwise, we have a valid user provided stagger dimension
 
-    # get the size of the staggereed coordinate
+    # Destagger by mean of offset slices representing each side with respect to the stagger_dim
     stagger_dim_size = datavar.sizes[stagger_dim]
-
-    # I think the "dict(a="...")"  format is preferrable... but you cant stick an fx arg string
-    # into that...
     left_or_bottom_cells = datavar.isel({stagger_dim: slice(0, stagger_dim_size - 1)})
     right_or_top_cells = datavar.isel({stagger_dim: slice(1, stagger_dim_size)})
     center_mean = (left_or_bottom_cells + right_or_top_cells) * 0.5
 
-    # now change the variable name of the unstaggered coordinate
-    # we can pass this in if we want to, for whatever reason
+    # Determine new dimension name; if not given, use part of original name before "_stag"
     if unstag_dim_name is None:
-        unstag_dim_name = stagger_dim.split('_stag')[
-            0
-        ]  # get the part of the name before the "_stag"
+        unstag_dim_name = stagger_dim.split('_stag')[0]
 
-    # return a data variable with renamed dimensions
+    # Return a Variable with renamed dimensions, updated data and attrs, and original encoding
     return xr.Variable(
         dims=tuple(str(unstag_dim_name) if dim == stagger_dim else dim for dim in center_mean.dims),
         data=center_mean.data,
