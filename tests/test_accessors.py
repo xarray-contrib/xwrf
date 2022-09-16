@@ -77,6 +77,21 @@ def test_dataarray_destagger(test_grid):
 
     # Check coordinate reduction
     xr.testing.assert_allclose(destaggered['XLAT'], test_grid['XLAT'])
+    xr.testing.assert_allclose(destaggered['XLONG'], test_grid['XLONG'])
+
+
+@pytest.mark.parametrize('test_grid', ['lambert_conformal', 'mercator'], indirect=True)
+def test_dataarray_destagger_with_exclude(test_grid):
+    data = test_grid['V']
+    destaggered = data.xwrf.destagger(exclude_staggered_auxiliary_coords=True)
+
+    # Check shape reduction and dim name adjustment
+    assert destaggered.sizes['south_north'] == data.sizes['south_north_stag'] - 1
+
+    # Verify that no XLAT/XLONG are present in output, but XTIME (which is auxiliary, but not
+    # staggered) remains
+    assert not any(coord_name.startswith('XL') for coord_name in destaggered.coords)
+    assert 'XTIME' in destaggered.coords
 
 
 @pytest.mark.parametrize('test_grid', ['lambert_conformal', 'mercator'], indirect=True)
