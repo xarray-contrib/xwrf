@@ -6,6 +6,7 @@ dependencies:
   - dask
   - intake
   - intake-xarray
+  - aiohttp
   - cf-units
   - cf_xarray
   - donfig
