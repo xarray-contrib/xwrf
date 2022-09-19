@@ -3,6 +3,9 @@ channels:
   - conda-forge
   - nodefaults
 dependencies:
+  - dask
+  - intake
+  - intake-xarray
   - cf-units
   - donfig
   - metpy
