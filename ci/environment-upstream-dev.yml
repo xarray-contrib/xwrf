@@ -6,6 +6,8 @@ dependencies:
   - dask
   - intake
   - intake-xarray
+  - aiohttp
+  - s3fs
   - cf-units
   - donfig
   - metpy

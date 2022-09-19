@@ -7,6 +7,7 @@ dependencies:
   - intake
   - intake-xarray
   - aiohttp
+  - s3fs
   - cf-units
   - cf_xarray
   - donfig
