@@ -153,7 +153,11 @@ def test_clean_brackets_from_units(sample_dataset, variable, bracket):
 
 @pytest.mark.parametrize('sample_dataset', ['lambert_conformal'], indirect=True)
 def test_calc_base_diagnostics(sample_dataset):
-    subset = sample_dataset[['T', 'P', 'PB', 'PH', 'PHB']].isel(Time=0).load()
+    subset = (
+        sample_dataset[['T', 'P', 'PB', 'PH', 'PHB', 'U', 'V', 'SINALPHA', 'COSALPHA']]
+        .isel(Time=0)
+        .load()
+    )
     ds_dropped = subset.copy().pipe(xwrf.postprocess._calc_base_diagnostics)
     ds_undropped = subset.copy().pipe(xwrf.postprocess._calc_base_diagnostics, drop=False)
 
@@ -181,6 +185,18 @@ def test_calc_base_diagnostics(sample_dataset):
         np.testing.assert_allclose(ds['geopotential_height'].min().item(), 0.0)
         assert ds['geopotential_height'].attrs['units'] == 'm'
         assert ds['geopotential_height'].attrs['standard_name'] == 'geopotential_height'
+
+        # Earth-relative eastward winds
+        np.testing.assert_allclose(ds['wind_east'].max().item(), 34.492916)
+        np.testing.assert_allclose(ds['wind_east'].min().item(), -3.2876422)
+        assert ds['wind_east'].attrs['units'] == 'm s-1'
+        assert ds['wind_east'].attrs['standard_name'] == 'eastward_wind'
+
+        # Earth-relative northward winds
+        np.testing.assert_allclose(ds['wind_north'].max().item(), 33.849540)
+        np.testing.assert_allclose(ds['wind_north'].min().item(), -13.434467)
+        assert ds['wind_north'].attrs['units'] == 'm s-1'
+        assert ds['wind_north'].attrs['standard_name'] == 'northward_wind'
 
     # Check dropped or not
     assert 'T' not in ds_dropped

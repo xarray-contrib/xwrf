@@ -8,6 +8,7 @@ import pandas as pd
 import xarray as xr
 
 from .config import config
+from .destagger import _destag_variable
 from .grid import _wrf_grid_from_dataset
 
 
@@ -154,7 +155,11 @@ def _rename_dims(ds: xr.Dataset) -> xr.Dataset:
 
 
 def _calc_base_diagnostics(ds: xr.Dataset, drop: bool = True) -> xr.Dataset:
-    """Calculate the four basic fields that WRF does not have in physically meaningful form.
+    """Calculate the basic fields that WRF does not have in physically meaningful form.
+
+    Includes:
+        * diagnostics 'air_potential_temperature', 'air_pressure', 'geopotential', 'geopotential_height'
+        * earth-relative wind fields ('wind_east', 'wind_north')
 
     Parameters
     ----------
@@ -204,5 +209,23 @@ def _calc_base_diagnostics(ds: xr.Dataset, drop: bool = True) -> xr.Dataset:
         }
         if drop:
             del ds['PH'], ds['PHB']
+
+    # Earth-relative wind fields (computed according to https://forum.mmm.ucar.edu/threads/how-do-i-convert-model-grid-relative-wind-to-earth-relative-wind-so-that-i-can-compare-model-wind-to-observations.179/)
+    if {'U', 'V', 'SINALPHA', 'COSALPHA'}.issubset(ds.data_vars):
+        u_model, v_model = _destag_variable(ds['U'].variable), _destag_variable(ds['V'].variable)
+        ds['wind_east'] = u_model * ds['COSALPHA'] - v_model * ds['SINALPHA']
+        ds['wind_north'] = v_model * ds['COSALPHA'] + u_model * ds['SINALPHA']
+        ds['wind_east'].attrs = dict(
+            description='earth-relative x-wind component',
+            standard_name='eastward_wind',
+            units='m s-1',
+            grid_mapping='wrf_projection',
+        )
+        ds['wind_north'].attrs = dict(
+            description='earth-relative y-wind component',
+            standard_name='northward_wind',
+            units='m s-1',
+            grid_mapping='wrf_projection',
+        )
 
     return ds

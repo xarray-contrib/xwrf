@@ -1,9 +1,15 @@
 import pandas as pd
 import pytest
+import xarray as xr
 
 import xwrf
 
 from . import importorskip
+
+
+@pytest.fixture(scope='session')
+def test_grid(request):
+    return xwrf.tutorial.open_dataset(request.param)
 
 
 @importorskip('cf_xarray')
@@ -59,3 +65,77 @@ def test_postprocess(name, cf_grid_mapping_name):
     assert 'PB' not in ds.data_vars
     assert 'PH' not in ds.data_vars
     assert 'PHB' not in ds.data_vars
+
+
+@pytest.mark.parametrize('test_grid', ['lambert_conformal', 'mercator'], indirect=True)
+def test_dataarray_destagger(test_grid):
+    data = test_grid['U']
+    destaggered = data.xwrf.destagger()
+
+    # Check shape reduction and dim name adjustment
+    assert destaggered.sizes['west_east'] == data.sizes['west_east_stag'] - 1
+
+    # Check coordinate reduction
+    xr.testing.assert_allclose(destaggered['XLAT'], test_grid['XLAT'])
+    xr.testing.assert_allclose(destaggered['XLONG'], test_grid['XLONG'])
+
+    # Check attributes are preserved
+    assert set(destaggered.attrs.keys()) == set(data.attrs.keys()) - {
+        'stagger',
+    }
+
+
+@pytest.mark.parametrize('test_grid', ['lambert_conformal', 'mercator'], indirect=True)
+def test_dataarray_destagger_with_exclude(test_grid):
+    data = test_grid['V']
+    destaggered = data.xwrf.destagger(exclude_staggered_auxiliary_coords=True)
+
+    # Check shape reduction and dim name adjustment
+    assert destaggered.sizes['south_north'] == data.sizes['south_north_stag'] - 1
+
+    # Verify that no XLAT/XLONG are present in output, but XTIME (which is auxiliary, but not
+    # staggered) remains
+    assert not any(coord_name.startswith('XL') for coord_name in destaggered.coords)
+    assert 'XTIME' in destaggered.coords
+
+
+@pytest.mark.parametrize('test_grid', ['lambert_conformal', 'mercator'], indirect=True)
+def test_dataarray_destagger_with_postprocess(test_grid):
+    postprocessed = test_grid.xwrf.postprocess()
+    data = postprocessed['U']
+    destaggered = data.xwrf.destagger(exclude_staggered_auxiliary_coords=True)
+
+    # Check staggered to unstaggered dimension coordinate handling
+    xr.testing.assert_allclose(destaggered['x'], postprocessed['x'])
+
+    # Check attributes are preserved
+    assert set(destaggered.attrs.keys()) == set(data.attrs.keys()) - {
+        'stagger',
+    }
+
+
+@pytest.mark.parametrize('test_grid', ['lambert_conformal', 'mercator'], indirect=True)
+def test_dataset_destagger(test_grid):
+    destaggered = (
+        test_grid.isel(Time=slice(0, 2))
+        .xwrf.postprocess(calculate_diagnostic_variables=False)
+        .xwrf.destagger()
+    )
+
+    # Check elimination of staggered dims and "stagger" attr
+    for varname in destaggered.data_vars:
+        assert not {'x_stag', 'y_stag', 'z_stag'}.intersection(set(destaggered[varname].dims))
+        assert (
+            'stagger' not in destaggered[varname].attrs
+            or destaggered[varname].attrs['stagger'] == ''
+        )
+
+    # Check preservation of variable attrs
+    for varname in set(test_grid.data_vars).intersection(set(destaggered.data_vars)):
+        # because of xwrf.postprocess, the destaggered attrs will include more information
+        assert set(test_grid[varname].attrs.keys()) - {'stagger', 'units'} <= set(
+            destaggered[varname].attrs.keys()
+        )
+
+    # Check that attrs are preserved
+    assert destaggered.attrs == test_grid.attrs

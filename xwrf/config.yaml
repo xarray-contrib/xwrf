@@ -59,6 +59,11 @@ unit_harmonization_map:
     - 'g/m2/s CO2'
   umol/m2/s:
     - 'umol co2/m2/s'
+  J/m**3/kelvin:
+    - 'J/m**3/Kelvin'
+  W/m/kelvin:
+    - 'W/m-K'
+    - 'W/m/Kelvin'
 
 cf_attribute_map:
   south_north:
