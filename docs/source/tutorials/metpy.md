@@ -91,8 +91,7 @@ fig = plt.figure(figsize=(9, 9))
 skew = SkewT(fig)
 
 # Make the dimensions of the data palatable to metpy
-if len(ds_sampled.dims) > 1:
-    ds_sampled = ds_sampled.isel(Time=0)
+ds_sampled = ds_sampled.squeeze()
 
 # Plot the data using normal plotting functions, in this case using
 # log scaling in Y, as dictated by the typical meteorological plot
