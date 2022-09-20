@@ -45,7 +45,7 @@ from pyproj import Transformer, CRS
 
 def sample_wrf_ds_at_latlon(ds, lat, long):
     trf = Transformer.from_crs(CRS.from_epsg(4326), ds.wrf_projection.item(), always_xy=True)
-    x, y = (var if np.isscalar(var) else var for var in trf.transform(long, lat))
+    x, y = trf.transform(long, lat)
     return ds.interp(x=x, y=y, x_stag=x, y_stag=y)
 ```
 
