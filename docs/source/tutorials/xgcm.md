@@ -65,8 +65,7 @@ destaggered.wind_speed
 
 ```{code-cell} ipython3
 ds = ds.metpy.quantify()
-_wind_speed = wind_speed(ds.U.xwrf.destagger(), ds.V.xwrf.destagger())
-_wind_speed
+wind_speed(ds.U.xwrf.destagger(), ds.V.xwrf.destagger())
 ```
 
 ## Vertical interpolation using `xgcm`
@@ -83,10 +82,10 @@ import numpy as np
 import pint_xarray
 
 target_levels = np.array([250.]) # in hPa
-air_pressure = ds.air_pressure.pint.to('hPa').metpy.dequantify()
+air_pressure = destaggered.air_pressure.pint.to('hPa').metpy.dequantify()
 
-grid = xgcm.Grid(ds, periodic=False)
-_wind_speed = grid.transform(_wind_speed.metpy.dequantify(), 'Z', target_levels, target_data=air_pressure, method='log')
+grid = xgcm.Grid(destaggered, periodic=False)
+_wind_speed = grid.transform(destaggered.wind_speed.metpy.dequantify(), 'Z', target_levels, target_data=air_pressure, method='log')
 _wind_speed = _wind_speed.compute()
 ```
 
