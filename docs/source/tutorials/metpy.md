@@ -23,7 +23,7 @@ In this tutorial, we will show you how `xWRF` enables a seamless integration of 
 
 +++
 
-First of all, we load the data and use the simple `.xwrf.postprocess()` API.
+First of all, we load the data and use a simple `.xwrf.postprocess()` call.
 
 ```{code-cell} ipython3
 import xwrf
