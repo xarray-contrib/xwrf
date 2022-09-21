@@ -22,6 +22,9 @@ dependencies:
   - sphinx-design
   - xarray>=0.18,!=0.20.0,!=0.20.1
   - xgcm
+  - numba
+  - hvplot
+  - geoviews
   - pip:
       - sphinxext-opengraph
       - autodoc_pydantic
