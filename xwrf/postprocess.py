@@ -213,8 +213,8 @@ def _calc_base_diagnostics(ds: xr.Dataset, drop: bool = True) -> xr.Dataset:
     # Earth-relative wind fields (computed according to https://forum.mmm.ucar.edu/threads/how-do-i-convert-model-grid-relative-wind-to-earth-relative-wind-so-that-i-can-compare-model-wind-to-observations.179/)
     if {'U', 'V', 'SINALPHA', 'COSALPHA'}.issubset(ds.data_vars):
         u_model, v_model = _destag_variable(ds['U'].variable), _destag_variable(ds['V'].variable)
-        ds['wind_east'] = u_model * ds['COSALPHA'] - v_model * ds['SINALPHA']
-        ds['wind_north'] = v_model * ds['COSALPHA'] + u_model * ds['SINALPHA']
+        ds['wind_east'] = (u_model * ds['COSALPHA'] - v_model * ds['SINALPHA']).variable
+        ds['wind_north'] = (v_model * ds['COSALPHA'] + u_model * ds['SINALPHA']).variable
         ds['wind_east'].attrs = dict(
             description='earth-relative x-wind component',
             standard_name='eastward_wind',

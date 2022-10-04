@@ -211,6 +211,12 @@ def test_calc_base_diagnostics(sample_dataset):
     assert 'PHB' in ds_undropped
 
 
+@pytest.mark.parametrize('sample_dataset', ['wrfout'], indirect=True)
+def test_calc_base_diagnostics_coords(sample_dataset):
+    ds = sample_dataset.pipe(xwrf.postprocess._calc_base_diagnostics)
+    assert sample_dataset.bottom_top.attrs == ds.bottom_top.attrs
+
+
 @pytest.mark.parametrize(
     'sample_dataset', ['dummy', 'polar_stereographic_1', 'tiny', 'met_em_sample'], indirect=True
 )

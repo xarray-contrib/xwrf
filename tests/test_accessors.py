@@ -108,10 +108,11 @@ def test_dataarray_destagger_with_postprocess(test_grid):
     # Check staggered to unstaggered dimension coordinate handling
     xr.testing.assert_allclose(destaggered['x'], postprocessed['x'])
 
-    # Check attributes are preserved
+    # Check attributes are preserved, other than those made invalid by destaggering
     assert set(destaggered.attrs.keys()) == set(data.attrs.keys()) - {
         'stagger',
     }
+    assert 'c_grid_axis_shift' not in destaggered['x'].attrs
 
 
 @pytest.mark.parametrize('test_grid', ['lambert_conformal', 'mercator'], indirect=True)
