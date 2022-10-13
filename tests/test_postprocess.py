@@ -202,12 +202,12 @@ def test_calc_base_diagnostics(sample_dataset):
 
         # Earth-relative 10m eastward winds
         np.testing.assert_allclose(ds['wind_east_10'].max().item(), 10.115304)
-        np.testing.assert_allclose(ds['wind_east_10'].min().item(), -9.439444)
+        np.testing.assert_allclose(ds['wind_east_10'].min().item(), -0.918889)
         assert ds['wind_east_10'].attrs['units'] == 'm s-1'
 
         # Earth-relative 10m northward winds
-        np.testing.assert_allclose(ds['wind_north_10'].max().item(), 8.37126)
-        np.testing.assert_allclose(ds['wind_north_10'].min().item(), -14.108697)
+        np.testing.assert_allclose(ds['wind_north_10'].max().item(), 1.8683547)
+        np.testing.assert_allclose(ds['wind_north_10'].min().item(), -10.904247)
         assert ds['wind_north_10'].attrs['units'] == 'm s-1'
 
     # Check dropped or not
