@@ -228,4 +228,19 @@ def _calc_base_diagnostics(ds: xr.Dataset, drop: bool = True) -> xr.Dataset:
             grid_mapping='wrf_projection',
         )
 
+    # Earth-relative 10m wind fields (computed according to https://forum.mmm.ucar.edu/threads/how-do-i-convert-model-grid-relative-wind-to-earth-relative-wind-so-that-i-can-compare-model-wind-to-observations.179/)
+    if {'U10', 'V10', 'SINALPHA', 'COSALPHA'}.issubset(ds.data_vars):
+        ds['wind_east_10'] = (ds['U10'] * ds['COSALPHA'] - ds['V10'] * ds['SINALPHA']).variable
+        ds['wind_north_10'] = (ds['V10'] * ds['COSALPHA'] + ds['U10'] * ds['SINALPHA']).variable
+        ds['wind_east_10'].attrs = dict(
+            description='earth-relative 10m x-wind component',
+            units='m s-1',
+            grid_mapping='wrf_projection',
+        )
+        ds['wind_north_10'].attrs = dict(
+            description='earth-relative 10m y-wind component',
+            units='m s-1',
+            grid_mapping='wrf_projection',
+        )
+
     return ds
