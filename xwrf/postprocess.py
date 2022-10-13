@@ -159,7 +159,7 @@ def _calc_base_diagnostics(ds: xr.Dataset, drop: bool = True) -> xr.Dataset:
 
     Includes:
         * diagnostics 'air_potential_temperature', 'air_pressure', 'geopotential', 'geopotential_height'
-        * earth-relative wind fields ('wind_east', 'wind_north')
+        * earth-relative wind fields ('wind_east', 'wind_north', 'wind_east_10', 'wind_north_10')
 
     Parameters
     ----------
