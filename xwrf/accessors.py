@@ -174,7 +174,8 @@ class WRFDatasetAccessor(WRFAccessor):
         )
         new_data_vars = {}
         for var_name, var_data in self.xarray_obj.data_vars.items():
-            if this_staggered_dims := set(var_data.dims).intersection(staggered_dims):
+            this_staggered_dims = set(var_data.dims).intersection(staggered_dims)
+            if this_staggered_dims:
                 # Found a staggered dim
                 # TODO: should we raise an error if somehow end up with more than just one
                 # staggered dim, or just pick one from the set like below?
