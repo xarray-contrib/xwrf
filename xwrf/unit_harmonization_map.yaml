@@ -41,6 +41,8 @@ invalid:
   - dBz
   - dbZ
   - dBZ
+kelvin:
+  - Kelvin
 kJ m-2:
   - KJ/m2
 kg kg-1:
