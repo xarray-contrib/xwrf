@@ -59,8 +59,6 @@ m:
   - m asl
   - m agl
   - 'meters MSL'
-m-3:
-  - C m-3
 min:
   - minutes since simulation start
 min-1:
