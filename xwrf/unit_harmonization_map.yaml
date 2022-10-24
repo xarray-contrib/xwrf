@@ -21,7 +21,6 @@ cm-3:
   - dimensionless
   - area/area
   - '#'
-  - '0/1 Flag'
 g kg-1:
   - g_smoke/kg_air
 g m-2 s-1:
@@ -41,6 +40,7 @@ invalid:
   - dBz
   - dbZ
   - dBZ
+  - '0/1 Flag'
 kelvin:
   - Kelvin
 kJ m-2:
