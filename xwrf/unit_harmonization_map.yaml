@@ -43,6 +43,8 @@ invalid:
   - dBZ
 kelvin:
   - Kelvin
+meters:
+  - 'meters MSL'
 kJ m-2:
   - KJ/m2
 kg kg-1:
