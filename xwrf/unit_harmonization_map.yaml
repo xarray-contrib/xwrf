@@ -1,0 +1,68 @@
+1e-6:
+  - ppmv
+  - ppm
+1e-6 m2 s-1 K kg-1:
+  - pvu
+J m-2:
+  - Joules m^-2
+J m-3 K-1:
+  - J/m**3/Kelvin
+W m-1 K-1:
+  - W/m-K
+  - W/m/Kelvin
+W m-2:
+  - W m{-2}
+cm-3:
+  - '#/cm-3'
+'1':
+  - Dimensionless
+  - fraction
+  - numerical value
+  - dimensionless
+  - area/area
+  - '#'
+  - '0/1 Flag'
+g kg-1:
+  - g_smoke/kg_air
+g m-2 s-1:
+  - g/m2/s CO2
+  - g/m2/s C
+h-1:
+  - flash origin density
+  - flash column-1
+  - Source column-1
+invalid:
+  - '?'
+  - none
+  - '-'
+  - flag
+  - category
+  - ~?
+  - dBz
+  - dbZ
+  - dBZ
+kJ m-2:
+  - KJ/m2
+kg kg-1:
+  - '# kg kg-1'
+  - Kg Kg-1
+kg kg-1 s-1:
+  - kg kg_wet-1 s-1
+kg-1:
+  - '#/kg-dryair'
+  - '# kg-1'
+  - '# kg(-1)'
+  - '  kg(-1)'
+m:
+  - m asl
+  - m agl
+m-3:
+  - C m-3
+min:
+  - minutes since simulation start
+min-1:
+  - min{-1}
+ug/kg:
+  - ug/kg-dryair
+umol m-2 s-1:
+  - umol co2/m2/s
