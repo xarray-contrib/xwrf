@@ -15,20 +15,20 @@ repos:
       - id: mixed-line-ending
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v2.38.2
+    rev: v3.2.0
     hooks:
       - id: pyupgrade
         args:
           - '--py38-plus'
 
   - repo: https://github.com/psf/black
-    rev: 22.8.0
+    rev: 22.10.0
     hooks:
       - id: black
       - id: black-jupyter
 
   - repo: https://github.com/keewis/blackdoc
-    rev: v0.3.7
+    rev: v0.3.8
     hooks:
       - id: blackdoc
 
@@ -43,6 +43,6 @@ repos:
       - id: isort
 
   - repo: https://github.com/pre-commit/mirrors-prettier
-    rev: v3.0.0-alpha.0
+    rev: v3.0.0-alpha.4
     hooks:
       - id: prettier
