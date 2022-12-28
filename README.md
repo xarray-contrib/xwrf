@@ -12,7 +12,7 @@ A lightweight interface for working with the [Weather Research and Forecasting (
 
 See [documentation](https://xwrf.readthedocs.io/) for more information.
 
-[github-ci-badge]: https://img.shields.io/github/workflow/status/xarray-contrib/xwrf/CI?label=CI&logo=github
+[github-ci-badge]: https://img.shields.io/github/actions/workflow/status/xarray-contrib/xwrf/ci.yaml?branch=main
 [github-ci-link]: https://github.com/xarray-contrib/xwrf/actions?query=workflow%3ACI
 [codecov-badge]: https://img.shields.io/codecov/c/github/xarray-contrib/xwrf.svg?logo=codecov
 [codecov-link]: https://codecov.io/gh/xarray-contrib/xwrf
