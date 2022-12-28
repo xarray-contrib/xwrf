@@ -9,6 +9,7 @@ J m-3 K-1:
   - J/m**3/Kelvin
 W m-1 K-1:
   - W/m-K
+  - W/m.K
   - W/m/Kelvin
 W m-2:
   - W m{-2}
@@ -59,6 +60,8 @@ m:
   - m asl
   - m agl
   - 'meters MSL'
+m s-1:
+  - 'm/s * area'
 min:
   - minutes since simulation start
 min-1:
