@@ -17,7 +17,6 @@ def test_grid(request):
     'name, cf_grid_mapping_name', [('lambert_conformal', 'lambert_conformal_conic')]
 )
 def test_postprocess(name, cf_grid_mapping_name):
-
     # Verify initial/raw state
     raw_ds = xwrf.tutorial.open_dataset(name)
     assert pd.api.types.is_string_dtype(raw_ds.Times.dtype)

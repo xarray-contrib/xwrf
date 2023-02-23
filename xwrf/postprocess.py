@@ -89,7 +89,6 @@ def _modify_attrs_to_cf(ds: xr.Dataset) -> xr.Dataset:
 
 
 def _collapse_time_dim(ds: xr.Dataset) -> xr.Dataset:
-
     # This "time dimension collapsing" assumption is wrong with moving nests
     # and should be applied to static, nested domains.
     lat_lon_coords = set(config.get('latitude_coords') + config.get('longitude_coords'))
@@ -159,7 +158,7 @@ def _calc_base_diagnostics(ds: xr.Dataset, drop: bool = True) -> xr.Dataset:
 
     Includes:
         * diagnostics 'air_potential_temperature', 'air_pressure', 'geopotential', 'geopotential_height'
-        * earth-relative wind fields ('wind_east', 'wind_north')
+        * earth-relative wind fields ('wind_east', 'wind_north', 'wind_east_10', 'wind_north_10')
 
     Parameters
     ----------
@@ -224,6 +223,21 @@ def _calc_base_diagnostics(ds: xr.Dataset, drop: bool = True) -> xr.Dataset:
         ds['wind_north'].attrs = dict(
             description='earth-relative y-wind component',
             standard_name='northward_wind',
+            units='m s-1',
+            grid_mapping='wrf_projection',
+        )
+
+    # Earth-relative 10m wind fields (computed according to https://forum.mmm.ucar.edu/threads/how-do-i-convert-model-grid-relative-wind-to-earth-relative-wind-so-that-i-can-compare-model-wind-to-observations.179/)
+    if {'U10', 'V10', 'SINALPHA', 'COSALPHA'}.issubset(ds.data_vars):
+        ds['wind_east_10'] = (ds['U10'] * ds['COSALPHA'] - ds['V10'] * ds['SINALPHA']).variable
+        ds['wind_north_10'] = (ds['V10'] * ds['COSALPHA'] + ds['U10'] * ds['SINALPHA']).variable
+        ds['wind_east_10'].attrs = dict(
+            description='earth-relative 10m x-wind component',
+            units='m s-1',
+            grid_mapping='wrf_projection',
+        )
+        ds['wind_north_10'].attrs = dict(
+            description='earth-relative 10m y-wind component',
             units='m s-1',
             grid_mapping='wrf_projection',
         )

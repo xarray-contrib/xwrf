@@ -154,7 +154,9 @@ def test_clean_brackets_from_units(sample_dataset, variable, bracket):
 @pytest.mark.parametrize('sample_dataset', ['lambert_conformal'], indirect=True)
 def test_calc_base_diagnostics(sample_dataset):
     subset = (
-        sample_dataset[['T', 'P', 'PB', 'PH', 'PHB', 'U', 'V', 'SINALPHA', 'COSALPHA']]
+        sample_dataset[
+            ['T', 'P', 'PB', 'PH', 'PHB', 'U', 'V', 'U10', 'V10', 'SINALPHA', 'COSALPHA']
+        ]
         .isel(Time=0)
         .load()
     )
@@ -197,6 +199,16 @@ def test_calc_base_diagnostics(sample_dataset):
         np.testing.assert_allclose(ds['wind_north'].min().item(), -13.434467)
         assert ds['wind_north'].attrs['units'] == 'm s-1'
         assert ds['wind_north'].attrs['standard_name'] == 'northward_wind'
+
+        # Earth-relative 10m eastward winds
+        np.testing.assert_allclose(ds['wind_east_10'].max().item(), 10.115304)
+        np.testing.assert_allclose(ds['wind_east_10'].min().item(), -0.918889)
+        assert ds['wind_east_10'].attrs['units'] == 'm s-1'
+
+        # Earth-relative 10m northward winds
+        np.testing.assert_allclose(ds['wind_north_10'].max().item(), 1.8683547)
+        np.testing.assert_allclose(ds['wind_north_10'].min().item(), -10.904247)
+        assert ds['wind_north_10'].attrs['units'] == 'm s-1'
 
     # Check dropped or not
     assert 'T' not in ds_dropped

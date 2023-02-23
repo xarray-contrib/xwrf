@@ -77,7 +77,7 @@ def show_versions(as_dict: bool = False) -> None | dict[str, str]:
     ]
 
     packages_blob = {}
-    for (modname, version_func) in packages:
+    for modname, version_func in packages:
         try:
             if modname in sys.modules:
                 mod = sys.modules[modname]
