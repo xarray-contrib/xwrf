@@ -3,17 +3,16 @@
 As an `xarray` accessor, xWRF builds on top of the `xarray` data structures.
 Therefore, loading WRF data is as easy as the following:
 
-```{eval-rst}
-.. code:: python
-    import xarray as xr
-    import xwrf
+```python
+import xarray as xr
+import xwrf
 
-    ds = xr.open_dataset(
-            "./wrfout_d01*",
-            engine="netcdf4",
-            concat_dim="Time",
-            combine="nested",
-        ).xwrf.postprocess()
+ds = xr.open_dataset(
+        "./wrfout_d01*",
+        engine="netcdf4",
+        concat_dim="Time",
+        combine="nested",
+    ).xwrf.postprocess()
 ```
 
 At the moment, xWRF aims to support `met_em`, `wrfinput`, `wrfbdy` and `wrfout` files.
