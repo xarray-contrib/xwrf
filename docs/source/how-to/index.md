@@ -7,4 +7,5 @@ How to:
 maxdepth: 1
 ---
 install-xwrf.md
+load-wrf-data.md
 ```
