@@ -12,8 +12,8 @@ xWRF provides a lightweight interface for working with the Weather Research and 
 maxdepth: 2
 hidden:
 ---
-tutorials/index.md
 how-to/index.md
+tutorials/index.md
 explanation/index.md
 reference/index.md
 changelog.md
