@@ -7,7 +7,7 @@ Therefore, loading WRF data is as easy as the following:
 import xarray as xr
 import xwrf
 
-ds = xr.open_dataset(
+ds = xr.open_mfdataset(
         "./wrfout_d01*",
         engine="netcdf4",
         concat_dim="Time",
