@@ -21,7 +21,7 @@ def _decode_times(ds: xr.Dataset) -> xr.Dataset:
         )
     except ValueError:
         _time = pd.to_datetime(
-            ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%dT%H:%M:%S.%f'
+            ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%dT%H:%M:%S'
         )
     ds = ds.assign_coords({'Time': _time})
     ds.Time.attrs = {'long_name': 'Time', 'standard_name': 'time'}
@@ -75,7 +75,6 @@ def _modify_attrs_to_cf(ds: xr.Dataset) -> xr.Dataset:
 
 
 def _collapse_time_dim(ds: xr.Dataset) -> xr.Dataset:
-
     # This "time dimension collapsing" assumption is wrong with moving nests
     # and should be applied to static, nested domains.
     lat_lon_coords = set(config.get('latitude_coords') + config.get('longitude_coords'))
