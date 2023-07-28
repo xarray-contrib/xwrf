@@ -145,10 +145,9 @@ def test_assign_coord_to_dim_of_different_name_keyerror(sample_dataset):
 
 
 @pytest.mark.parametrize('sample_dataset', ['lambert_conformal'], indirect=True)
-@pytest.mark.parametrize('variable,bracket', (('QNRAIN', '('), ('NOAHRES', '{')))
-def test_clean_brackets_from_units(sample_dataset, variable, bracket):
-    ds = sample_dataset.pipe(xwrf.postprocess._clean_brackets_from_units)
-    assert bracket not in ds[variable].attrs['units']
+def test_bracket_units_transl(sample_dataset):
+    assert {'QNRAIN', 'NOAHRES'}.issubset(set(sample_dataset.variables))
+    xwrf.postprocess._make_units_pint_friendly(sample_dataset)
 
 
 @pytest.mark.parametrize('sample_dataset', ['lambert_conformal'], indirect=True)

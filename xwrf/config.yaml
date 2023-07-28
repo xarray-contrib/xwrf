@@ -38,33 +38,6 @@ brackets_to_clean_from_units:
   - '('
   - ')'
 
-unit_harmonization_map:
-  kelvin:
-    - Kelvin
-  '1':
-    - fraction
-    - Dimensionless
-  invalid:
-    - '-'
-    - flag
-    - '0/1 Flag'
-    - whoknows
-    - category
-    - none
-    - dBZ
-    - dbZ
-  meters:
-    - 'meters MSL'
-  g/m2/s:
-    - 'g/m2/s CO2'
-  umol/m2/s:
-    - 'umol co2/m2/s'
-  J/m**3/kelvin:
-    - 'J/m**3/Kelvin'
-  W/m/kelvin:
-    - 'W/m-K'
-    - 'W/m/Kelvin'
-
 cf_attribute_map:
   south_north:
     units: m
