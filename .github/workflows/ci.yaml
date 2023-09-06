@@ -26,18 +26,17 @@ jobs:
         python-version: ['3.8', '3.9', '3.10']
     steps:
       - uses: actions/checkout@v2
-      - uses: conda-incubator/setup-miniconda@v2
-        id: conda
+      - name: set up conda environment
+        uses: mamba-org/setup-micromamba@v1
         with:
-          channels: conda-forge
-          channel-priority: strict
-          activate-environment: xwrf-dev
-          auto-update-conda: false
-          python-version: ${{ matrix.python-version }}
-          mamba-version: '*'
-          use-mamba: true
-          miniforge-variant: Mambaforge
           environment-file: ci/environment.yml
+          init-shell: >-
+            bash
+          cache-environment: true
+          cache-downloads: true
+          post-cleanup: 'all'
+          create-args: >-
+            python=${{ matrix.python-version }}
 
       - name: Install xwrf
         id: install
