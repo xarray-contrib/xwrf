@@ -20,7 +20,7 @@ dependencies:
   - sphinx-comments
   - sphinx-copybutton
   - sphinx-design
-  - xarray>=0.18,!=0.20.0,!=0.20.1
+  - xarray>=2022.06.0
   - xgcm
   - numba
   - hvplot
