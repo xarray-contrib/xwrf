@@ -111,7 +111,7 @@ def test_decode_times(times):
 @pytest.mark.parametrize(
     'sample_dataset_with_kwargs,xtime_dtype',
     [
-        (('mercator', {'decode_times': True}), np.timedelta64),
+        (('mercator', {'decode_times': True}), np.datetime64),
         (('mercator', {'decode_times': False}), np.float32),
     ],
     indirect=['sample_dataset_with_kwargs'],
