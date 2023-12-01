@@ -50,6 +50,11 @@ def _destag_variable(datavar, stagger_dim=None, unstag_dim_name=None):
                 'Expected a single destagger dimensions. Found multiple destagger dimensions: '
                 f'{stagger_dim}'
             )
+        elif len(stagger_dim) == 0:
+            raise ValueError(
+                'No dimension available to destagger. This variable does not appear to be '
+                'staggered.'
+            )
 
         # we need a string, not a list containing a string
         stagger_dim = stagger_dim[0]
