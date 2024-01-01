@@ -33,10 +33,10 @@ time_coords:
   - time
 
 brackets_to_clean_from_units:
-  - '{'
-  - '}'
-  - '('
-  - ')'
+  - "{"
+  - "}"
+  - "("
+  - ")"
 
 cf_attribute_map:
   south_north:
@@ -142,7 +142,7 @@ cf_attribute_map:
   ST:
     units: kelvin
   RH:
-    units: '%'
+    units: "%"
 
 conditional_cf_attribute_map:
   HYBRID_OPT==0:
