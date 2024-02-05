@@ -5,7 +5,7 @@ on:
       - main
   pull_request:
   schedule:
-    - cron: '0 0 * * *' # Daily “At 00:00”
+    - cron: "0 0 * * *" # Daily “At 00:00”
   workflow_dispatch: # allows you to trigger manually
 
 concurrency:
@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ['3.8', '3.9', '3.10']
+        python-version: ["3.8", "3.9", "3.10"]
     steps:
       - uses: actions/checkout@v4
       - name: set up conda environment
@@ -34,7 +34,7 @@ jobs:
             bash
           cache-environment: true
           cache-downloads: true
-          post-cleanup: 'all'
+          post-cleanup: "all"
           create-args: >-
             python=${{ matrix.python-version }}
 
@@ -50,7 +50,7 @@ jobs:
           python -m pytest
 
       - name: Upload code coverage to Codecov
-        uses: codecov/codecov-action@v3.1.4
+        uses: codecov/codecov-action@v4.0.1
         with:
           file: ./coverage.xml
           flags: unittests
