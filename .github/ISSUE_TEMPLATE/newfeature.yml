@@ -1,6 +1,6 @@
 name: New Feature
 description: Define a new feature to be implemented
-title: '[FEATURE]: '
+title: "[FEATURE]: "
 labels: [enhancement]
 assignees: []
 body:
