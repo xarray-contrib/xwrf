@@ -3,6 +3,7 @@ This submodule contains code reused with modification from Salem under the terms
 3-Clause License. Salem is Copyright (c) 2014-2021, Fabien Maussion and Salem Development Team All
 rights reserved.
 """
+
 from __future__ import annotations  # noqa: F401
 
 from typing import Hashable, Mapping

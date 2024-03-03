@@ -3,6 +3,7 @@ Useful for:
 * users learning xwrf
 * building tutorials in the documentation.
 """
+
 from __future__ import annotations  # noqa: F401
 
 import os
