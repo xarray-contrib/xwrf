@@ -62,8 +62,8 @@ def _wrf_grid_from_dataset(ds: xr.Dataset) -> Mapping[Hashable, pyproj.CRS | np.
 
     # Get grid specifications
     trf = pyproj.Transformer.from_crs(wgs84, crs, always_xy=True)
-    nx = ds.dims['west_east']
-    ny = ds.dims['south_north']
+    nx = ds.sizes['west_east']
+    ny = ds.sizes['south_north']
     e, n = trf.transform(cen_lon, cen_lat)
     x0 = -(nx - 1) / 2.0 * dx + e  # DL corner
     y0 = -(ny - 1) / 2.0 * dy + n  # DL corner
