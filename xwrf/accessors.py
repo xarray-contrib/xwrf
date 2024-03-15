@@ -168,7 +168,7 @@ class WRFDatasetAccessor(WRFAccessor):
         dataset, but will not be associated with any data variables.
         """
         staggered_dims = (
-            {dim for dim in self.xarray_obj.sizes if dim.endswith('_stag')}
+            {dim for dim in self.xarray_obj.dims if dim.endswith('_stag')}
             if staggered_to_unstaggered_dims is None
             else set(staggered_to_unstaggered_dims)
         )

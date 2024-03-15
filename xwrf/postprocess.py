@@ -99,7 +99,7 @@ def _include_projection_coordinates(ds: xr.Dataset) -> xr.Dataset:
             'projection metadata.'
         )
         return ds
-    horizontal_dims = set(config.get('horizontal_dims')).intersection(set(ds.sizes))
+    horizontal_dims = set(config.get('horizontal_dims')).intersection(set(ds.dims))
 
     # Include dimension coordinates
     for dim in horizontal_dims:
@@ -126,7 +126,7 @@ def _assign_coord_to_dim_of_different_name(ds: xr.Dataset) -> xr.Dataset:
 
 def _rename_dims(ds: xr.Dataset) -> xr.Dataset:
     """Rename dims for more consistent semantics."""
-    rename_dim_map = {k: v for k, v in config.get('rename_dim_map').items() if k in ds.sizes}
+    rename_dim_map = {k: v for k, v in config.get('rename_dim_map').items() if k in ds.dims}
     return ds.rename(rename_dim_map)
 
 
