@@ -40,6 +40,12 @@ def test_grid_construction_against_salem(dummy_dataset, dummy_salem):
     assert grid_params['crs'] == pyproj.CRS(dummy_salem['Q2'].attrs['pyproj_srs'])
 
 
+def test_raise_notimplemented_error(dummy_dataset):
+    dummy_dataset.attrs['MAP_PROJ'] = 'invalid'
+    with pytest.raises(NotImplementedError):
+        _wrf_grid_from_dataset(dummy_dataset)
+
+
 @pytest.mark.parametrize(
     'test_grid, cf_grid_mapping_name',
     [
