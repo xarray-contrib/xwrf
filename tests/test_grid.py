@@ -41,7 +41,7 @@ def test_grid_construction_against_salem(dummy_dataset, dummy_salem):
 
 
 def test_raise_notimplemented_error(dummy_dataset):
-    dummy_dataset.attrs['MAP_PROJ'] = 'dummy'
+    dummy_dataset.attrs['MAP_PROJ'] = 'invalid'
     with pytest.raises(NotImplementedError):
         _wrf_grid_from_dataset(dummy_dataset)
 
