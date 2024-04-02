@@ -38,7 +38,9 @@ def _wrf_grid_from_dataset(ds: xr.Dataset) -> Mapping[Hashable, pyproj.CRS | np.
         'center_lon': cen_lon,
     }
 
-    if proj_id == 1:
+    if proj_id == 0:
+        pargs = 4326
+    elif proj_id == 1:
         # Lambert
         pargs['proj'] = 'lcc'
         del pargs['center_lon']
