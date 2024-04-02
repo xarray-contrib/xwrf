@@ -39,6 +39,7 @@ def _wrf_grid_from_dataset(ds: xr.Dataset) -> Mapping[Hashable, pyproj.CRS | np.
     }
 
     if proj_id == 0:
+        # Cartesian
         pargs = 4326
     elif proj_id == 1:
         # Lambert
