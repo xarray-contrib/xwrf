@@ -105,11 +105,12 @@ def _include_projection_coordinates(ds: xr.Dataset) -> xr.Dataset:
     for dim in horizontal_dims:
         ds[dim] = (dim, grid_components[dim], config.get(f'cf_attribute_map.{dim}'))
 
-    # Include CRS
-    ds['wrf_projection'] = (tuple(), grid_components['crs'], grid_components['crs'].to_cf())
-    for varname in ds.data_vars:
-        if any(dim in ds[varname].dims for dim in horizontal_dims):
-            ds[varname].attrs['grid_mapping'] = 'wrf_projection'
+    # Include CRS if we don't have idealized coords
+    if grid_components['crs'] is not None:
+        ds['wrf_projection'] = (tuple(), grid_components['crs'], grid_components['crs'].to_cf())
+        for varname in ds.data_vars:
+            if any(dim in ds[varname].dims for dim in horizontal_dims):
+                ds[varname].attrs['grid_mapping'] = 'wrf_projection'
 
     return ds
 

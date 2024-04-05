@@ -39,8 +39,8 @@ def _wrf_grid_from_dataset(ds: xr.Dataset) -> Mapping[Hashable, pyproj.CRS | np.
     }
 
     if proj_id == 0:
-        # Cartesian
-        pargs = 4326
+        # Idealized Run, Cartesian grid
+        pass
     elif proj_id == 1:
         # Lambert
         pargs['proj'] = 'lcc'
@@ -60,14 +60,20 @@ def _wrf_grid_from_dataset(ds: xr.Dataset) -> Mapping[Hashable, pyproj.CRS | np.
     else:
         raise NotImplementedError(f'WRF proj not implemented yet: {proj_id}')
 
-    # Construct the pyproj CRS (letting errors fail through)
-    crs = pyproj.CRS(pargs)
+    if proj_id == 0:
+        # As this is an idealized run, there is no physical CRS
+        crs = None
+        e, n = cen_lon, cen_lat
+    else:
+        # Construct the pyproj CRS (letting errors fail through)
+        crs = pyproj.CRS(pargs)
 
-    # Get grid specifications
-    trf = pyproj.Transformer.from_crs(wgs84, crs, always_xy=True)
+        # Get grid specifications
+        trf = pyproj.Transformer.from_crs(wgs84, crs, always_xy=True)
+        e, n = trf.transform(cen_lon, cen_lat)
+
     nx = ds.sizes['west_east']
     ny = ds.sizes['south_north']
-    e, n = trf.transform(cen_lon, cen_lat)
     x0 = -(nx - 1) / 2.0 * dx + e  # DL corner
     y0 = -(ny - 1) / 2.0 * dy + n  # DL corner
 
