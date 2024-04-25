@@ -121,6 +121,24 @@ def test_xtime_handling(sample_dataset_with_kwargs, xtime_dtype):
     assert np.issubdtype(dataset.XTIME.dtype, xtime_dtype)
 
 
+@pytest.mark.parametrize(
+    'sample_dataset_with_kwargs,xtime_dtype',
+    [
+        (('wrfout', {'decode_times': True}), np.datetime64),
+        pytest.param(
+            ('wrfout', {'decode_times': False}),
+            np.datetime64,
+            marks=pytest.mark.xfail(raises=ValueError, strict=True),
+        ),
+    ],
+    indirect=['sample_dataset_with_kwargs'],
+)
+def test_xtime_fallback(sample_dataset_with_kwargs, xtime_dtype):
+    dataset_fallback = xwrf.postprocess._decode_times(sample_dataset_with_kwargs.drop_vars('Times'))
+    dataset = xwrf.postprocess._decode_times(sample_dataset_with_kwargs)
+    assert dataset_fallback.Time.equals(dataset.Time)
+
+
 @pytest.mark.parametrize('sample_dataset', ['lambert_conformal'], indirect=True)
 def test_assign_coord_to_dim_of_different_name(sample_dataset):
     dataset = sample_dataset.pipe(xwrf.postprocess._collapse_time_dim).pipe(
