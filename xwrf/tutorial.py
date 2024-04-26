@@ -38,6 +38,7 @@ sample_datasets = {
     'tiny': 'data/tiny.nc',
     'met_em_sample': 'data/met_em.d01.2005-08-28_12:00:00.nc',
     'wrfout': 'data/wrfout_d01_2099-10-01_00:00:00.nc',
+    'ideal': 'data/ideal.nc',
 }
 
 
@@ -65,6 +66,7 @@ def open_dataset(
     * ``"mercator"``
     * ``"met_em_sample"``
     * ``"wrfout"``
+    * ``"ideal"``
 
     Parameters
     ----------
