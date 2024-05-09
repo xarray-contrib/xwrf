@@ -86,3 +86,15 @@ def test_grid_construction_against_own_latlon(test_grid, cf_grid_mapping_name):
                 decimal=2,
                 err_msg=f"Computed {varname + '_M'} does not match with raw output",
             )
+
+
+@pytest.mark.parametrize(
+    'test_grid',
+    [
+        'ideal',
+    ],
+    indirect=True,
+)
+def test_ideal_grid(test_grid):
+    grid_params = _wrf_grid_from_dataset(test_grid)
+    assert grid_params['crs'] is None
