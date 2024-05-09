@@ -14,14 +14,24 @@ def _decode_times(ds: xr.Dataset) -> xr.Dataset:
     """
     Decode the time variable to datetime64.
     """
-    try:
-        _time = pd.to_datetime(
-            ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%d_%H:%M:%S'
-        )
-    except ValueError:
-        _time = pd.to_datetime(
-            ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%dT%H:%M:%S'
-        )
+    if 'Times' in ds:
+        try:
+            _time = pd.to_datetime(
+                ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%d_%H:%M:%S'
+            )
+        except ValueError:
+            _time = pd.to_datetime(
+                ds.Times.data.astype('str'), errors='raise', format='%Y-%m-%dT%H:%M:%S'
+            )
+    elif 'XTIME' in ds:
+        if ds.XTIME.dtype == 'datetime64[ns]':
+            _time = ds.XTIME.data
+        else:
+            raise ValueError(
+                'XTIME is not in datetime64 format, please use `xr.open_dataset(..., decode_times=True)`.'
+            )
+    else:
+        raise ValueError('No time variable found in the dataset.')
     ds = ds.assign_coords({'Time': _time})
     ds.Time.attrs = {'long_name': 'Time', 'standard_name': 'time'}
     return ds
