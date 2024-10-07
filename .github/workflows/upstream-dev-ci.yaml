@@ -27,7 +27,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: set up conda environment
         id: conda
-        uses: mamba-org/setup-micromamba@v1
+        uses: mamba-org/setup-micromamba@v2
         with:
           environment-file: ci/environment-upstream-dev.yml
           init-shell: >-
