@@ -3,6 +3,10 @@ line-length = 100
 target-version = ["py310", "py311", "py312"]
 skip-string-normalization = true
 
+[tool.pytest.ini_options]
+markers = [
+    "network: mark test as requiring network access",
+]
 
 [build-system]
 requires = ["setuptools>=30.3.0", "wheel", "setuptools_scm"]
