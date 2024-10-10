@@ -14,7 +14,7 @@ dependencies:
   - pip
   - pooch
   - pydantic
-  - python=3.9
+  - python=3.10
   - sphinx-autobuild
   - sphinx-autosummary-accessors
   - sphinx-comments
