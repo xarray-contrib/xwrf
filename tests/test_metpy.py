@@ -48,7 +48,7 @@ def test_metpy_coordinate_identification(sample_dataset):
     indirect=['sample_dataset'],
 )
 def test_metpy_axis_identification(sample_dataset, axis_mapping, test_varname):
-    da = sample_dataset.xwrf.postprocess()[test_varname]
+    da = sample_dataset.xwrf.postprocess()[test_varname].drop_vars('CLAT')
     for axis_type, axis_number in axis_mapping.items():
         assert da.metpy.find_axis_number(axis_type) == axis_number
         assert da.metpy.find_axis_name(axis_type) == da.dims[axis_number]

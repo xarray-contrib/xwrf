@@ -61,7 +61,9 @@ def test_include_projection_coordinates(sample_dataset):
 
 
 @pytest.mark.parametrize(
-    'sample_dataset', set(xwrf.tutorial.sample_datasets.keys()) - {'tiny', 'ideal'}, indirect=True
+    'sample_dataset',
+    set(xwrf.tutorial.sample_datasets.keys()) - {'tiny', 'ideal', 'dummy_attrs_only'},
+    indirect=True,
 )
 def test_grid_mapping_is_in_all_vars(sample_dataset):
     dataset = xwrf.postprocess._include_projection_coordinates(sample_dataset)
@@ -77,7 +79,8 @@ def test_include_projection_coordinates_with_xgcm(sample_dataset):
     from xgcm import Grid
 
     dataset = xwrf.postprocess._include_projection_coordinates(sample_dataset)
-    grid = Grid(dataset)
+    with pytest.warns(DeprecationWarning):
+        grid = Grid(dataset, periodic=False)
 
     assert grid.axes['Y'].coords['center'] == 'south_north'
     assert grid.axes['Y'].coords['outer'] == 'south_north_stag'
