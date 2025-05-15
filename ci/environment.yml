@@ -20,5 +20,6 @@ dependencies:
   - pytest-sugar
   - xarray>=0.18,!=0.20.0,!=0.20.1
   - xgcm
+  - zarr<3
   - pip:
       - -r ../requirements.txt
