@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # flake8: noqa
-""" Top-level module. """
+"""Top-level module."""
 
 from importlib.metadata import PackageNotFoundError, version
 
