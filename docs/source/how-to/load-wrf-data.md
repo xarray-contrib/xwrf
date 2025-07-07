@@ -8,11 +8,11 @@ import xarray as xr
 import xwrf
 
 ds = xr.open_mfdataset(
-        "./wrfout_d01*",
-        engine="netcdf4",
-        concat_dim="Time",
-        combine="nested",
-    ).xwrf.postprocess()
+    "./wrfout_d01*",
+    engine="netcdf4",
+    concat_dim="Time",
+    combine="nested",
+).xwrf.postprocess()
 ```
 
 At the moment, xWRF aims to support `met_em`, `wrfinput`, `wrfbdy` and `wrfout` files.

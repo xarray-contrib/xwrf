@@ -6,6 +6,7 @@
 from matplotlib.patches import BoxStyle, FancyBboxPatch, Polygon
 import matplotlib.pyplot as plt
 import numpy as np
+
 %matplotlib inline
 %config InlineBackend.figure_format='retina'
 ```
@@ -22,7 +23,7 @@ font_options = {
     "fontweight": "semibold",
     "fontsize": 200,
     "ha": "center",
-    "va": "center_baseline"
+    "va": "center_baseline",
 }
 letter_y_shift = 0.038
 ```
@@ -32,11 +33,7 @@ def generate_xwrf_logo(ax, bg_type="bg_light"):
     """Create xwrf logo using provided Axes and specified color pattern."""
     # Define the "X" triangles
     gap_side = gap_width / np.sqrt(2)
-    tri_left = np.array([
-        [-0.5, 0.5 - gap_side],
-        [-gap_side, 0],
-        [-0.5, -0.5 + gap_side]
-    ])
+    tri_left = np.array([[-0.5, 0.5 - gap_side], [-gap_side, 0], [-0.5, -0.5 + gap_side]])
     tri_right = tri_left * np.array([[-1, 1]])
     tri_bottom = tri_left[:, ::-1]
     tri_top = tri_right[:, ::-1]
@@ -49,25 +46,29 @@ def generate_xwrf_logo(ax, bg_type="bg_light"):
         ax.text(i, letter_y_shift, letter, fontdict=local_font_options)
 
     # u ticks and v ticks
-    for u_pos in np.arange(-0.5, 4, 1.):
-        ax.add_patch(FancyBboxPatch(
-            (-tick_width / 2 + u_pos, -tick_height),
-            tick_width,
-            tick_height,
-            boxstyle=BoxStyle("Round", pad=tick_height/4),
-            facecolor=tick_color,
-            edgecolor=tick_color
-        ))
-    for v_pos in np.arange(0, 4, 1.):
-        for y_offset in (-0.5, 0.5):
-            ax.add_patch(FancyBboxPatch(
-                (-tick_height / 2 + v_pos, -tick_width / 2 + y_offset),
-                tick_height,
+    for u_pos in np.arange(-0.5, 4, 1.0):
+        ax.add_patch(
+            FancyBboxPatch(
+                (-tick_width / 2 + u_pos, -tick_height),
                 tick_width,
-                boxstyle=BoxStyle("Round", pad=tick_height/4),
+                tick_height,
+                boxstyle=BoxStyle("Round", pad=tick_height / 4),
                 facecolor=tick_color,
-                edgecolor=tick_color
-            ))
+                edgecolor=tick_color,
+            )
+        )
+    for v_pos in np.arange(0, 4, 1.0):
+        for y_offset in (-0.5, 0.5):
+            ax.add_patch(
+                FancyBboxPatch(
+                    (-tick_height / 2 + v_pos, -tick_width / 2 + y_offset),
+                    tick_height,
+                    tick_width,
+                    boxstyle=BoxStyle("Round", pad=tick_height / 4),
+                    facecolor=tick_color,
+                    edgecolor=tick_color,
+                )
+            )
 
     # Bounding
     ax.set_xlim(-0.6, 3.6)
