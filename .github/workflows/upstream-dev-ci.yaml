@@ -54,7 +54,7 @@ jobs:
           always()
           && (steps.conda.outcome != 'success' || steps.install.outcome != 'success' || steps.install.outcome != 'success')
           && github.event_name == 'schedule'
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           script: |
             const title = '⚠️ Upstream CI Failed ⚠️'
