@@ -15,7 +15,7 @@ repos:
       - id: mixed-line-ending
 
   - repo: https://github.com/asottile/pyupgrade
-    rev: v3.20.0
+    rev: v3.21.0
     hooks:
       - id: pyupgrade
         args:
@@ -28,7 +28,7 @@ repos:
       - id: black-jupyter
 
   - repo: https://github.com/keewis/blackdoc
-    rev: v0.4.3
+    rev: v0.4.5
     hooks:
       - id: blackdoc
         additional_dependencies: ["black==25.9.0"]
@@ -40,7 +40,7 @@ repos:
       - id: flake8
 
   - repo: https://github.com/PyCQA/isort
-    rev: 6.1.0
+    rev: 7.0.0
     hooks:
       - id: isort
 
