@@ -50,7 +50,7 @@ jobs:
           python -m pytest
 
       - name: Upload code coverage to Codecov
-        uses: codecov/codecov-action@v5.5.1
+        uses: codecov/codecov-action@v5.5.2
         with:
           file: ./coverage.xml
           flags: unittests
