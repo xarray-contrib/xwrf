@@ -36,7 +36,7 @@ def get_sys_info() -> dict[str, str]:
 
     blob = [('xWRF commit', commit)]
     try:
-        (sysname, _nodename, release, _version, machine, processor) = platform.uname()
+        sysname, _nodename, release, _version, machine, processor = platform.uname()
         blob.extend(
             [
                 ('python', sys.version),
