@@ -5,11 +5,9 @@ import sphinx_autosummary_accessors
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.viewcode',
-    'sphinx.ext.autosummary',
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
-    'sphinx.ext.intersphinx',
     'sphinx.ext.napoleon',
     'myst_nb',
     'sphinxext.opengraph',
@@ -60,7 +58,7 @@ extlinks = {
 }
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates', sphinx_autosummary_accessors.templates_path]
+templates = ['_templates', ..., sphinx_autosummary_accessors.templates_path]
 
 # The master toctree document.
 master_doc = 'index'
