@@ -9,7 +9,6 @@ extensions = [
     'sphinx.ext.doctest',
     'sphinx.ext.intersphinx',
     'sphinx.ext.extlinks',
-    'sphinx.ext.intersphinx',
     'sphinx.ext.napoleon',
     'myst_nb',
     'sphinxext.opengraph',
