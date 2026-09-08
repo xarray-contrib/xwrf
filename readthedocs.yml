@@ -6,4 +6,4 @@ conda:
 build:
   os: "ubuntu-lts-latest"
   tools:
-    python: "mambaforge-latest"
+    python: "miniforge-latest"
