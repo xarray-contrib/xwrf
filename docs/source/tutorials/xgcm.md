@@ -84,7 +84,7 @@ import pint_xarray
 target_levels = np.array([250.]) # in hPa
 air_pressure = destaggered.air_pressure.pint.to('hPa').metpy.dequantify()
 
-grid = xgcm.Grid(destaggered, periodic=False)
+grid = xgcm.Grid(destaggered)
 _wind_speed = grid.transform(destaggered.wind_speed.metpy.dequantify(), 'Z', target_levels, target_data=air_pressure, method='log')
 _wind_speed = _wind_speed.compute()
 ```
