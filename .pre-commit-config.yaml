@@ -39,7 +39,7 @@ repos:
       - id: flake8
 
   - repo: https://github.com/PyCQA/isort
-    rev: 9.0.0a3
+    rev: 9.0.1
     hooks:
       - id: isort
 
